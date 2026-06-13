@@ -1,0 +1,71 @@
+name: athenahealth API Rate Limits
+description: >-
+  athenahealth enforces rate limits on API usage to ensure platform stability
+  and fair access across all customers and partners. Limits differ between the
+  preview/sandbox environment and the production environment.
+url: https://docs.athenahealth.com/api/guides/overview
+
+environments:
+  - name: Preview / Sandbox
+    description: >-
+      Development and testing environment with more restrictive rate limits to
+      prevent overload during integration development.
+    limits:
+      - type: OAuth Token Requests
+        limit: 5
+        period: per minute
+        notes: New token requests are throttled to 5 per minute in preview.
+      - type: API Calls
+        limit: Restricted (lower than production)
+        period: per second/day
+        notes: Exact limits vary by endpoint; expect 5-20 calls/second range.
+
+  - name: Production
+    description: >-
+      Full production environment with higher rate limits for live applications.
+      Limits may be customized per application based on the partner agreement.
+    limits:
+      - type: API Calls Per Second
+        limit: 100
+        period: per second
+        notes: Maximum sustained throughput for production applications.
+      - type: API Calls Per Day
+        limit: 500000
+        period: per day
+        notes: >-
+          Daily cap across all endpoints. High-volume integrations may negotiate
+          higher limits through the partner program.
+      - type: OAuth Token Requests
+        limit: 50
+        period: per minute
+        notes: New token requests throttled to 50 per minute in production.
+
+headers:
+  - name: X-RateLimit-Remaining
+    description: Number of API calls remaining in the current rate limit window.
+  - name: X-RateLimit-Reset
+    description: Unix timestamp indicating when the rate limit window resets.
+
+errorCodes:
+  - code: 429
+    description: >-
+      Too Many Requests. Returned when an application exceeds its rate limit.
+      Applications should implement exponential backoff and retry logic when
+      receiving 429 responses.
+
+bestPractices:
+  - Monitor X-RateLimit-Remaining and X-RateLimit-Reset headers proactively.
+  - Implement exponential backoff when receiving HTTP 429 responses.
+  - Avoid bursting requests; space calls evenly to stay within per-second limits.
+  - Cache API responses where appropriate to reduce redundant calls.
+  - For bulk data needs, consider using athenahealth Data View (SQL editor) or
+    EHI Export rather than REST API batch polling.
+  - Request tokens proactively before expiration to avoid authentication delays.
+
+references:
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/overview
+  - type: Authentication
+    url: https://docs.athenahealth.com/api/guides/authentication-and-url-locations
+  - type: DataView
+    url: https://docs.athenahealth.com/dataview

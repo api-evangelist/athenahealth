@@ -1,0 +1,102 @@
+name: athenahealth API FinOps
+description: >-
+  Financial operations guidance for managing costs associated with athenahealth
+  API integrations. athenahealth uses a revenue-sharing and percentage-of-
+  collections model rather than per-API-call billing, so FinOps for this
+  platform focuses on integration investment, partner program costs, and
+  operational overhead rather than metered API consumption charges.
+url: https://www.athenahealth.com/why-choose-us/cost-value
+
+costModel:
+  type: Revenue Share / Percentage of Collections
+  description: >-
+    athenahealth's primary pricing model for practice customers is a percentage
+    of monthly net collections, typically bundling EHR, practice management,
+    and API access into a single service fee. For ISV Marketplace Partners,
+    costs are structured as a revenue share on application revenue generated
+    through the athenahealth network.
+  notes:
+    - No per-API-call metered billing for practice customers.
+    - API access is bundled with the athenaOne subscription.
+    - ISV partners pay a revenue share (estimated 15-30%) on Marketplace sales.
+    - Integration development costs are a primary one-time expense.
+
+integrationCosts:
+  description: Estimated costs for building and maintaining athenahealth API integrations.
+  estimates:
+    - scope: Basic REST API Integration
+      cost: $25,000 - $50,000 USD
+      notes: Single workflow (e.g., scheduling or patient lookup), small team.
+    - scope: Mid-Complexity Integration
+      cost: $50,000 - $80,000 USD
+      notes: Multiple API domains (scheduling + clinical + billing).
+    - scope: Full-Platform Integration
+      cost: $80,000 - $120,000 USD
+      notes: >-
+        Comprehensive EHR integration covering patient management, scheduling,
+        clinical data, and revenue cycle across multiple practice contexts.
+    - scope: Ongoing Hosting and Maintenance
+      cost: $500 - $3,000 USD per month
+      notes: >-
+        Infrastructure for hosting integration middleware, monitoring, and
+        ongoing API maintenance as athenahealth releases updates.
+
+costOptimization:
+  - strategy: Use FHIR Bulk Export for Large Datasets
+    description: >-
+      Instead of polling REST API endpoints for bulk data, leverage athenahealth
+      FHIR bulk export or Data View (SQL editor) to reduce per-call overhead
+      and avoid hitting daily rate limits.
+    url: https://docs.athenahealth.com/athenaone-dataexports/
+
+  - strategy: Cache Authentication Tokens
+    description: >-
+      Reuse OAuth 2.0 access tokens until they expire rather than requesting
+      new tokens per API call. This reduces token request overhead and stays
+      within per-minute token rate limits (50/min production, 5/min preview).
+
+  - strategy: Implement Request Batching
+    description: >-
+      Where athenahealth APIs support batch operations or compound queries,
+      batch requests to reduce total call volume against daily limits.
+
+  - strategy: Monitor Daily Call Budgets
+    description: >-
+      Track X-RateLimit-Remaining headers to build dashboards showing daily
+      API consumption versus the 500,000/day production cap. Alert when usage
+      approaches 80% of daily limit to prevent unexpected 429 errors.
+
+  - strategy: Evaluate Marketplace vs. Custom Integration
+    description: >-
+      For ISVs, evaluate whether joining the Marketplace Partner Program
+      (revenue share model) vs. building a custom point-to-point integration
+      (upfront development cost) is more cost-effective given expected volume
+      and distribution goals.
+
+  - strategy: Leverage EHI Export for Regulatory Data
+    description: >-
+      Use the athenahealth EHI Export feature for structured Electronic Health
+      Information exports rather than REST API polling, reducing API call volume
+      for bulk data extraction use cases.
+    url: https://docs.athenahealth.com/athenaone-dataexports/
+
+visibility:
+  - tool: X-RateLimit-Remaining header
+    description: Monitor remaining API calls in real time to track consumption.
+  - tool: X-RateLimit-Reset header
+    description: Know when rate limit windows reset to plan burst workloads.
+  - tool: athenahealth Data View
+    description: >-
+      On-demand SQL editor for analytics and reporting; reduces need for
+      API-based data extraction.
+    url: https://docs.athenahealth.com/dataview
+
+references:
+  - type: PricingPage
+    url: https://www.athenahealth.com/why-choose-us/cost-value
+  - type: MarketplacePartners
+    url: https://www.athenahealth.com/solutions/marketplace-partners
+  - type: FeeSchedule
+    url: https://docs.athenahealth.com/api/api-ref/fee-schedule
+  - type: DeveloperPortal
+    url: https://www.athenahealth.com/developer-portal
