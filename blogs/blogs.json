@@ -1,0 +1,31 @@
+{
+  "provider": "athenahealth",
+  "blogURL": "https://www.athenahealth.com/resources/blog",
+  "fetched": "2026-06-13",
+  "posts": [
+    {
+      "title": "How athenaOne® supports long-term patient care",
+      "url": "https://www.athenahealth.com/resources/blog/dtc-family-health",
+      "date": "2026-06-09",
+      "description": "Case study showing how DTC Family Health uses athenaOne to strengthen patient relationships and support long-term care delivery."
+    },
+    {
+      "title": "Why claiming your Google Business profile matters",
+      "url": "https://www.athenahealth.com/resources/blog/claiming-your-google-business-profile",
+      "date": "2026-06-10",
+      "description": "Guide to claiming and completing your Google Business Profile for improved online visibility for healthcare practices."
+    },
+    {
+      "title": "How to prepare for MIPS 2026 changes in orthopedics",
+      "url": "https://www.athenahealth.com/resources/blog/mips-2026-changes-orthopedic-practices",
+      "date": "2026-06-10",
+      "description": "Preparation guidance for orthopedic practices adapting to new MVP requirements under MIPS 2026 changes."
+    },
+    {
+      "title": "10 ways patient engagement tools enhance healthcare",
+      "url": "https://www.athenahealth.com/resources/blog/10-ways-patient-engagement-tools-enhance-healthcare",
+      "date": "2025-03-11",
+      "description": "From scheduling to billing and care coordination, these patient engagement tools help patients and practices thrive."
+    }
+  ]
+}
