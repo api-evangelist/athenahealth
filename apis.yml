@@ -1,125 +1,115 @@
 aid: athenahealth
 name: athenahealth
-description: >-
-  athenahealth is a cloud-based healthcare network offering REST APIs for
-  electronic health records (EHR), practice management, patient portal, revenue
-  cycle management, and care coordination across ambulatory and acute care
-  settings. The platform provides over 800 API endpoints enabling developers to
-  extend athenaOne and integrate clinical, financial, and operational workflows
-  across a national network of 84,000+ care sites.
+description: athenahealth is a cloud-based healthcare network offering REST APIs for
+  electronic health records (EHR), practice management, patient portal, revenue cycle
+  management, and care coordination across ambulatory and acute care settings. The
+  platform provides over 800 API endpoints enabling developers to extend athenaOne
+  and integrate clinical, financial, and operational workflows across a national network
+  of 84,000+ care sites.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/athenahealth/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/athenahealth/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.19'
 tags:
-  - Healthcare
-  - EHR
-  - Electronic Health Records
-  - Practice Management
-  - Revenue Cycle Management
-  - Patient Portal
-  - FHIR
-  - Care Coordination
-  - Interoperability
-  - HL7
+- Healthcare
+- EHR
+- Electronic Health Records
+- Practice Management
+- Revenue Cycle Management
+- Patient Portal
+- FHIR
+- Care Coordination
+- Interoperability
+- HL7
 apis:
-  - aid: athenahealth:athenaone-apis
-    name: athenaOne APIs
-    description: >-
-      The athenaOne proprietary REST API suite provides over 800 endpoints
-      covering patient management, scheduling, clinical data, revenue cycle,
-      and care coordination. Requires OAuth 2.0 authentication and supports
-      both authorization code and client credentials grant types.
-    image: >-
-      https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
-    baseURL: https://api.athenahealth.com/v1/
-    tags:
-      - EHR
-      - Practice Management
-      - Scheduling
-      - Revenue Cycle
-      - Patient Management
-    properties:
-      - type: Documentation
-        url: https://docs.athenahealth.com/api/docs/athenaone-apis
-      - type: Authentication
-        url: https://docs.athenahealth.com/api/guides/authentication-and-url-locations
-
-  - aid: athenahealth:fhir-apis
-    name: FHIR APIs
-    description: >-
-      athenahealth FHIR R4 APIs provide standards-based access to clinical and
-      administrative data. Supports SMART on FHIR scopes for compliant patient
-      and provider-facing applications. Includes FHIR Subscriptions for
-      webhook-based event notifications.
-    image: >-
-      https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.athenahealth.com/api/docs/fhir-apis
-    baseURL: https://api.athenahealth.com/fhir/r4/
-    tags:
-      - FHIR
-      - Interoperability
-      - Clinical Data
-      - SMART on FHIR
-      - HL7
-    properties:
-      - type: Documentation
-        url: https://docs.athenahealth.com/api/docs/fhir-apis
-      - type: GitHubRepository
-        url: https://github.com/athenahealth/aone-fhir-subscriptions
-
-  - aid: athenahealth:athenaflex-api
-    name: athenaFlex (athenaPractice/athenaFlow) API
-    description: >-
-      FHIR API Server for athenaPractice and athenaFlow products, enabling
-      developers to build integrations with athenahealth's on-premise and
-      hybrid deployment products using FHIR R4 standards.
-    image: >-
-      https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://github.com/athenahealth/apiserver-athenaFlex
-    baseURL: https://mydata.athenahealth.com/
-    tags:
-      - FHIR
-      - athenaPractice
-      - athenaFlow
-      - On-Premise
-    properties:
-      - type: Documentation
-        url: https://mydata.athenahealth.com/
-      - type: GitHubRepository
-        url: https://github.com/athenahealth/apiserver-athenaFlex
-
-common:
-  - type: Website
-    url: https://www.athenahealth.com/
+- aid: athenahealth:athenaone-apis
+  name: athenaOne APIs
+  description: The athenaOne proprietary REST API suite provides over 800 endpoints
+    covering patient management, scheduling, clinical data, revenue cycle, and care
+    coordination. Requires OAuth 2.0 authentication and supports both authorization
+    code and client credentials grant types.
+  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.athenahealth.com/v1/
+  tags:
+  - EHR
+  - Practice Management
+  - Scheduling
+  - Revenue Cycle
+  - Patient Management
+  properties:
   - type: Documentation
-    url: https://docs.athenahealth.com/api
-  - type: DeveloperPortal
-    url: https://www.athenahealth.com/developer-portal
-  - type: GitHubOrg
-    url: https://github.com/athenahealth
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/athenahealth
-  - type: Blog
-    url: https://www.athenahealth.com/resources/blog
-  - type: Pricing
-    url: https://www.athenahealth.com/why-choose-us/cost-value
-  - type: StatusPage
-    url: https://status.athenahealth.com/
-  - type: X
-    url: https://x.com/athenahealth
-  - type: Marketplace
-    url: https://www.athenahealth.com/solutions/marketplace-partners
-  - type: Plans
-    url: plans/athenahealth-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/athenahealth-rate-limits.yml
-  - type: FinOps
-    url: finops/athenahealth-finops.yml
-
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Authentication
+    url: https://docs.athenahealth.com/api/guides/authentication-and-url-locations
+  - url: graphql/athenahealth-graphql.md
+    type: GraphQL
+- aid: athenahealth:fhir-apis
+  name: FHIR APIs
+  description: athenahealth FHIR R4 APIs provide standards-based access to clinical
+    and administrative data. Supports SMART on FHIR scopes for compliant patient and
+    provider-facing applications. Includes FHIR Subscriptions for webhook-based event
+    notifications.
+  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.athenahealth.com/api/docs/fhir-apis
+  baseURL: https://api.athenahealth.com/fhir/r4/
+  tags:
+  - FHIR
+  - Interoperability
+  - Clinical Data
+  - SMART on FHIR
+  - HL7
+  properties:
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: GitHubRepository
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+- aid: athenahealth:athenaflex-api
+  name: athenaFlex (athenaPractice/athenaFlow) API
+  description: FHIR API Server for athenaPractice and athenaFlow products, enabling
+    developers to build integrations with athenahealth's on-premise and hybrid deployment
+    products using FHIR R4 standards.
+  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://github.com/athenahealth/apiserver-athenaFlex
+  baseURL: https://mydata.athenahealth.com/
+  tags:
+  - FHIR
+  - athenaPractice
+  - athenaFlow
+  - On-Premise
+  properties:
+  - type: Documentation
+    url: https://mydata.athenahealth.com/
+  - type: GitHubRepository
+    url: https://github.com/athenahealth/apiserver-athenaFlex
+common:
+- type: Website
+  url: https://www.athenahealth.com/
+- type: Documentation
+  url: https://docs.athenahealth.com/api
+- type: DeveloperPortal
+  url: https://www.athenahealth.com/developer-portal
+- type: GitHubOrg
+  url: https://github.com/athenahealth
+- type: LinkedIn
+  url: https://www.linkedin.com/company/athenahealth
+- type: Blog
+  url: https://www.athenahealth.com/resources/blog
+- type: Pricing
+  url: https://www.athenahealth.com/why-choose-us/cost-value
+- type: StatusPage
+  url: https://status.athenahealth.com/
+- type: X
+  url: https://x.com/athenahealth
+- type: Marketplace
+  url: https://www.athenahealth.com/solutions/marketplace-partners
+- type: Plans
+  url: plans/athenahealth-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/athenahealth-rate-limits.yml
+- type: FinOps
+  url: finops/athenahealth-finops.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
