@@ -1,10 +1,10 @@
 {
   "provider": "athenahealth",
   "blogURL": "https://www.athenahealth.com/resources/blog",
-  "fetched": "2026-06-13",
+  "fetched": "2026-06-14T20:42:17Z",
   "posts": [
     {
-      "title": "How athenaOne® supports long-term patient care",
+      "title": "How athenaOne\u00ae supports long-term patient care",
       "url": "https://www.athenahealth.com/resources/blog/dtc-family-health",
       "date": "2026-06-09",
       "description": "Case study showing how DTC Family Health uses athenaOne to strengthen patient relationships and support long-term care delivery."
@@ -27,5 +27,16 @@
       "date": "2025-03-11",
       "description": "From scheduling to billing and care coordination, these patient engagement tools help patients and practices thrive."
     }
-  ]
+  ],
+  "repo": "athenahealth",
+  "feeds": [
+    {
+      "source": "https://www.linkedin.com/company/athenahealth",
+      "feed_url": "https://www.linkedin.com/company/athenahealth",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0
 }
