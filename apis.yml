@@ -6,7 +6,7 @@ description: athenahealth is a cloud-based healthcare network offering REST APIs
   platform provides over 800 API endpoints enabling developers to extend athenaOne
   and integrate clinical, financial, and operational workflows across a national network
   of 84,000+ care sites.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/athenahealth/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -29,7 +29,7 @@ apis:
     covering patient management, scheduling, clinical data, revenue cycle, and care
     coordination. Requires OAuth 2.0 authentication and supports both authorization
     code and client credentials grant types.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.athenahealth.com/v1/
   tags:
@@ -51,7 +51,7 @@ apis:
     and administrative data. Supports SMART on FHIR scopes for compliant patient and
     provider-facing applications. Includes FHIR Subscriptions for webhook-based event
     notifications.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.athenahealth.com/api/docs/fhir-apis
   baseURL: https://api.athenahealth.com/fhir/r4/
   tags:
@@ -70,7 +70,7 @@ apis:
   description: FHIR API Server for athenaPractice and athenaFlow products, enabling
     developers to build integrations with athenahealth's on-premise and hybrid deployment
     products using FHIR R4 standards.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://github.com/athenahealth/apiserver-athenaFlex
   baseURL: https://mydata.athenahealth.com/
   tags:
