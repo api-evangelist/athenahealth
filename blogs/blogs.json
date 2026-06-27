@@ -1,42 +1,14 @@
 {
-  "provider": "athenahealth",
-  "blogURL": "https://www.athenahealth.com/resources/blog",
-  "fetched": "2026-06-14T20:42:17Z",
-  "posts": [
-    {
-      "title": "How athenaOne\u00ae supports long-term patient care",
-      "url": "https://www.athenahealth.com/resources/blog/dtc-family-health",
-      "date": "2026-06-09",
-      "description": "Case study showing how DTC Family Health uses athenaOne to strengthen patient relationships and support long-term care delivery."
-    },
-    {
-      "title": "Why claiming your Google Business profile matters",
-      "url": "https://www.athenahealth.com/resources/blog/claiming-your-google-business-profile",
-      "date": "2026-06-10",
-      "description": "Guide to claiming and completing your Google Business Profile for improved online visibility for healthcare practices."
-    },
-    {
-      "title": "How to prepare for MIPS 2026 changes in orthopedics",
-      "url": "https://www.athenahealth.com/resources/blog/mips-2026-changes-orthopedic-practices",
-      "date": "2026-06-10",
-      "description": "Preparation guidance for orthopedic practices adapting to new MVP requirements under MIPS 2026 changes."
-    },
-    {
-      "title": "10 ways patient engagement tools enhance healthcare",
-      "url": "https://www.athenahealth.com/resources/blog/10-ways-patient-engagement-tools-enhance-healthcare",
-      "date": "2025-03-11",
-      "description": "From scheduling to billing and care coordination, these patient engagement tools help patients and practices thrive."
-    }
-  ],
   "repo": "athenahealth",
   "feeds": [
     {
-      "source": "https://www.linkedin.com/company/athenahealth",
-      "feed_url": "https://www.linkedin.com/company/athenahealth",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "source": "https://www.athenahealth.com/resources/blog",
+      "feed_url": "",
+      "saved": 4,
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 0
+  "post_count": 12,
+  "fetched": "2026-06-27T12:26:19Z",
+  "agent_pulled": "2026-06-27"
 }
