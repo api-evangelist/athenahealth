@@ -84,6 +84,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/athenahealth/apiserver-athenaFlex
 common:
+- type: DomainSecurity
+  url: security/athenahealth-domain-security.yml
 - type: Website
   url: https://www.athenahealth.com/
 - type: Documentation
