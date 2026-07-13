@@ -2,13 +2,11 @@
   "repo": "athenahealth",
   "feeds": [
     {
-      "source": "https://www.athenahealth.com/resources/blog",
-      "feed_url": "",
-      "saved": 4,
-      "method": "agent-scrape"
+      "source": "https://www.linkedin.com/company/athenahealth",
+      "error": "HTTPError"
     }
   ],
-  "post_count": 12,
-  "fetched": "2026-06-27T12:26:19Z",
-  "agent_pulled": "2026-06-27"
+  "post_count": 14,
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
