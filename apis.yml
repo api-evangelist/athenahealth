@@ -96,6 +96,11 @@ apis:
   - type: GitHubRepository
     url: https://github.com/athenahealth/apiserver-athenaFlex
 common:
+- type: IssueTracker
+  url: https://github.com/athenahealth/aone-fhir-subscriptions/issues
+- type: License
+  name: Apache-2.0
+  url: https://github.com/athenahealth/aone-fhir-subscriptions/blob/main/LICENSE
 - type: DomainSecurity
   url: security/athenahealth-domain-security.yml
 - type: Website
