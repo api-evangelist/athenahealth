@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: athenahealth athenaOne REST AllergyIntolerance Bulk Data API
+  description: 'The athenaOne proprietary REST API exposes the full provider, patient,
+
+    scheduling, clinical, and biller workflow surface of the athenahealth
+
+    cloud-based EHR and practice management platform. All resources are
+
+    scoped to a practice via the practiceid path parameter.
+
+    '
+  version: 1.0.0
+  contact:
+    name: athenahealth Developer Support
+    url: https://docs.athenahealth.com/api/support
+  license:
+    name: athenahealth API Terms
+    url: https://www.athenahealth.com/legal/terms
+servers:
+- url: https://api.platform.athenahealth.com/v1/{practiceid}
+  description: Production athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne practice identifier
+- url: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+  description: Preview (sandbox) athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne preview practice identifier
+security:
+- oauth2: []
+tags:
+- name: Bulk Data
+paths:
+  /Group/{id}/$export:
+    get:
+      summary: Group Bulk Export
+      operationId: groupBulkExport
+      tags:
+      - Bulk Data
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _type
+        in: query
+        schema:
+          type: string
+      - name: _since
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: _outputFormat
+        in: query
+        schema:
+          type: string
+          default: application/fhir+ndjson
+      - name: Accept
+        in: header
+        schema:
+          type: string
+          default: application/fhir+json
+      - name: Prefer
+        in: header
+        schema:
+          type: string
+          default: respond-async
+      responses:
+        '202':
+          description: Bulk export accepted; poll Content-Location for status
+          headers:
+            Content-Location:
+              schema:
+                type: string
+                format: uri
+  /bulk/status/{jobid}:
+    get:
+      summary: Get Bulk Export Status
+      operationId: getBulkExportStatus
+      tags:
+      - Bulk Data
+      parameters:
+      - name: jobid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Manifest of NDJSON output files
+        '202':
+          description: Still processing
+    delete:
+      summary: Cancel Bulk Export
+      operationId: cancelBulkExport
+      tags:
+      - Bulk Data
+      parameters:
+      - name: jobid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Cancellation accepted
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+        authorizationCode:
+          authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope

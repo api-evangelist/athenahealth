@@ -1,0 +1,89 @@
+aid: athena-health
+name: athenahealth Vocabulary
+description: |
+  Operational and capability vocabulary for the athenahealth API surface.
+  Combines athenaOne proprietary resources, FHIR R4 / US Core profiles, FHIR
+  Subscriptions (R5 Backport), Bulk Data Access, and CDS Hooks.
+dimensions:
+  domain:
+  - Healthcare
+  - EHR
+  - Practice Management
+  - Revenue Cycle Management
+  - Patient Engagement
+  - Population Health
+  - Interoperability
+  resources:
+  - Patient
+  - Appointment
+  - Encounter
+  - Claim
+  - Document
+  - Provider
+  - Department
+  - Practice
+  - Order
+  - Allergy
+  - Medication
+  - Problem
+  - Vital
+  - Observation
+  - Condition
+  - DiagnosticReport
+  - DocumentReference
+  - Immunization
+  - CarePlan
+  - Subscription
+  - Group
+  protocols:
+  - HL7 FHIR R4
+  - HL7 FHIR R5 Backport Subscriptions
+  - SMART on FHIR (SMART App Launch 2.0)
+  - SMART Backend Services
+  - OAuth 2.0 client_credentials
+  - OAuth 2.0 authorization_code
+  - HTTPS / TLS 1.2+
+  - CDS Hooks 1.0
+  standards:
+  - HL7 FHIR R4
+  - US Core
+  - USCDI v3
+  - 21st Century Cures Act
+  - ONC Health IT Certification
+  - C-CDA
+  - X12 (claims)
+  - NCPDP SCRIPT (ePrescribing)
+  hooks:
+  - patient-view
+  - order-select
+  - order-sign
+  - appointment-book
+  capabilities:
+  - Demographics
+  - Scheduling
+  - Clinical Documentation
+  - eRx
+  - Ordering
+  - Lab Results
+  - Imaging
+  - Claims Submission
+  - Eligibility
+  - Patient Portal
+  - Population Health Export
+  - Event Notifications
+  - Decision Support
+  tags:
+  - EHR
+  - Healthcare
+  - HL7
+  - FHIR
+  - USCDI
+  - US Core
+  - Cures Act
+  - Practice Management
+  - Revenue Cycle
+  - SMART on FHIR
+  - CDS Hooks
+  - Bulk Data
+  - Subscriptions
+  - Webhooks

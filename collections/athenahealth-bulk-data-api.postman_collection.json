@@ -1,0 +1,459 @@
+{
+  "item": [
+    {
+      "id": "167fa529-1900-4c4e-9ca5-ffcc0aeea73d",
+      "name": "Bulk Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e9f1a52-d780-4d8a-93cb-e8047a2cc738",
+          "name": "Group Bulk Export",
+          "request": {
+            "name": "Group Bulk Export",
+            "description": {},
+            "url": {
+              "path": [
+                "Group",
+                ":id",
+                "$export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_since",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_outputFormat",
+                  "value": "application/fhir+ndjson"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Prefer",
+                "value": "respond-async",
+                "description": ""
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5dbc6adc-de3d-4408-a568-465f648d8d26",
+              "name": "Bulk export accepted; poll Content-Location for status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Group",
+                    ":id",
+                    "$export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "_outputFormat",
+                      "value": "application/fhir+ndjson"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Accept",
+                    "value": "application/fhir+json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Prefer",
+                    "value": "respond-async",
+                    "description": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Content-Location",
+                  "value": "http://RPaaNWHfqY.bycdZihtdoqfgiqbOCYmncducxUlanAvnJJv",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbe347bd-9c7f-4fd7-bcc0-32f17d28e45a",
+          "name": "Get Bulk Export Status",
+          "request": {
+            "name": "Get Bulk Export Status",
+            "description": {},
+            "url": {
+              "path": [
+                "bulk",
+                "status",
+                ":jobid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69ce6b63-070c-4cf1-9c45-7a449253cf13",
+              "name": "Manifest of NDJSON output files",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bulk",
+                    "status",
+                    ":jobid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa9eb49b-53a7-42bd-9de3-dc19000c8ac0",
+              "name": "Still processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bulk",
+                    "status",
+                    ":jobid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d96bbe34-f12e-4d81-862f-64c37fa6d467",
+          "name": "Cancel Bulk Export",
+          "request": {
+            "name": "Cancel Bulk Export",
+            "description": {},
+            "url": {
+              "path": [
+                "bulk",
+                "status",
+                ":jobid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72787642-68ad-40aa-a80c-3fc6cd4f63ff",
+              "name": "Cancellation accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bulk",
+                    "status",
+                    ":jobid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "athenaOne practice identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "195900",
+      "key": "practiceid"
+    },
+    {
+      "type": "string",
+      "value": "https://api.platform.athenahealth.com/v1/{{practiceid}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athena/service/Athenanet.MDP.*"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.platform.athenahealth.com/oauth2/v1/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "25bf82ed-f513-40d6-951a-608988c7c9fc",
+    "name": "athenahealth athenaOne REST AllergyIntolerance Bulk Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The athenaOne proprietary REST API exposes the full provider, patient,\nscheduling, clinical, and biller workflow surface of the athenahealth\ncloud-based EHR and practice management platform. All resources are\nscoped to a practice via the practiceid path parameter.\n\n\nContact Support:\n Name: athenahealth Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

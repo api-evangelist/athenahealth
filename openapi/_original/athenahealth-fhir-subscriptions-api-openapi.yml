@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: athenahealth FHIR Subscriptions API
+  description: |
+    The athenahealth Event Subscription Platform delivers near real-time
+    healthcare-domain event notifications via FHIR Subscriptions (R5 Backport).
+    Currently supports the rest-hook channel and id-only payload type.
+  version: 1.0.0
+servers:
+- url: https://api.platform.athenahealth.com/fhir/r4
+  description: Production
+- url: https://api.preview.platform.athenahealth.com/fhir/r4
+  description: Preview
+security:
+- oauth2: []
+paths:
+  /Subscription:
+    get:
+      summary: Search Subscriptions
+      operationId: searchSubscriptions
+      tags: [Subscription]
+      responses:
+        '200':
+          description: Bundle of Subscription resources
+    post:
+      summary: Create Subscription
+      operationId: createSubscription
+      tags: [Subscription]
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '201':
+          description: Subscription created
+  /Subscription/{id}:
+    get:
+      summary: Read Subscription
+      operationId: readSubscription
+      tags: [Subscription]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema: {type: string}
+      responses:
+        '200':
+          description: Subscription resource
+    delete:
+      summary: Delete Subscription
+      operationId: deleteSubscription
+      tags: [Subscription]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema: {type: string}
+      responses:
+        '204':
+          description: Deleted
+  /Subscription/{id}/$status:
+    get:
+      summary: Get Subscription Status
+      operationId: getSubscriptionStatus
+      tags: [Subscription]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema: {type: string}
+      responses:
+        '200':
+          description: SubscriptionStatus
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            system/Subscription.read: Read Subscriptions
+            system/Subscription.write: Manage Subscriptions
+  schemas:
+    Subscription:
+      type: object
+      properties:
+        resourceType: {type: string, enum: [Subscription]}
+        status: {type: string, enum: [requested, active, error, off]}
+        criteria: {type: string}
+        channel:
+          type: object
+          properties:
+            type: {type: string, enum: [rest-hook]}
+            endpoint: {type: string, format: uri}
+            payload: {type: string, enum: ['application/fhir+json']}
+            header:
+              type: array
+              items: {type: string}

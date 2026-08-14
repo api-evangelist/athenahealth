@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "13286f5a-c983-4631-b656-86c2a80820ce",
+      "name": "Documents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a4e54460-7be3-4f87-9eb2-e1d52f591db6",
+          "name": "List Patient Documents",
+          "request": {
+            "name": "List Patient Documents",
+            "description": {},
+            "url": {
+              "path": [
+                "patients",
+                ":patientid",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "departmentid",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "patientid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a99bea3f-c0b5-4f5a-a8c7-302f77e70ca3",
+              "name": "Documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientid",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "departmentid",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "patientid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"documentid\": \"string\",\n    \"patientid\": \"string\",\n    \"documenttype\": \"string\",\n    \"createddate\": \"1947-10-01T16:48:55.860Z\",\n    \"documentclass\": \"string\"\n  },\n  {\n    \"documentid\": \"string\",\n    \"patientid\": \"string\",\n    \"documenttype\": \"string\",\n    \"createddate\": \"2022-06-12T08:05:56.972Z\",\n    \"documentclass\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "athenaOne practice identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "195900",
+      "key": "practiceid"
+    },
+    {
+      "type": "string",
+      "value": "https://api.platform.athenahealth.com/v1/{{practiceid}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athena/service/Athenanet.MDP.*"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.platform.athenahealth.com/oauth2/v1/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "905ed6db-8f13-437d-abd4-d8e25f0bc61a",
+    "name": "athenahealth athenaOne REST AllergyIntolerance Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The athenaOne proprietary REST API exposes the full provider, patient,\nscheduling, clinical, and biller workflow surface of the athenahealth\ncloud-based EHR and practice management platform. All resources are\nscoped to a practice via the practiceid path parameter.\n\n\nContact Support:\n Name: athenahealth Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.platform.athenahealth.com/v1/195900/patients?firstname=Jane&lastname=Doe&departmentid=1",
+    "headers": {
+      "Authorization": "Bearer eyJraWQiOi...",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "patientid": "12345",
+        "firstname": "Jane",
+        "lastname": "Doe",
+        "dob": "1985-04-12",
+        "sex": "F",
+        "departmentid": 1,
+        "mobilephone": "5555550123",
+        "email": "jane.doe@example.com",
+        "state": "MA",
+        "zip": "02115"
+      }
+    ]
+  }
+}

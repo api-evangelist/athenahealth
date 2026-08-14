@@ -1,0 +1,210 @@
+openapi: 3.0.3
+info:
+  title: athenahealth athenaOne REST AllergyIntolerance Patients API
+  description: 'The athenaOne proprietary REST API exposes the full provider, patient,
+
+    scheduling, clinical, and biller workflow surface of the athenahealth
+
+    cloud-based EHR and practice management platform. All resources are
+
+    scoped to a practice via the practiceid path parameter.
+
+    '
+  version: 1.0.0
+  contact:
+    name: athenahealth Developer Support
+    url: https://docs.athenahealth.com/api/support
+  license:
+    name: athenahealth API Terms
+    url: https://www.athenahealth.com/legal/terms
+servers:
+- url: https://api.platform.athenahealth.com/v1/{practiceid}
+  description: Production athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne practice identifier
+- url: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+  description: Preview (sandbox) athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne preview practice identifier
+security:
+- oauth2: []
+tags:
+- name: Patients
+paths:
+  /patients:
+    get:
+      summary: Search Patients
+      operationId: searchPatients
+      tags:
+      - Patients
+      parameters:
+      - name: firstname
+        in: query
+        schema:
+          type: string
+      - name: lastname
+        in: query
+        schema:
+          type: string
+      - name: dob
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: departmentid
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of matching patients
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientList'
+    post:
+      summary: Create Patient
+      operationId: createPatient
+      tags:
+      - Patients
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatientCreate'
+      responses:
+        '200':
+          description: Created patient
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+  /patients/{patientid}:
+    get:
+      summary: Get Patient
+      operationId: getPatient
+      tags:
+      - Patients
+      parameters:
+      - name: patientid
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Patient record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+    put:
+      summary: Update Patient
+      operationId: updatePatient
+      tags:
+      - Patients
+      parameters:
+      - name: patientid
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatientUpdate'
+      responses:
+        '200':
+          description: Update result
+components:
+  schemas:
+    PatientList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Patient'
+    Patient:
+      type: object
+      properties:
+        patientid:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        dob:
+          type: string
+          format: date
+        sex:
+          type: string
+          enum:
+          - M
+          - F
+          - U
+        homephone:
+          type: string
+        mobilephone:
+          type: string
+        email:
+          type: string
+          format: email
+        address1:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        departmentid:
+          type: integer
+    PatientUpdate:
+      type: object
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        mobilephone:
+          type: string
+        email:
+          type: string
+          format: email
+    PatientCreate:
+      type: object
+      required:
+      - firstname
+      - lastname
+      - dob
+      - departmentid
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        dob:
+          type: string
+          format: date
+        departmentid:
+          type: integer
+        sex:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+        authorizationCode:
+          authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope

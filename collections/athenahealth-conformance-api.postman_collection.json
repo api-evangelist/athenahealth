@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "a1611394-767d-4cdd-9949-84c2aed61ea8",
+      "name": "Conformance",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "facc0d37-dcab-4714-8494-62e64398b466",
+          "name": "Get Capability Statement",
+          "request": {
+            "name": "Get Capability Statement",
+            "description": {},
+            "url": {
+              "path": [
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60647be8-4b0c-4968-9b17-b8f1936e5512",
+              "name": "FHIR CapabilityStatement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "athenaOne practice identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "195900",
+      "key": "practiceid"
+    },
+    {
+      "type": "string",
+      "value": "https://api.platform.athenahealth.com/v1/{{practiceid}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athena/service/Athenanet.MDP.*"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.platform.athenahealth.com/oauth2/v1/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a267869f-fd25-4779-8004-e81fcef85de2",
+    "name": "athenahealth athenaOne REST AllergyIntolerance Conformance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The athenaOne proprietary REST API exposes the full provider, patient,\nscheduling, clinical, and biller workflow surface of the athenahealth\ncloud-based EHR and practice management platform. All resources are\nscoped to a practice via the practiceid path parameter.\n\n\nContact Support:\n Name: athenahealth Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

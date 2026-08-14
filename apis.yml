@@ -1,10 +1,9 @@
 aid: athenahealth
 name: athenahealth
-description: athenahealth is a cloud-based healthcare network offering REST APIs for
-  electronic health records (EHR), practice management, patient portal, revenue cycle
-  management, and care coordination across ambulatory and acute care settings. The
-  platform provides over 800 API endpoints enabling developers to extend athenaOne
-  and integrate clinical, financial, and operational workflows across a national network
+description: athenahealth is a cloud-based healthcare network offering REST APIs for electronic health
+  records (EHR), practice management, patient portal, revenue cycle management, and care coordination
+  across ambulatory and acute care settings. The platform provides over 800 API endpoints enabling developers
+  to extend athenaOne and integrate clinical, financial, and operational workflows across a national network
   of 84,000+ care sites.
 accessModel:
   pricing: freemium
@@ -37,10 +36,9 @@ tags:
 apis:
 - aid: athenahealth:athenaone-apis
   name: athenaOne APIs
-  description: The athenaOne proprietary REST API suite provides over 800 endpoints
-    covering patient management, scheduling, clinical data, revenue cycle, and care
-    coordination. Requires OAuth 2.0 authentication and supports both authorization
-    code and client credentials grant types.
+  description: The athenaOne proprietary REST API suite provides over 800 endpoints covering patient management,
+    scheduling, clinical data, revenue cycle, and care coordination. Requires OAuth 2.0 authentication
+    and supports both authorization code and client credentials grant types.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.athenahealth.com/v1/
@@ -59,10 +57,9 @@ apis:
     type: GraphQL
 - aid: athenahealth:fhir-apis
   name: FHIR APIs
-  description: athenahealth FHIR R4 APIs provide standards-based access to clinical
-    and administrative data. Supports SMART on FHIR scopes for compliant patient and
-    provider-facing applications. Includes FHIR Subscriptions for webhook-based event
-    notifications.
+  description: athenahealth FHIR R4 APIs provide standards-based access to clinical and administrative
+    data. Supports SMART on FHIR scopes for compliant patient and provider-facing applications. Includes
+    FHIR Subscriptions for webhook-based event notifications.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.athenahealth.com/api/docs/fhir-apis
   baseURL: https://api.athenahealth.com/fhir/r4/
@@ -79,9 +76,8 @@ apis:
     url: https://github.com/athenahealth/aone-fhir-subscriptions
 - aid: athenahealth:athenaflex-api
   name: athenaFlex (athenaPractice/athenaFlow) API
-  description: FHIR API Server for athenaPractice and athenaFlow products, enabling
-    developers to build integrations with athenahealth's on-premise and hybrid deployment
-    products using FHIR R4 standards.
+  description: FHIR API Server for athenaPractice and athenaFlow products, enabling developers to build
+    integrations with athenahealth's on-premise and hybrid deployment products using FHIR R4 standards.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://github.com/athenahealth/apiserver-athenaFlex
   baseURL: https://mydata.athenahealth.com/
@@ -95,6 +91,1018 @@ apis:
     url: https://mydata.athenahealth.com/
   - type: GitHubRepository
     url: https://github.com/athenahealth/apiserver-athenaFlex
+- aid: athenahealth:athena-health-allergyintolerance-api
+  name: athenahealth AllergyIntolerance API
+  description: The AllergyIntolerance API from athenahealth — 1 operation(s) for allergyintolerance.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - AllergyIntolerance
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-allergyintolerance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-appointment-api
+  name: athenahealth Appointment API
+  description: The Appointment API from athenahealth — 1 operation(s) for appointment.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Appointment
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-appointment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-appointments-api
+  name: athenahealth Appointments API
+  description: The Appointments API from athenahealth — 6 operation(s) for appointments.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Appointments
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-appointments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-bulk-data-api
+  name: athenahealth Bulk Data API
+  description: The Bulk Data API from athenahealth — 2 operation(s) for bulk data.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Bulk Data
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-bulk-data-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-cds-hooks-api
+  name: athenahealth CDS Hooks API
+  description: The CDS Hooks API from athenahealth — 2 operation(s) for cds hooks.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - CDS Hooks
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-cds-hooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-claims-api
+  name: athenahealth Claims API
+  description: The Claims API from athenahealth — 1 operation(s) for claims.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Claims
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-claims-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-condition-api
+  name: athenahealth Condition API
+  description: The Condition API from athenahealth — 1 operation(s) for condition.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Condition
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-condition-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-conformance-api
+  name: athenahealth Conformance API
+  description: The Conformance API from athenahealth — 1 operation(s) for conformance.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Conformance
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-conformance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-departments-api
+  name: athenahealth Departments API
+  description: The Departments API from athenahealth — 1 operation(s) for departments.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Departments
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-departments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-diagnosticreport-api
+  name: athenahealth DiagnosticReport API
+  description: The DiagnosticReport API from athenahealth — 1 operation(s) for diagnosticreport.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - DiagnosticReport
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-diagnosticreport-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-documentreference-api
+  name: athenahealth DocumentReference API
+  description: The DocumentReference API from athenahealth — 1 operation(s) for documentreference.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - DocumentReference
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-documentreference-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-documents-api
+  name: athenahealth Documents API
+  description: The Documents API from athenahealth — 1 operation(s) for documents.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-encounter-api
+  name: athenahealth Encounter API
+  description: The Encounter API from athenahealth — 2 operation(s) for encounter.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Encounter
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-encounter-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-encounters-api
+  name: athenahealth Encounters API
+  description: The Encounters API from athenahealth — 2 operation(s) for encounters.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Encounters
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-encounters-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-immunization-api
+  name: athenahealth Immunization API
+  description: The Immunization API from athenahealth — 1 operation(s) for immunization.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Immunization
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-immunization-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-medicationrequest-api
+  name: athenahealth MedicationRequest API
+  description: The MedicationRequest API from athenahealth — 1 operation(s) for medicationrequest.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - MedicationRequest
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-medicationrequest-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-observation-api
+  name: athenahealth Observation API
+  description: The Observation API from athenahealth — 1 operation(s) for observation.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Observation
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-observation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-patient-api
+  name: athenahealth Patient API
+  description: The Patient API from athenahealth — 2 operation(s) for patient.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Patient
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-patient-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-patients-api
+  name: athenahealth Patients API
+  description: The Patients API from athenahealth — 2 operation(s) for patients.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Patients
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-patients-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-practice-api
+  name: athenahealth Practice API
+  description: The Practice API from athenahealth — 1 operation(s) for practice.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Practice
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-practice-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-providers-api
+  name: athenahealth Providers API
+  description: The Providers API from athenahealth — 1 operation(s) for providers.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-providers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- aid: athenahealth:athena-health-subscription-api
+  name: athenahealth Subscription API
+  description: The Subscription API from athenahealth — 3 operation(s) for subscription.
+  humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
+  tags:
+  - Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/athenahealth-subscription-api-openapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/athenaone-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/patient
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/api-ref/appointment
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/encounter
+  - type: JSONSchema
+    url: json-schema/athenahealth-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/athenahealth-appointment-schema.json
+  - type: JSONLD
+    url: json-ld/athenahealth-context.jsonld
+  - type: GraphQL
+    url: graphql/athenahealth-graphql.md
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/docs/fhir-apis
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  - type: Documentation
+    url: https://mydata.athenahealth.com/fhirapidoc/r4
+  - type: Documentation
+    url: https://fhir.athena.io/athenacoreext/index.html
+  - type: JSONSchema
+    url: json-schema/athenahealth-fhir-patient-schema.json
+  - type: Documentation
+    url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: AsyncAPI
+    url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  - type: Documentation
+    url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
+  - type: Documentation
+    url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
 common:
 - type: IssueTracker
   url: https://github.com/athenahealth/aone-fhir-subscriptions/issues
@@ -129,6 +1137,99 @@ common:
   url: rate-limits/athenahealth-rate-limits.yml
 - type: FinOps
   url: finops/athenahealth-finops.yml
+- type: AgenticAccess
+  url: agentic-access/athenahealth-agentic-access.yml
+- type: DomainSecurity
+  url: security/athenahealth-domain-security.yml
+- type: Authentication
+  url: authentication/athenahealth-authentication.yml
+- type: OAuthScopes
+  url: scopes/athenahealth-scopes.yml
+- url: https://www.athenahealth.com/
+  name: athenahealth Homepage
+  type: Portal
+- url: https://docs.athenahealth.com/api/
+  name: APIs at athenahealth
+  type: Documentation
+- url: https://docs.athenahealth.com/api/guides/overview
+  name: Welcome to APIs at athenahealth
+  type: Documentation
+- url: https://mydata.athenahealth.com/access-the-apis
+  name: athenahealth Developer Portal
+  type: Portal
+- url: https://docs.athenahealth.com/api/sandbox
+  name: API Solutions Sandbox
+  type: Sandbox
+- url: https://docs.athenahealth.com/api/guides/athenaone-environments
+  name: athenaOne Environments
+  type: Documentation
+- url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  name: FHIR Base URLs
+  type: Documentation
+- url: https://docs.athenahealth.com/api/guides/onboarding-overview
+  name: Onboarding Overview
+  type: Documentation
+- url: https://docs.athenahealth.com/api/support
+  name: Support
+  type: Support
+- url: https://www.athenahealth.com/solutions/marketplace
+  name: athenahealth Marketplace
+  type: Marketplace
+- url: https://www.athenahealth.com/knowledge-hub
+  name: athenahealth Knowledge Hub
+  type: Blog
+- url: https://github.com/athenahealth
+  name: athenahealth GitHub
+  type: Source
+- url: https://fhir.athena.io/athenacoreext/index.html
+  name: Athena Core FHIR Implementation Guide
+  type: Documentation
+- url: https://mydata.athenahealth.com/fhirapidoc/r4
+  name: R4 API Documentation
+  type: Documentation
+- url: plans/athenahealth-plans-pricing.yml
+  type: Plans
+- url: rate-limits/athenahealth-rate-limits.yml
+  type: RateLimits
+- url: finops/athenahealth-finops.yml
+  type: FinOps
+- url: vocabulary/athenahealth-vocabulary.yml
+  type: Vocabulary
+- url: rules/athenahealth-rules.yml
+  type: Spectral
+- url: https://github.com/athenahealth/mdp
+  name: MDP API Samples
+  type: Samples
+- url: https://github.com/athenahealth/apiserver-athenaFlex
+  name: athenaPractice/athenaFlow FHIR Sample
+  type: Samples
+- url: https://github.com/athenahealth/aone-fhir-subscriptions
+  name: athenaOne FHIR Subscriptions Sample
+  type: Samples
+- url: https://github.com/athenahealth/vscode-cql-extension
+  name: VSCode CQL Extension
+  type: Tools
+- url: https://github.com/eleanorhealth/go-athenahealth
+  name: Go athenahealth SDK (community)
+  type: SDKs
+- type: AgenticAccess
+  url: agentic-access/athenahealth-agentic-access.yml
+- type: DomainSecurity
+  url: security/athenahealth-domain-security.yml
+- type: Authentication
+  url: authentication/athenahealth-authentication.yml
+- type: OAuthScopes
+  url: scopes/athenahealth-scopes.yml
+- url: plans/athenahealth-plans-pricing.yml
+  type: Plans
+- url: rate-limits/athenahealth-rate-limits.yml
+  type: RateLimits
+- url: finops/athenahealth-finops.yml
+  type: FinOps
+- url: vocabulary/athenahealth-vocabulary.yml
+  type: Vocabulary
+- url: rules/athenahealth-rules.yml
+  type: Spectral
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

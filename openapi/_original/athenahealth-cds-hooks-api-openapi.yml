@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: athenahealth CDS Hooks API
+  description: |
+    CDS Hooks integration for athenaOne — invoke remote clinical decision
+    support services at well-defined points in the EHR workflow.
+  version: 1.0.0
+servers:
+- url: https://cds.example.com
+  description: Third-party CDS service implementing CDS Hooks
+paths:
+  /cds-services:
+    get:
+      summary: Discover CDS Services
+      operationId: discoverCdsServices
+      tags: [CDS Hooks]
+      responses:
+        '200':
+          description: Discovery response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  services:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CdsService'
+  /cds-services/{id}:
+    post:
+      summary: Invoke CDS Service
+      operationId: invokeCdsService
+      tags: [CDS Hooks]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CdsRequest'
+      responses:
+        '200':
+          description: CDS Hooks response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CdsResponse'
+components:
+  schemas:
+    CdsService:
+      type: object
+      properties:
+        id: {type: string}
+        hook: {type: string, enum: [patient-view, order-select, order-sign, appointment-book]}
+        title: {type: string}
+        description: {type: string}
+        prefetch:
+          type: object
+          additionalProperties: {type: string}
+    CdsRequest:
+      type: object
+      properties:
+        hook: {type: string}
+        hookInstance: {type: string}
+        fhirServer: {type: string, format: uri}
+        context:
+          type: object
+        prefetch:
+          type: object
+    CdsResponse:
+      type: object
+      properties:
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+    Card:
+      type: object
+      properties:
+        summary: {type: string}
+        indicator: {type: string, enum: [info, warning, critical]}
+        detail: {type: string}
+        source:
+          type: object
+          properties:
+            label: {type: string}
+            url: {type: string, format: uri}
+        suggestions:
+          type: array
+          items:
+            type: object
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              label: {type: string}
+              url: {type: string, format: uri}
+              type: {type: string, enum: [absolute, smart]}

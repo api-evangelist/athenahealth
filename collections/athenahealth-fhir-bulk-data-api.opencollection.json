@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "athenahealth FHIR Bulk Data Access API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.platform.athenahealth.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bulk Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Group Bulk Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/fhir/r4/Group/:id/$export",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              },
+              {
+                "name": "Prefer",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_outputFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Group Bulk Export"
+        },
+        {
+          "info": {
+            "name": "Get Bulk Export Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/fhir/r4/bulk/status/:jobid",
+            "params": [
+              {
+                "name": "jobid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Bulk Export Status"
+        },
+        {
+          "info": {
+            "name": "Cancel Bulk Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.platform.athenahealth.com/fhir/r4/bulk/status/:jobid",
+            "params": [
+              {
+                "name": "jobid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Bulk Export"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

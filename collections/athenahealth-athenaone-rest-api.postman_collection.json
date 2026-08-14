@@ -1,0 +1,2033 @@
+{
+  "item": [
+    {
+      "id": "07b1a341-f761-4fa2-9ac0-a29b98c0947a",
+      "name": "Patients",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2e54152-bacc-437d-894a-2ed4c4d69808",
+          "name": "Search Patients",
+          "request": {
+            "name": "Search Patients",
+            "description": {},
+            "url": {
+              "path": [
+                "patients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dob",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "departmentid",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0edf24f5-f2c4-4a0f-85d0-9d32918c2cf6",
+              "name": "List of matching patients",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "firstname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lastname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dob",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "departmentid",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"patientid\": \"string\",\n    \"firstname\": \"string\",\n    \"lastname\": \"string\",\n    \"dob\": \"1962-03-18\",\n    \"sex\": \"M\",\n    \"homephone\": \"string\",\n    \"mobilephone\": \"string\",\n    \"email\": \"aERE6jcGBVIIqyW@pMXzUpqmvlRFNQs.dgj\",\n    \"address1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"departmentid\": 8749\n  },\n  {\n    \"patientid\": \"string\",\n    \"firstname\": \"string\",\n    \"lastname\": \"string\",\n    \"dob\": \"1983-03-23\",\n    \"sex\": \"M\",\n    \"homephone\": \"string\",\n    \"mobilephone\": \"string\",\n    \"email\": \"l6YJrg7ydGv@RXieGfFdvLzncNEbjoadDUjjugrAkdG.er\",\n    \"address1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"departmentid\": 944\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e6626cb-9c99-4261-b8ae-d1e05b341f35",
+          "name": "Create Patient",
+          "request": {
+            "name": "Create Patient",
+            "description": {},
+            "url": {
+              "path": [
+                "patients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "dob",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "departmentid",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sex",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3e0a8027-5cbf-4d07-9cb3-8ec93a216571",
+              "name": "Created patient",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "firstname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "lastname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "dob",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "departmentid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sex",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patientid\": \"string\",\n  \"firstname\": \"string\",\n  \"lastname\": \"string\",\n  \"dob\": \"1998-05-30\",\n  \"sex\": \"U\",\n  \"homephone\": \"string\",\n  \"mobilephone\": \"string\",\n  \"email\": \"shFtcl0coPHTmSG@xAiMTKIDrnMzZcNfTvd.dtd\",\n  \"address1\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"departmentid\": 3419\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca55bffd-1797-4296-97c4-8fefbc34eca6",
+          "name": "Get Patient",
+          "request": {
+            "name": "Get Patient",
+            "description": {},
+            "url": {
+              "path": [
+                "patients",
+                ":patientid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "patientid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e58f4f2-0f24-4443-9a3f-850ef39b1dd5",
+              "name": "Patient record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "patientid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patientid\": \"string\",\n  \"firstname\": \"string\",\n  \"lastname\": \"string\",\n  \"dob\": \"1998-05-30\",\n  \"sex\": \"U\",\n  \"homephone\": \"string\",\n  \"mobilephone\": \"string\",\n  \"email\": \"shFtcl0coPHTmSG@xAiMTKIDrnMzZcNfTvd.dtd\",\n  \"address1\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"departmentid\": 3419\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30b187c4-79af-4d2d-8678-ad6a3ff9c906",
+          "name": "Update Patient",
+          "request": {
+            "name": "Update Patient",
+            "description": {},
+            "url": {
+              "path": [
+                "patients",
+                ":patientid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "patientid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mobilephone",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d426f1c9-3c77-4fda-b095-f019629c3515",
+              "name": "Update result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "patientid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firstname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "lastname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mobilephone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "73cfa6c3-0a2c-4bd4-ad7c-6bb50057ab7a",
+      "name": "Appointments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9be9d2bd-92d3-4e5f-87fd-8a98d73482d9",
+          "name": "Search Appointments",
+          "request": {
+            "name": "Search Appointments",
+            "description": {},
+            "url": {
+              "path": [
+                "appointments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "departmentid",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "105cf088-ceb4-40cd-9c93-e37c65df4626",
+              "name": "Appointments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "departmentid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"appointmentid\": \"string\",\n    \"date\": \"1969-10-02\",\n    \"starttime\": \"string\",\n    \"duration\": 2002,\n    \"patientid\": \"string\",\n    \"providerid\": 6326,\n    \"departmentid\": 1056,\n    \"appointmenttype\": \"string\",\n    \"appointmentstatus\": \"string\"\n  },\n  {\n    \"appointmentid\": \"string\",\n    \"date\": \"1964-04-27\",\n    \"starttime\": \"string\",\n    \"duration\": 6452,\n    \"patientid\": \"string\",\n    \"providerid\": 2825,\n    \"departmentid\": 3198,\n    \"appointmenttype\": \"string\",\n    \"appointmentstatus\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e6c63c0-30f1-49e0-b974-4fa1ab41b318",
+          "name": "Get Open Appointment Slots",
+          "request": {
+            "name": "Get Open Appointment Slots",
+            "description": {},
+            "url": {
+              "path": [
+                "appointments",
+                "open"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "departmentid",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "providerid",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f2bb076-65e1-4d0c-a9b4-d4fc5b0465c7",
+              "name": "Open slots",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "departmentid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "providerid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3104630-9d26-494c-9244-e176a98145ea",
+          "name": "Get Appointment",
+          "request": {
+            "name": "Get Appointment",
+            "description": {},
+            "url": {
+              "path": [
+                "appointments",
+                ":appointmentid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "appointmentid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8eca532-fd83-42a5-a10d-9e7ca9af6e7f",
+              "name": "Appointment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":appointmentid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "appointmentid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appointmentid\": \"string\",\n  \"date\": \"1990-07-23\",\n  \"starttime\": \"string\",\n  \"duration\": 6416,\n  \"patientid\": \"string\",\n  \"providerid\": 3793,\n  \"departmentid\": 6918,\n  \"appointmenttype\": \"string\",\n  \"appointmentstatus\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12ef5538-f2c8-435d-87bc-d3fee56d21d3",
+          "name": "Cancel Appointment",
+          "request": {
+            "name": "Cancel Appointment",
+            "description": {},
+            "url": {
+              "path": [
+                "appointments",
+                ":appointmentid",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "appointmentid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc84d2b4-0484-4111-b39a-101d9582d408",
+              "name": "Cancellation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":appointmentid",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "appointmentid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af1c2a67-7672-42b9-8f41-15181be6d6a0",
+          "name": "Check In Appointment",
+          "request": {
+            "name": "Check In Appointment",
+            "description": {},
+            "url": {
+              "path": [
+                "appointments",
+                ":appointmentid",
+                "checkin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "appointmentid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5969b691-680f-4e3c-9fd9-95ab3dafb041",
+              "name": "Check-in result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":appointmentid",
+                    "checkin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "appointmentid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd4648f9-cb79-4ebd-b8a2-735982ba9568",
+          "name": "Reschedule Appointment",
+          "request": {
+            "name": "Reschedule Appointment",
+            "description": {},
+            "url": {
+              "path": [
+                "appointments",
+                ":appointmentid",
+                "reschedule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "appointmentid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac2f33a2-1bc7-44b7-b68d-a5618994670d",
+              "name": "Reschedule result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":appointmentid",
+                    "reschedule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "appointmentid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ebe492d9-32b5-4933-90bf-d71306ffcd4c",
+      "name": "Encounters",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11ab2246-9f00-4292-b503-e05e75e868c9",
+          "name": "List Patient Encounters",
+          "request": {
+            "name": "List Patient Encounters",
+            "description": {},
+            "url": {
+              "path": [
+                "chart",
+                ":patientid",
+                "encounters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "departmentid",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "patientid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "140d54dc-c3b2-42c3-9004-d94335996b07",
+              "name": "Encounters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chart",
+                    ":patientid",
+                    "encounters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "departmentid",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "patientid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"encounterid\": \"string\",\n    \"patientid\": \"string\",\n    \"appointmentid\": \"string\",\n    \"encountertype\": \"string\",\n    \"encounterdate\": \"1992-05-25\",\n    \"providerid\": 2243,\n    \"departmentid\": 1133,\n    \"status\": \"string\"\n  },\n  {\n    \"encounterid\": \"string\",\n    \"patientid\": \"string\",\n    \"appointmentid\": \"string\",\n    \"encountertype\": \"string\",\n    \"encounterdate\": \"1972-06-05\",\n    \"providerid\": 2752,\n    \"departmentid\": 51,\n    \"status\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d0b5376-5675-4880-8e81-25484d777f6b",
+          "name": "Get Encounter",
+          "request": {
+            "name": "Get Encounter",
+            "description": {},
+            "url": {
+              "path": [
+                "chart",
+                "encounter",
+                ":encounterid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "encounterid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65b20ed4-9a5e-432c-b0fc-3c8d127d41eb",
+              "name": "Encounter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chart",
+                    "encounter",
+                    ":encounterid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "encounterid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"encounterid\": \"string\",\n  \"patientid\": \"string\",\n  \"appointmentid\": \"string\",\n  \"encountertype\": \"string\",\n  \"encounterdate\": \"2015-08-16\",\n  \"providerid\": 7882,\n  \"departmentid\": 7106,\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "53838602-6552-4b38-bdc2-ac20447bb9e1",
+      "name": "Claims",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a841aae-f68c-463c-b209-76a2ea2d58ae",
+          "name": "Search Claims",
+          "request": {
+            "name": "Search Claims",
+            "description": {},
+            "url": {
+              "path": [
+                "claims"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "departmentid",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "patientid",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d0b5c4b-d756-4a9d-a9c7-586dee2f65e2",
+              "name": "Claims",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "departmentid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "patientid",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"claimid\": \"string\",\n    \"patientid\": \"string\",\n    \"servicedate\": \"2004-05-25\",\n    \"billedamount\": 8432.53693471918,\n    \"status\": \"string\"\n  },\n  {\n    \"claimid\": \"string\",\n    \"patientid\": \"string\",\n    \"servicedate\": \"1983-07-26\",\n    \"billedamount\": 8060.469195860012,\n    \"status\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5342b480-ec92-4880-8525-a5dd6a5c75a6",
+      "name": "Documents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "edccda32-d80c-4088-b49e-1b172a27ca10",
+          "name": "List Patient Documents",
+          "request": {
+            "name": "List Patient Documents",
+            "description": {},
+            "url": {
+              "path": [
+                "patients",
+                ":patientid",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "departmentid",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "patientid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "799e449c-2679-4ae9-b8b7-49125cdecfb6",
+              "name": "Documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientid",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "departmentid",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "patientid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"documentid\": \"string\",\n    \"patientid\": \"string\",\n    \"documenttype\": \"string\",\n    \"createddate\": \"1967-07-23T05:25:14.235Z\",\n    \"documentclass\": \"string\"\n  },\n  {\n    \"documentid\": \"string\",\n    \"patientid\": \"string\",\n    \"documenttype\": \"string\",\n    \"createddate\": \"2010-10-17T21:33:48.246Z\",\n    \"documentclass\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1e567a42-a94d-44ce-b660-312edb3f437b",
+      "name": "Providers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e5854da-80a8-408f-90b5-9cab77ee8b50",
+          "name": "List Providers",
+          "request": {
+            "name": "List Providers",
+            "description": {},
+            "url": {
+              "path": [
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3387d31d-949a-4c13-a5de-65b2a850fd75",
+              "name": "Providers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"providerid\": 1761,\n    \"firstname\": \"string\",\n    \"lastname\": \"string\",\n    \"npi\": \"string\",\n    \"providertype\": \"string\",\n    \"specialty\": \"string\"\n  },\n  {\n    \"providerid\": 4820,\n    \"firstname\": \"string\",\n    \"lastname\": \"string\",\n    \"npi\": \"string\",\n    \"providertype\": \"string\",\n    \"specialty\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "80cb80c3-2200-47e5-869c-f232b4311a06",
+      "name": "Departments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d66973bd-c748-46e7-9eda-5e44eac0c3f9",
+          "name": "List Departments",
+          "request": {
+            "name": "List Departments",
+            "description": {},
+            "url": {
+              "path": [
+                "departments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2ba0f9e-8cde-4674-be0d-3867d5b49256",
+              "name": "Departments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "departments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"departmentid\": 2218,\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"timezone\": \"string\"\n  },\n  {\n    \"departmentid\": 4612,\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"timezone\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d573f53a-7e6a-4dc4-b78e-66eba43d12c2",
+      "name": "Practice",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89afa6d9-3859-4c68-a747-7c17e3a7b044",
+          "name": "Get Practice Info",
+          "request": {
+            "name": "Get Practice Info",
+            "description": {},
+            "url": {
+              "path": [
+                "practiceinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "687df3cc-4ac8-427c-926f-e5f0a65669d0",
+              "name": "Practice info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "practiceinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "athenaOne practice identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "195900",
+      "key": "practiceid"
+    },
+    {
+      "type": "string",
+      "value": "https://api.platform.athenahealth.com/v1/{{practiceid}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athena/service/Athenanet.MDP.*"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.platform.athenahealth.com/oauth2/v1/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c923ecbf-b075-4648-8387-def30e50052c",
+    "name": "athenahealth athenaOne REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The athenaOne proprietary REST API exposes the full provider, patient,\nscheduling, clinical, and biller workflow surface of the athenahealth\ncloud-based EHR and practice management platform. All resources are\nscoped to a practice via the practiceid path parameter.\n\n\nContact Support:\n Name: athenahealth Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

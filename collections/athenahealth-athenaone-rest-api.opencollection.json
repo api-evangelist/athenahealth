@@ -1,0 +1,426 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "athenahealth athenaOne REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.platform.athenahealth.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/patients",
+            "params": [
+              {
+                "name": "firstname",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lastname",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dob",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "departmentid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search Patients"
+        },
+        {
+          "info": {
+            "name": "Create Patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/patients",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Create Patient"
+        },
+        {
+          "info": {
+            "name": "Get Patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/patients/:patientid",
+            "params": [
+              {
+                "name": "patientid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Patient"
+        },
+        {
+          "info": {
+            "name": "Update Patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/patients/:patientid",
+            "params": [
+              {
+                "name": "patientid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Update Patient"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Appointments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Appointments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/appointments",
+            "params": [
+              {
+                "name": "departmentid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search Appointments"
+        },
+        {
+          "info": {
+            "name": "Get Open Appointment Slots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/appointments/open",
+            "params": [
+              {
+                "name": "departmentid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "providerid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Open Appointment Slots"
+        },
+        {
+          "info": {
+            "name": "Get Appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/appointments/:appointmentid",
+            "params": [
+              {
+                "name": "appointmentid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Appointment"
+        },
+        {
+          "info": {
+            "name": "Cancel Appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/appointments/:appointmentid/cancel",
+            "params": [
+              {
+                "name": "appointmentid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Appointment"
+        },
+        {
+          "info": {
+            "name": "Check In Appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/appointments/:appointmentid/checkin",
+            "params": [
+              {
+                "name": "appointmentid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check In Appointment"
+        },
+        {
+          "info": {
+            "name": "Reschedule Appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/appointments/:appointmentid/reschedule",
+            "params": [
+              {
+                "name": "appointmentid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reschedule Appointment"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Encounters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Patient Encounters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/chart/:patientid/encounters",
+            "params": [
+              {
+                "name": "patientid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "departmentid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Patient Encounters"
+        },
+        {
+          "info": {
+            "name": "Get Encounter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/chart/encounter/:encounterid",
+            "params": [
+              {
+                "name": "encounterid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Encounter"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Claims",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Claims",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/claims",
+            "params": [
+              {
+                "name": "departmentid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "patientid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search Claims"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Patient Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/patients/:patientid/documents",
+            "params": [
+              {
+                "name": "patientid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "departmentid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Patient Documents"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/providers"
+          },
+          "docs": "List Providers"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Departments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Departments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/departments"
+          },
+          "docs": "List Departments"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Practice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Practice Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.platform.athenahealth.com/v1/{practiceid}/practiceinfo"
+          },
+          "docs": "Get Practice Info"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

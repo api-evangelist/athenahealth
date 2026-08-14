@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  title: athenahealth athenaOne REST AllergyIntolerance Subscription API
+  description: 'The athenaOne proprietary REST API exposes the full provider, patient,
+
+    scheduling, clinical, and biller workflow surface of the athenahealth
+
+    cloud-based EHR and practice management platform. All resources are
+
+    scoped to a practice via the practiceid path parameter.
+
+    '
+  version: 1.0.0
+  contact:
+    name: athenahealth Developer Support
+    url: https://docs.athenahealth.com/api/support
+  license:
+    name: athenahealth API Terms
+    url: https://www.athenahealth.com/legal/terms
+servers:
+- url: https://api.platform.athenahealth.com/v1/{practiceid}
+  description: Production athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne practice identifier
+- url: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+  description: Preview (sandbox) athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne preview practice identifier
+security:
+- oauth2: []
+tags:
+- name: Subscription
+paths:
+  /Subscription:
+    get:
+      summary: Search Subscriptions
+      operationId: searchSubscriptions
+      tags:
+      - Subscription
+      responses:
+        '200':
+          description: Bundle of Subscription resources
+    post:
+      summary: Create Subscription
+      operationId: createSubscription
+      tags:
+      - Subscription
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '201':
+          description: Subscription created
+  /Subscription/{id}:
+    get:
+      summary: Read Subscription
+      operationId: readSubscription
+      tags:
+      - Subscription
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Subscription resource
+    delete:
+      summary: Delete Subscription
+      operationId: deleteSubscription
+      tags:
+      - Subscription
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+  /Subscription/{id}/$status:
+    get:
+      summary: Get Subscription Status
+      operationId: getSubscriptionStatus
+      tags:
+      - Subscription
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SubscriptionStatus
+components:
+  schemas:
+    Subscription:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+          - Subscription
+        status:
+          type: string
+          enum:
+          - requested
+          - active
+          - error
+          - false
+        criteria:
+          type: string
+        channel:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - rest-hook
+            endpoint:
+              type: string
+              format: uri
+            payload:
+              type: string
+              enum:
+              - application/fhir+json
+            header:
+              type: array
+              items:
+                type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+        authorizationCode:
+          authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope

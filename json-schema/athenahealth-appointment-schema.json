@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/athena-health/main/json-schema/athenahealth-appointment-schema.json",
+  "title": "athenahealth Appointment",
+  "description": "Appointment booking in the athenaOne proprietary REST API.",
+  "type": "object",
+  "required": ["appointmentid"],
+  "properties": {
+    "appointmentid": {"type": "string"},
+    "patientid": {"type": "string"},
+    "providerid": {"type": "integer"},
+    "departmentid": {"type": "integer"},
+    "date": {"type": "string", "format": "date"},
+    "starttime": {"type": "string"},
+    "duration": {"type": "integer", "description": "Duration in minutes"},
+    "appointmenttype": {"type": "string"},
+    "appointmenttypeid": {"type": "integer"},
+    "appointmentstatus": {"type": "string", "enum": ["f", "o", "2", "3", "4", "x"]},
+    "reasonid": {"type": "integer"},
+    "reasonname": {"type": "string"},
+    "patientappointmenttypename": {"type": "string"},
+    "encounterid": {"type": "string"}
+  }
+}

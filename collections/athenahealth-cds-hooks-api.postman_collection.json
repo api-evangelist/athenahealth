@@ -1,0 +1,273 @@
+{
+  "item": [
+    {
+      "id": "ad7d6ea7-46b2-4579-8305-0fe297b6ea59",
+      "name": "CDS Hooks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36a85acc-4654-455e-a569-ec9afef95283",
+          "name": "Discover CDS Services",
+          "request": {
+            "name": "Discover CDS Services",
+            "description": {},
+            "url": {
+              "path": [
+                "cds-services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a441b55-191b-41e4-ae5e-d0213ab19b22",
+              "name": "Discovery response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cds-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"services\": [\n    {\n      \"id\": \"string\",\n      \"hook\": \"appointment-book\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"prefetch\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"hook\": \"order-select\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"prefetch\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a197ef9c-7a55-4b60-906d-1cf2f19cca49",
+          "name": "Invoke CDS Service",
+          "request": {
+            "name": "Invoke CDS Service",
+            "description": {},
+            "url": {
+              "path": [
+                "cds-services",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "athenaOne practice identifier",
+                  "type": "any",
+                  "value": "{{practiceid}}",
+                  "key": "practiceid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hook\": \"<string>\",\n  \"hookInstance\": \"<string>\",\n  \"fhirServer\": \"<uri>\",\n  \"context\": \"<object>\",\n  \"prefetch\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e299bec6-c6bc-4178-b507-d71269ef131b",
+              "name": "CDS Hooks response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cds-services",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "athenaOne practice identifier",
+                      "type": "any",
+                      "value": "{{practiceid}}",
+                      "key": "practiceid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hook\": \"<string>\",\n  \"hookInstance\": \"<string>\",\n  \"fhirServer\": \"<uri>\",\n  \"context\": \"<object>\",\n  \"prefetch\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cards\": [\n    {\n      \"summary\": \"string\",\n      \"indicator\": \"info\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"label\": \"string\",\n        \"url\": \"https://otIShjWjrEaOnpOTIdD.otlkzHCENJJcbUGscNPgY7lNKjwDi\"\n      },\n      \"links\": [\n        {\n          \"label\": \"string\",\n          \"url\": \"https://nIQgDIHuVIbAeHfDGNuZwT.kedF0zKvukokB2wFfool7ax,RtR3z7wYH6,9GgfCeSS50\",\n          \"type\": \"smart\"\n        },\n        {\n          \"label\": \"string\",\n          \"url\": \"https://RVTiWOcwjspRjNKYsqTkcdGCP.raeBijI,iuIduZPXxcsVoqnfLA8W-qP5oKDTu8IXZA93lYo8\",\n          \"type\": \"smart\"\n        }\n      ]\n    },\n    {\n      \"summary\": \"string\",\n      \"indicator\": \"warning\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"label\": \"string\",\n        \"url\": \"https://yEPF.exfsaAKAppqwEctHXdRyX.phPA7HvzwtbXCDqVscoxnMvP.N-DV\"\n      },\n      \"links\": [\n        {\n          \"label\": \"string\",\n          \"url\": \"http://bRQAAJIRF.dbnZvJJ7oNzQVH1.FeNzP8Hb9-YHqiol1WKdMyUc,CeCiLBcKKcPYTw7jeLzq\",\n          \"type\": \"smart\"\n        },\n        {\n          \"label\": \"string\",\n          \"url\": \"https://zsoBtahyMTFAkyJcSGgytVxQLUqrxlK.yyTfY78vw0f1Q1hYxuf\",\n          \"type\": \"smart\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "athenaOne practice identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "195900",
+      "key": "practiceid"
+    },
+    {
+      "type": "string",
+      "value": "https://api.platform.athenahealth.com/v1/{{practiceid}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athena/service/Athenanet.MDP.*"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.platform.athenahealth.com/oauth2/v1/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "88993a6a-9733-437f-8dc0-50eea3a49c69",
+    "name": "athenahealth athenaOne REST AllergyIntolerance CDS Hooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The athenaOne proprietary REST API exposes the full provider, patient,\nscheduling, clinical, and biller workflow surface of the athenahealth\ncloud-based EHR and practice management platform. All resources are\nscoped to a practice via the practiceid path parameter.\n\n\nContact Support:\n Name: athenahealth Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

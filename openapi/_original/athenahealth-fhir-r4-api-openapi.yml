@@ -1,0 +1,228 @@
+openapi: 3.0.3
+info:
+  title: athenahealth FHIR R4 API
+  description: |
+    athenahealth's HL7 FHIR R4 server certified to the ONC Cures Act Final Rule.
+    Serves US Core and USCDI v3 profiles for interoperability. SMART on FHIR
+    authorization via the athenahealth Developer Portal.
+  version: 25.0.0
+  contact:
+    name: athenahealth Developer Support
+    url: https://docs.athenahealth.com/api/support
+servers:
+- url: https://api.platform.athenahealth.com/fhir/r4
+  description: Production FHIR R4 endpoint
+- url: https://api.preview.platform.athenahealth.com/fhir/r4
+  description: Preview FHIR R4 endpoint
+security:
+- smart: []
+paths:
+  /metadata:
+    get:
+      summary: Get Capability Statement
+      operationId: getCapabilityStatement
+      tags: [Conformance]
+      responses:
+        '200':
+          description: FHIR CapabilityStatement
+  /Patient:
+    get:
+      summary: Search Patients
+      operationId: searchFhirPatients
+      tags: [Patient]
+      parameters:
+      - name: identifier
+        in: query
+        schema: {type: string}
+      - name: family
+        in: query
+        schema: {type: string}
+      - name: given
+        in: query
+        schema: {type: string}
+      - name: birthdate
+        in: query
+        schema: {type: string, format: date}
+      - name: _id
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: FHIR Bundle of Patient resources
+  /Patient/{id}:
+    get:
+      summary: Read Patient
+      operationId: readFhirPatient
+      tags: [Patient]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema: {type: string}
+      responses:
+        '200':
+          description: Patient resource
+  /Encounter:
+    get:
+      summary: Search Encounters
+      operationId: searchFhirEncounters
+      tags: [Encounter]
+      parameters:
+      - name: patient
+        in: query
+        schema: {type: string}
+      - name: date
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Bundle of Encounter resources
+  /Encounter/{id}:
+    get:
+      summary: Read Encounter
+      operationId: readFhirEncounter
+      tags: [Encounter]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema: {type: string}
+      responses:
+        '200':
+          description: Encounter resource
+  /Observation:
+    get:
+      summary: Search Observations
+      operationId: searchFhirObservations
+      tags: [Observation]
+      parameters:
+      - name: patient
+        in: query
+        schema: {type: string}
+      - name: category
+        in: query
+        schema: {type: string}
+      - name: code
+        in: query
+        schema: {type: string}
+      - name: date
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Bundle of Observation resources
+  /Condition:
+    get:
+      summary: Search Conditions
+      operationId: searchFhirConditions
+      tags: [Condition]
+      parameters:
+      - name: patient
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Bundle of Condition resources
+  /MedicationRequest:
+    get:
+      summary: Search Medication Requests
+      operationId: searchFhirMedicationRequests
+      tags: [MedicationRequest]
+      parameters:
+      - name: patient
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Bundle of MedicationRequest resources
+  /AllergyIntolerance:
+    get:
+      summary: Search Allergies
+      operationId: searchFhirAllergies
+      tags: [AllergyIntolerance]
+      parameters:
+      - name: patient
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Bundle of AllergyIntolerance resources
+  /DocumentReference:
+    get:
+      summary: Search Document References
+      operationId: searchFhirDocumentReferences
+      tags: [DocumentReference]
+      parameters:
+      - name: patient
+        in: query
+        schema: {type: string}
+      - name: category
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Bundle of DocumentReference resources
+  /DiagnosticReport:
+    get:
+      summary: Search Diagnostic Reports
+      operationId: searchFhirDiagnosticReports
+      tags: [DiagnosticReport]
+      parameters:
+      - name: patient
+        in: query
+        schema: {type: string}
+      - name: category
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Bundle of DiagnosticReport resources
+  /Immunization:
+    get:
+      summary: Search Immunizations
+      operationId: searchFhirImmunizations
+      tags: [Immunization]
+      parameters:
+      - name: patient
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Bundle of Immunization resources
+  /Appointment:
+    get:
+      summary: Search Appointments
+      operationId: searchFhirAppointments
+      tags: [Appointment]
+      parameters:
+      - name: patient
+        in: query
+        schema: {type: string}
+      - name: date
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Bundle of Appointment resources
+components:
+  securitySchemes:
+    smart:
+      type: oauth2
+      description: SMART on FHIR / OAuth 2.0
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            launch: SMART launch context
+            launch/patient: Patient launch context
+            patient/*.read: Read patient-scoped resources
+            user/*.read: Read user-scoped resources
+            system/*.read: System-level read (backend services)
+            offline_access: Issue refresh token
+            openid: OpenID Connect
+            fhirUser: Current FHIR user identity
+        clientCredentials:
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            system/*.read: System-level read (backend services)

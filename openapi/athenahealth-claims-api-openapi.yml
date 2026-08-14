@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: athenahealth athenaOne REST AllergyIntolerance Claims API
+  description: 'The athenaOne proprietary REST API exposes the full provider, patient,
+
+    scheduling, clinical, and biller workflow surface of the athenahealth
+
+    cloud-based EHR and practice management platform. All resources are
+
+    scoped to a practice via the practiceid path parameter.
+
+    '
+  version: 1.0.0
+  contact:
+    name: athenahealth Developer Support
+    url: https://docs.athenahealth.com/api/support
+  license:
+    name: athenahealth API Terms
+    url: https://www.athenahealth.com/legal/terms
+servers:
+- url: https://api.platform.athenahealth.com/v1/{practiceid}
+  description: Production athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne practice identifier
+- url: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+  description: Preview (sandbox) athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne preview practice identifier
+security:
+- oauth2: []
+tags:
+- name: Claims
+paths:
+  /claims:
+    get:
+      summary: Search Claims
+      operationId: searchClaims
+      tags:
+      - Claims
+      parameters:
+      - name: departmentid
+        in: query
+        schema:
+          type: integer
+      - name: patientid
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Claims
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimList'
+components:
+  schemas:
+    Claim:
+      type: object
+      properties:
+        claimid:
+          type: string
+        patientid:
+          type: string
+        servicedate:
+          type: string
+          format: date
+        billedamount:
+          type: number
+        status:
+          type: string
+    ClaimList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Claim'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+        authorizationCode:
+          authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope

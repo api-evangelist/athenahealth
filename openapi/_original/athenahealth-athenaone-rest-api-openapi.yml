@@ -1,0 +1,450 @@
+openapi: 3.0.3
+info:
+  title: athenahealth athenaOne REST API
+  description: |
+    The athenaOne proprietary REST API exposes the full provider, patient,
+    scheduling, clinical, and biller workflow surface of the athenahealth
+    cloud-based EHR and practice management platform. All resources are
+    scoped to a practice via the practiceid path parameter.
+  version: 1.0.0
+  contact:
+    name: athenahealth Developer Support
+    url: https://docs.athenahealth.com/api/support
+  license:
+    name: athenahealth API Terms
+    url: https://www.athenahealth.com/legal/terms
+servers:
+- url: https://api.platform.athenahealth.com/v1/{practiceid}
+  description: Production athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne practice identifier
+- url: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+  description: Preview (sandbox) athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne preview practice identifier
+security:
+- oauth2: []
+paths:
+  /patients:
+    get:
+      summary: Search Patients
+      operationId: searchPatients
+      tags: [Patients]
+      parameters:
+      - name: firstname
+        in: query
+        schema: {type: string}
+      - name: lastname
+        in: query
+        schema: {type: string}
+      - name: dob
+        in: query
+        schema: {type: string, format: date}
+      - name: departmentid
+        in: query
+        schema: {type: integer}
+      responses:
+        '200':
+          description: List of matching patients
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientList'
+    post:
+      summary: Create Patient
+      operationId: createPatient
+      tags: [Patients]
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatientCreate'
+      responses:
+        '200':
+          description: Created patient
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+  /patients/{patientid}:
+    get:
+      summary: Get Patient
+      operationId: getPatient
+      tags: [Patients]
+      parameters:
+      - name: patientid
+        in: path
+        required: true
+        schema: {type: integer}
+      responses:
+        '200':
+          description: Patient record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+    put:
+      summary: Update Patient
+      operationId: updatePatient
+      tags: [Patients]
+      parameters:
+      - name: patientid
+        in: path
+        required: true
+        schema: {type: integer}
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatientUpdate'
+      responses:
+        '200':
+          description: Update result
+  /appointments:
+    get:
+      summary: Search Appointments
+      operationId: searchAppointments
+      tags: [Appointments]
+      parameters:
+      - name: departmentid
+        in: query
+        required: true
+        schema: {type: integer}
+      - name: startdate
+        in: query
+        schema: {type: string}
+      - name: enddate
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Appointments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppointmentList'
+  /appointments/open:
+    get:
+      summary: Get Open Appointment Slots
+      operationId: getOpenAppointmentSlots
+      tags: [Appointments]
+      parameters:
+      - name: departmentid
+        in: query
+        required: true
+        schema: {type: integer}
+      - name: providerid
+        in: query
+        schema: {type: integer}
+      - name: startdate
+        in: query
+        schema: {type: string}
+      - name: enddate
+        in: query
+        schema: {type: string}
+      responses:
+        '200':
+          description: Open slots
+  /appointments/{appointmentid}:
+    get:
+      summary: Get Appointment
+      operationId: getAppointment
+      tags: [Appointments]
+      parameters:
+      - name: appointmentid
+        in: path
+        required: true
+        schema: {type: integer}
+      responses:
+        '200':
+          description: Appointment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+  /appointments/{appointmentid}/cancel:
+    put:
+      summary: Cancel Appointment
+      operationId: cancelAppointment
+      tags: [Appointments]
+      parameters:
+      - name: appointmentid
+        in: path
+        required: true
+        schema: {type: integer}
+      responses:
+        '200':
+          description: Cancellation result
+  /appointments/{appointmentid}/checkin:
+    post:
+      summary: Check In Appointment
+      operationId: checkInAppointment
+      tags: [Appointments]
+      parameters:
+      - name: appointmentid
+        in: path
+        required: true
+        schema: {type: integer}
+      responses:
+        '200':
+          description: Check-in result
+  /appointments/{appointmentid}/reschedule:
+    put:
+      summary: Reschedule Appointment
+      operationId: rescheduleAppointment
+      tags: [Appointments]
+      parameters:
+      - name: appointmentid
+        in: path
+        required: true
+        schema: {type: integer}
+      responses:
+        '200':
+          description: Reschedule result
+  /chart/{patientid}/encounters:
+    get:
+      summary: List Patient Encounters
+      operationId: listPatientEncounters
+      tags: [Encounters]
+      parameters:
+      - name: patientid
+        in: path
+        required: true
+        schema: {type: integer}
+      - name: departmentid
+        in: query
+        schema: {type: integer}
+      responses:
+        '200':
+          description: Encounters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EncounterList'
+  /chart/encounter/{encounterid}:
+    get:
+      summary: Get Encounter
+      operationId: getEncounter
+      tags: [Encounters]
+      parameters:
+      - name: encounterid
+        in: path
+        required: true
+        schema: {type: integer}
+      responses:
+        '200':
+          description: Encounter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Encounter'
+  /claims:
+    get:
+      summary: Search Claims
+      operationId: searchClaims
+      tags: [Claims]
+      parameters:
+      - name: departmentid
+        in: query
+        schema: {type: integer}
+      - name: patientid
+        in: query
+        schema: {type: integer}
+      responses:
+        '200':
+          description: Claims
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimList'
+  /patients/{patientid}/documents:
+    get:
+      summary: List Patient Documents
+      operationId: listPatientDocuments
+      tags: [Documents]
+      parameters:
+      - name: patientid
+        in: path
+        required: true
+        schema: {type: integer}
+      - name: departmentid
+        in: query
+        schema: {type: integer}
+      responses:
+        '200':
+          description: Documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+  /providers:
+    get:
+      summary: List Providers
+      operationId: listProviders
+      tags: [Providers]
+      responses:
+        '200':
+          description: Providers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderList'
+  /departments:
+    get:
+      summary: List Departments
+      operationId: listDepartments
+      tags: [Departments]
+      responses:
+        '200':
+          description: Departments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentList'
+  /practiceinfo:
+    get:
+      summary: Get Practice Info
+      operationId: getPracticeInfo
+      tags: [Practice]
+      responses:
+        '200':
+          description: Practice info
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+        authorizationCode:
+          authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+  schemas:
+    Patient:
+      type: object
+      properties:
+        patientid: {type: string}
+        firstname: {type: string}
+        lastname: {type: string}
+        dob: {type: string, format: date}
+        sex: {type: string, enum: [M, F, U]}
+        homephone: {type: string}
+        mobilephone: {type: string}
+        email: {type: string, format: email}
+        address1: {type: string}
+        city: {type: string}
+        state: {type: string}
+        zip: {type: string}
+        departmentid: {type: integer}
+    PatientCreate:
+      type: object
+      required: [firstname, lastname, dob, departmentid]
+      properties:
+        firstname: {type: string}
+        lastname: {type: string}
+        dob: {type: string, format: date}
+        departmentid: {type: integer}
+        sex: {type: string}
+    PatientUpdate:
+      type: object
+      properties:
+        firstname: {type: string}
+        lastname: {type: string}
+        mobilephone: {type: string}
+        email: {type: string, format: email}
+    PatientList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Patient'
+    Appointment:
+      type: object
+      properties:
+        appointmentid: {type: string}
+        date: {type: string, format: date}
+        starttime: {type: string}
+        duration: {type: integer}
+        patientid: {type: string}
+        providerid: {type: integer}
+        departmentid: {type: integer}
+        appointmenttype: {type: string}
+        appointmentstatus: {type: string}
+    AppointmentList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Appointment'
+    Encounter:
+      type: object
+      properties:
+        encounterid: {type: string}
+        patientid: {type: string}
+        appointmentid: {type: string}
+        encountertype: {type: string}
+        encounterdate: {type: string, format: date}
+        providerid: {type: integer}
+        departmentid: {type: integer}
+        status: {type: string}
+    EncounterList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Encounter'
+    Claim:
+      type: object
+      properties:
+        claimid: {type: string}
+        patientid: {type: string}
+        servicedate: {type: string, format: date}
+        billedamount: {type: number}
+        status: {type: string}
+    ClaimList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Claim'
+    Document:
+      type: object
+      properties:
+        documentid: {type: string}
+        patientid: {type: string}
+        documenttype: {type: string}
+        createddate: {type: string, format: date-time}
+        documentclass: {type: string}
+    DocumentList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Document'
+    Provider:
+      type: object
+      properties:
+        providerid: {type: integer}
+        firstname: {type: string}
+        lastname: {type: string}
+        npi: {type: string}
+        providertype: {type: string}
+        specialty: {type: string}
+    ProviderList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Provider'
+    Department:
+      type: object
+      properties:
+        departmentid: {type: integer}
+        name: {type: string}
+        address: {type: string}
+        city: {type: string}
+        state: {type: string}
+        zip: {type: string}
+        timezone: {type: string}
+    DepartmentList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Department'

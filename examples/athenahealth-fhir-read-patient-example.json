@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.platform.athenahealth.com/fhir/r4/Patient/a-12345",
+    "headers": {
+      "Authorization": "Bearer eyJraWQiOi...",
+      "Accept": "application/fhir+json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "resourceType": "Patient",
+      "id": "a-12345",
+      "meta": {
+        "profile": ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"],
+        "lastUpdated": "2026-05-20T13:42:11Z"
+      },
+      "identifier": [
+        {"system": "https://api.platform.athenahealth.com/fhir/r4", "value": "12345"}
+      ],
+      "active": true,
+      "name": [{"use": "official", "family": "Doe", "given": ["Jane"]}],
+      "gender": "female",
+      "birthDate": "1985-04-12"
+    }
+  }
+}

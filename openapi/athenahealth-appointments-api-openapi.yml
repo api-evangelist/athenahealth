@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: athenahealth athenaOne REST AllergyIntolerance Appointments API
+  description: 'The athenaOne proprietary REST API exposes the full provider, patient,
+
+    scheduling, clinical, and biller workflow surface of the athenahealth
+
+    cloud-based EHR and practice management platform. All resources are
+
+    scoped to a practice via the practiceid path parameter.
+
+    '
+  version: 1.0.0
+  contact:
+    name: athenahealth Developer Support
+    url: https://docs.athenahealth.com/api/support
+  license:
+    name: athenahealth API Terms
+    url: https://www.athenahealth.com/legal/terms
+servers:
+- url: https://api.platform.athenahealth.com/v1/{practiceid}
+  description: Production athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne practice identifier
+- url: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+  description: Preview (sandbox) athenaOne API
+  variables:
+    practiceid:
+      default: '195900'
+      description: athenaOne preview practice identifier
+security:
+- oauth2: []
+tags:
+- name: Appointments
+paths:
+  /appointments:
+    get:
+      summary: Search Appointments
+      operationId: searchAppointments
+      tags:
+      - Appointments
+      parameters:
+      - name: departmentid
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: startdate
+        in: query
+        schema:
+          type: string
+      - name: enddate
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Appointments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppointmentList'
+  /appointments/open:
+    get:
+      summary: Get Open Appointment Slots
+      operationId: getOpenAppointmentSlots
+      tags:
+      - Appointments
+      parameters:
+      - name: departmentid
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: providerid
+        in: query
+        schema:
+          type: integer
+      - name: startdate
+        in: query
+        schema:
+          type: string
+      - name: enddate
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Open slots
+  /appointments/{appointmentid}:
+    get:
+      summary: Get Appointment
+      operationId: getAppointment
+      tags:
+      - Appointments
+      parameters:
+      - name: appointmentid
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Appointment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+  /appointments/{appointmentid}/cancel:
+    put:
+      summary: Cancel Appointment
+      operationId: cancelAppointment
+      tags:
+      - Appointments
+      parameters:
+      - name: appointmentid
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Cancellation result
+  /appointments/{appointmentid}/checkin:
+    post:
+      summary: Check In Appointment
+      operationId: checkInAppointment
+      tags:
+      - Appointments
+      parameters:
+      - name: appointmentid
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Check-in result
+  /appointments/{appointmentid}/reschedule:
+    put:
+      summary: Reschedule Appointment
+      operationId: rescheduleAppointment
+      tags:
+      - Appointments
+      parameters:
+      - name: appointmentid
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Reschedule result
+components:
+  schemas:
+    AppointmentList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Appointment'
+    Appointment:
+      type: object
+      properties:
+        appointmentid:
+          type: string
+        date:
+          type: string
+          format: date
+        starttime:
+          type: string
+        duration:
+          type: integer
+        patientid:
+          type: string
+        providerid:
+          type: integer
+        departmentid:
+          type: integer
+        appointmenttype:
+          type: string
+        appointmentstatus:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+        authorizationCode:
+          authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            athena/service/Athenanet.MDP.*: athenahealth MDP scope

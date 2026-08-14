@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/athena-health/main/json-schema/athenahealth-fhir-patient-schema.json",
+  "title": "athenahealth FHIR R4 Patient (US Core profile)",
+  "description": "FHIR R4 Patient resource served by athenahealth, conforming to US Core / USCDI.",
+  "type": "object",
+  "required": ["resourceType", "id"],
+  "properties": {
+    "resourceType": {"type": "string", "const": "Patient"},
+    "id": {"type": "string"},
+    "meta": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "array",
+          "items": {"type": "string", "format": "uri"}
+        },
+        "lastUpdated": {"type": "string", "format": "date-time"}
+      }
+    },
+    "identifier": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {"type": "string", "format": "uri"},
+          "value": {"type": "string"}
+        }
+      }
+    },
+    "active": {"type": "boolean"},
+    "name": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "use": {"type": "string"},
+          "family": {"type": "string"},
+          "given": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "gender": {"type": "string", "enum": ["male", "female", "other", "unknown"]},
+    "birthDate": {"type": "string", "format": "date"},
+    "telecom": {"type": "array", "items": {"type": "object"}},
+    "address": {"type": "array", "items": {"type": "object"}},
+    "communication": {"type": "array", "items": {"type": "object"}}
+  }
+}

@@ -1,0 +1,62 @@
+extends:
+- spectral:oas
+rules:
+  athena-info-contact:
+    description: All athenahealth specs must include developer support contact info.
+    severity: error
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  athena-info-license:
+    description: All athenahealth specs must include license info.
+    severity: warn
+    given: $.info
+    then:
+      field: license
+      function: truthy
+  athena-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    severity: warn
+    given: $.paths.*.*.summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^(?:[A-Z][a-z0-9]*\b\s*)+$'
+  athena-operation-id-camel-case:
+    description: operationId must be camelCase.
+    severity: error
+    given: $.paths.*.*.operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+  athena-tags-defined:
+    description: Every operation must declare at least one tag.
+    severity: warn
+    given: $.paths.*.*
+    then:
+      field: tags
+      function: truthy
+  athena-fhir-server-url:
+    description: FHIR specs must use platform.athenahealth.com server.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: 'platform\.athenahealth\.com'
+  athena-no-http:
+    description: Servers must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+  athena-oauth-required:
+    description: Specs must define an oauth2 security scheme.
+    severity: error
+    given: $.components.securitySchemes
+    then:
+      function: truthy

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/athena-health/main/json-schema/athenahealth-patient-schema.json",
+  "title": "athenahealth Patient",
+  "description": "Patient demographics in the athenaOne proprietary REST API.",
+  "type": "object",
+  "required": ["patientid"],
+  "properties": {
+    "patientid": {"type": "string", "description": "athenaOne patient identifier"},
+    "firstname": {"type": "string"},
+    "lastname": {"type": "string"},
+    "dob": {"type": "string", "format": "date"},
+    "sex": {"type": "string", "enum": ["M", "F", "U"]},
+    "homephone": {"type": "string"},
+    "mobilephone": {"type": "string"},
+    "email": {"type": "string", "format": "email"},
+    "address1": {"type": "string"},
+    "address2": {"type": "string"},
+    "city": {"type": "string"},
+    "state": {"type": "string"},
+    "zip": {"type": "string"},
+    "departmentid": {"type": "integer"},
+    "race": {"type": "array", "items": {"type": "string"}},
+    "ethnicity": {"type": "string"},
+    "language6392code": {"type": "string"},
+    "primaryproviderid": {"type": "integer"},
+    "registrationdate": {"type": "string", "format": "date"},
+    "status": {"type": "string"}
+  }
+}

@@ -1,0 +1,103 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/athenahealth-athenaone-rest-api-openapi.yml, openapi/athenahealth-fhir-bulk-data-api-openapi.yml,
+  openapi/athenahealth-fhir-r4-api-openapi.yml, openapi/athenahealth-fhir-subscriptions-api-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/athenahealth-athenaone-rest-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: backend
+  source: openapi/athenahealth-fhir-bulk-data-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  description: SMART Backend Services (JWT client assertion)
+- name: smart
+  source: openapi/athenahealth-fhir-r4-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  description: SMART on FHIR / OAuth 2.0
+- name: oauth2
+  source: openapi/athenahealth-fhir-subscriptions-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+scopes:
+- scope: athena/service/Athenanet.MDP.*
+  description: athenahealth MDP scope
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/athenahealth-athenaone-rest-api-openapi.yml
+- scope: fhirUser
+  description: Current FHIR user identity
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/athenahealth-fhir-r4-api-openapi.yml
+- scope: launch
+  description: SMART launch context
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/athenahealth-fhir-r4-api-openapi.yml
+- scope: launch/patient
+  description: Patient launch context
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/athenahealth-fhir-r4-api-openapi.yml
+- scope: offline_access
+  description: Issue refresh token
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/athenahealth-fhir-r4-api-openapi.yml
+- scope: openid
+  description: OpenID Connect
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/athenahealth-fhir-r4-api-openapi.yml
+- scope: patient/*.read
+  description: Read patient-scoped resources
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/athenahealth-fhir-r4-api-openapi.yml
+- scope: system/*.read
+  description: System-level read for Bulk Data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/athenahealth-fhir-bulk-data-api-openapi.yml
+  - openapi/athenahealth-fhir-r4-api-openapi.yml
+- scope: system/Subscription.read
+  description: Read Subscriptions
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/athenahealth-fhir-subscriptions-api-openapi.yml
+- scope: system/Subscription.write
+  description: Manage Subscriptions
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/athenahealth-fhir-subscriptions-api-openapi.yml
+- scope: user/*.read
+  description: Read user-scoped resources
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/athenahealth-fhir-r4-api-openapi.yml

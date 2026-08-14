@@ -1,0 +1,93 @@
+asyncapi: 3.0.0
+info:
+  title: athenahealth FHIR Subscriptions Events
+  version: 1.0.0
+  description: |
+    Event-driven notifications from the athenahealth Event Subscription
+    Platform. Delivered as FHIR Bundle notifications (R5 Backport) over
+    rest-hook channel with id-only payloads. Subscriber webhooks must
+    return 2xx within 2 seconds.
+defaultContentType: application/fhir+json
+servers:
+  production:
+    host: api.platform.athenahealth.com
+    protocol: https
+  preview:
+    host: api.preview.platform.athenahealth.com
+    protocol: https
+channels:
+  subscriber-webhook:
+    address: '{webhookUrl}'
+    parameters:
+      webhookUrl:
+        description: Subscriber-provided HTTPS webhook URL
+    messages:
+      patientNotification:
+        $ref: '#/components/messages/PatientNotification'
+      appointmentNotification:
+        $ref: '#/components/messages/AppointmentNotification'
+      encounterNotification:
+        $ref: '#/components/messages/EncounterNotification'
+      observationNotification:
+        $ref: '#/components/messages/ObservationNotification'
+operations:
+  receivePatientEvent:
+    action: receive
+    channel:
+      $ref: '#/channels/subscriber-webhook'
+    messages:
+    - $ref: '#/channels/subscriber-webhook/messages/patientNotification'
+  receiveAppointmentEvent:
+    action: receive
+    channel:
+      $ref: '#/channels/subscriber-webhook'
+    messages:
+    - $ref: '#/channels/subscriber-webhook/messages/appointmentNotification'
+  receiveEncounterEvent:
+    action: receive
+    channel:
+      $ref: '#/channels/subscriber-webhook'
+    messages:
+    - $ref: '#/channels/subscriber-webhook/messages/encounterNotification'
+  receiveObservationEvent:
+    action: receive
+    channel:
+      $ref: '#/channels/subscriber-webhook'
+    messages:
+    - $ref: '#/channels/subscriber-webhook/messages/observationNotification'
+components:
+  messages:
+    PatientNotification:
+      summary: Patient created/updated event
+      payload:
+        $ref: '#/components/schemas/NotificationBundle'
+    AppointmentNotification:
+      summary: Appointment created/updated event
+      payload:
+        $ref: '#/components/schemas/NotificationBundle'
+    EncounterNotification:
+      summary: Encounter created/updated event
+      payload:
+        $ref: '#/components/schemas/NotificationBundle'
+    ObservationNotification:
+      summary: Observation created/updated event
+      payload:
+        $ref: '#/components/schemas/NotificationBundle'
+  schemas:
+    NotificationBundle:
+      type: object
+      properties:
+        resourceType: {type: string, enum: [Bundle]}
+        type: {type: string, enum: [history]}
+        timestamp: {type: string, format: date-time}
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl: {type: string, format: uri}
+              resource:
+                type: object
+                properties:
+                  resourceType: {type: string}
+                  id: {type: string}
