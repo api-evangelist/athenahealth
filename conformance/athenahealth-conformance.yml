@@ -1,0 +1,226 @@
+generated: '2026-08-14'
+method: probed
+source: https://api.platform.athenahealth.com/fhir/r4/metadata,
+  https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration,
+  https://www.athenahealth.com/hitrust, openapi/
+description: >-
+  Standards conformance for the athenahealth API surface. The strongest evidence here is not
+  documentation prose — it is the live FHIR CapabilityStatement athenahealth serves anonymously at
+  https://api.platform.athenahealth.com/fhir/r4/metadata (HTTP 200, application/fhir+json, 75,902
+  bytes) and the SMART App Launch configuration at .../fhir/r4/.well-known/smart-configuration
+  (HTTP 200). Both were fetched unauthenticated on 2026-08-14 and are saved verbatim in this repo.
+evidence_documents:
+- file: conformance/athenahealth-fhir-capabilitystatement.json
+  url: https://api.platform.athenahealth.com/fhir/r4/metadata
+  http_status: 200
+  content_type: application/fhir+json
+  fetched: '2026-08-14'
+- file: well-known/athenahealth-smart-configuration.json
+  url: https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+  http_status: 200
+  content_type: application/json; charset=utf-8
+  fetched: '2026-08-14'
+standards:
+- id: fhir
+  name: HL7 FHIR R4
+  conforms: true
+  version: 4.0.1
+  evidence: >-
+    Live CapabilityStatement declares fhirVersion 4.0.1, status active, kind instance,
+    software.name "athenahealth FHIR Server", implementation.url
+    https://api.platform.athenahealth.com/fhir/r4, CapabilityStatement version 2.0.0 dated
+    2022-06-06. 32 resource types are declared with read and/or search-type interactions.
+  source: https://api.platform.athenahealth.com/fhir/r4/metadata
+- id: us-core
+  name: HL7 US Core Implementation Guide
+  conforms: true
+  version: 3.1.1 and 6.1.0
+  evidence: >-
+    CapabilityStatement.instantiates lists
+    http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server|3.1.1 and |6.1.0;
+    implementationGuide lists hl7.fhir.us.core|6.1.0. 20 resources carry a supportedProfile
+    pointing at a us-core-* StructureDefinition at 6.1.0.
+  source: https://api.platform.athenahealth.com/fhir/r4/metadata
+- id: fhir-bulk-data
+  name: HL7 FHIR Bulk Data Access (Flat FHIR)
+  conforms: true
+  version: 1.0.1 and 2.0.0
+  evidence: >-
+    CapabilityStatement.instantiates lists
+    http://hl7.org/fhir/uv/bulkdata/CapabilityStatement/bulk-data|1.0.1 and |2.0.0;
+    implementationGuide lists hl7.fhir.uv.bulkdata at both versions. The Group resource declares
+    the $export operation.
+  source: https://api.platform.athenahealth.com/fhir/r4/metadata
+- id: smart-on-fhir
+  name: SMART App Launch
+  conforms: true
+  version: '2.0'
+  evidence: >-
+    .well-known/smart-configuration returns a real JSON object whose capabilities array contains
+    launch-ehr, launch-standalone, client-confidential-symmetric, client-confidential-asymmetric,
+    client-public, sso-openid-connect, context-ehr-patient, context-ehr-encounter, authorize-post,
+    context-standalone-patient, permission-offline, permission-patient, permission-user,
+    permission-v1, permission-v2, context-banner, context-style and health-cards. permission-v1
+    AND permission-v2 both present means both the legacy (patient/*.read) and v2
+    (patient/*.rs) scope syntaxes are accepted.
+  source: https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+- id: oauth2
+  name: OAuth 2.0
+  conforms: true
+  evidence: >-
+    smart-configuration declares authorization_endpoint, token_endpoint, introspection_endpoint
+    (RFC 7662), revocation_endpoint (RFC 7009) and jwks_uri. grant_types_supported =
+    [authorization_code, client_credentials]. token_endpoint_auth_methods_supported =
+    [client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt, none].
+  source: https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+- id: oauth2-pkce
+  name: PKCE (RFC 7636)
+  conforms: true
+  evidence: code_challenge_methods_supported = ["S256"] in the SMART configuration.
+  source: https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+- id: oidc
+  name: OpenID Connect
+  conforms: true
+  evidence: >-
+    SMART capabilities include sso-openid-connect; response_types_supported includes id_token,
+    code id_token, id_token token and code id_token token; issuer is
+    https://athena.okta.com/oauth2/aus2hff5eqFb7Wqfh297. NOTE: no /.well-known/openid-configuration
+    document is served on any athenahealth host — the OIDC metadata is only reachable via the
+    SMART configuration and the Okta issuer.
+  source: https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+- id: smart-backend-services
+  name: SMART Backend Services Authorization (asymmetric client auth)
+  conforms: true
+  evidence: >-
+    token_endpoint_auth_methods_supported includes private_key_jwt, and the SMART capabilities
+    array includes client-confidential-asymmetric. This is the grant the Bulk Data and FHIR
+    Subscriptions surfaces use.
+  source: https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+- id: cds-hooks
+  name: CDS Hooks
+  conforms: true
+  version: '1.0'
+  evidence: >-
+    athenahealth publishes an athenaOne CDS Hooks Integration Guide
+    (https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide) and the repo
+    carries a CDS Hooks discovery/invoke contract at openapi/athenahealth-cds-hooks-api-openapi.yml.
+    The servers[] entry in that spec is https://cds.example.com because in CDS Hooks the SERVER is
+    the third party's decision-support service, not athenahealth — athenahealth is the client.
+  source: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
+- id: fhir-subscriptions
+  name: FHIR Subscriptions (R5 Backport on R4, rest-hook channel)
+  conforms: true
+  evidence: >-
+    athenahealth publishes a reference webhook receiver at
+    https://github.com/athenahealth/aone-fhir-subscriptions (Java, last pushed 2025-08-26) and the
+    repo carries asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml describing the id-only
+    rest-hook notification Bundle.
+  source: https://github.com/athenahealth/aone-fhir-subscriptions
+- id: shc
+  name: SMART Health Cards
+  conforms: true
+  evidence: >-
+    SMART capabilities include health-cards, and the Patient resource in the CapabilityStatement
+    declares the $health-cards-issue operation.
+  source: https://api.platform.athenahealth.com/fhir/r4/metadata
+- id: onc-certification
+  name: ASTP/ONC Certified Health IT (2015 Edition)
+  conforms: true
+  evidence: >-
+    athenahealth publishes "2015 Edition certification of Health IT by the Office of the National
+    Coordinator for Health Information Technology (ONC)" on its own certifications page, and
+    maintains a public ASTP/ONC page covering HTI-1 Predictive Decision Support Intervention
+    Intervention Risk Management.
+  source: https://www.athenahealth.com/onc-certified-health-it
+- id: hitrust-csf
+  name: HITRUST CSF Certified
+  conforms: true
+  evidence: 'athenahealth publishes: "Common Security Framework (CSF) Certified status from the
+    Health Information Trust Alliance (HITRUST)".'
+  source: https://www.athenahealth.com/hitrust
+- id: pci-dss
+  name: PCI DSS
+  conforms: true
+  evidence: 'athenahealth publishes: "Payment Card Industry - Data Security Standards (PCI-DSS)
+    enforced by the PCI Standards Council".'
+  source: https://www.athenahealth.com/hitrust
+- id: soc1
+  name: SOC 1 (SSAE 18)
+  conforms: true
+  evidence: 'athenahealth publishes: "SOC 1 report demonstrating conformance with the Statement on
+    Standards for Attestation Engagements No. 18 (SSAE 18)". NOTE: athenahealth advertises SOC 1,
+    not SOC 2, on this page.'
+  source: https://www.athenahealth.com/hitrust
+- id: hipaa
+  name: HIPAA / HITECH
+  conforms: true
+  evidence: >-
+    athenahealth publishes EHNAC accreditation "demonstrating conformance with federal healthcare
+    reform legislation including HIPAA, HITECH/ARRA, ACA, Omnibus Rule".
+  source: https://www.athenahealth.com/hitrust
+- id: directtrust
+  name: DirectTrust HISP and CA/RA accreditation
+  conforms: true
+  evidence: >-
+    athenahealth publishes DirectTrust certification for Health Information Service Providers
+    (HISP) and for Certificate and Registration Authorities in Direct Exchange.
+  source: https://www.athenahealth.com/hitrust
+- id: epcs
+  name: Electronic Prescriptions for Controlled Substances (DEA)
+  conforms: true
+  evidence: >-
+    athenahealth publishes EPCS certification issued through a third-party certification authority
+    approved by the DEA.
+  source: https://www.athenahealth.com/hitrust
+- id: kantara
+  name: Kantara Initiative Credentialing Service Provider
+  conforms: true
+  evidence: 'athenahealth publishes: "Kantara certification as a full-service Credentialing Service
+    Provider through the Kantara Initiative".'
+  source: https://www.athenahealth.com/hitrust
+- id: rfc9457
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: false
+  evidence: >-
+    No application/problem+json response is declared anywhere in openapi/, and the FHIR surface
+    signals errors with the FHIR OperationOutcome resource rather than Problem Details. See
+    errors/athenahealth-problem-types.yml.
+- id: json-api
+  name: 'JSON:API'
+  conforms: false
+  evidence: No JSON:API media type or envelope appears in any spec or response observed.
+- id: odata
+  name: OData
+  conforms: false
+  evidence: No OData metadata document or $metadata surface exists on any athenahealth host.
+- id: scim
+  name: SCIM 2.0
+  conforms: false
+  evidence: >-
+    No SCIM endpoint is documented or discoverable; user/provider provisioning is done through
+    athenaOne administration, not a SCIM API.
+- id: idempotency
+  name: Idempotency-Key (draft-ietf-httpapi-idempotency-key-header)
+  conforms: false
+  evidence: >-
+    No Idempotency-Key (or equivalent) header parameter appears on any of the 40 operations in
+    openapi/, including the write operations createPatient, updatePatient, createSubscription,
+    checkInAppointment, cancelAppointment and rescheduleAppointment.
+- id: rate-limit-headers
+  name: RateLimit header fields (draft-ietf-httpapi-ratelimit-headers)
+  conforms: unknown
+  evidence: >-
+    athenahealth documents rate limits in prose on a JS-rendered docs page we could not read by
+    machine, and no unauthenticated endpoint returns rate-limit headers we could observe. See
+    rate-limits/athenahealth-rate-limits.yml.
+summary:
+  asserted: 20
+  conforms_true: 17
+  conforms_false: 5
+  unknown: 1
+  headline: >-
+    athenahealth is a genuinely standards-forward FHIR implementer — R4 with US Core 3.1.1 and
+    6.1.0, Bulk Data 1.0.1 and 2.0.0, SMART App Launch 2.0 with both v1 and v2 scope syntaxes, and
+    a live anonymous CapabilityStatement — while its proprietary athenaOne v1 REST surface carries
+    none of the cross-cutting HTTP conventions (Problem Details, Idempotency-Key, RateLimit
+    headers) that an agent would need to call it safely.

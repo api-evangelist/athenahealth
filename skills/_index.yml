@@ -1,0 +1,61 @@
+generated: '2026-08-14'
+method: generated
+source: openapi/ (22 refined specs, 40 operations),
+  https://api.platform.athenahealth.com/fhir/r4/metadata,
+  https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration,
+  asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+description: >-
+  Packaged Agent Skills for the athenahealth API surface. Every operationId referenced in these
+  skills was read out of a spec in openapi/ — none were invented. athenahealth publishes no
+  AGENTS.md and no skills of its own; these were searched for first and not found, then generated.
+  All four carry the same non-negotiable guardrails because they come from the same measured facts:
+  the athenaOne v1 API declares no error responses, no pagination and no idempotency key, and every
+  write in it changes a real patient's record.
+provider_published_skills: false
+provider_published_agents_md: false
+searched:
+- url: https://github.com/athenahealth
+  note: 53 repos, no AGENTS.md and no skills directory in any of them.
+- url: https://docs.athenahealth.com/api/
+  note: JS-rendered SPA; no machine-readable agent guidance served.
+skills:
+- name: athenahealth-find-and-book-appointment
+  file: athenahealth-find-and-book-appointment.md
+  surface: athenaOne v1 REST
+  writes: true
+  operations: [getPracticeInfo, listDepartments, listProviders, searchPatients, getPatient,
+    getOpenAppointmentSlots, searchAppointments, getAppointment, rescheduleAppointment,
+    cancelAppointment]
+- name: athenahealth-fhir-patient-summary
+  file: athenahealth-fhir-patient-summary.md
+  surface: FHIR R4
+  writes: false
+  operations: [getCapabilityStatement, searchFhirPatients, readFhirPatient, searchFhirConditions,
+    searchFhirMedicationRequests, searchFhirAllergies, searchFhirImmunizations,
+    searchFhirObservations, searchFhirDiagnosticReports, searchFhirDocumentReferences,
+    searchFhirEncounters, readFhirEncounter]
+- name: athenahealth-bulk-data-export
+  file: athenahealth-bulk-data-export.md
+  surface: FHIR Bulk Data
+  writes: true
+  operations: [getCapabilityStatement, groupBulkExport, getBulkExportStatus, cancelBulkExport]
+- name: athenahealth-fhir-subscriptions-webhook
+  file: athenahealth-fhir-subscriptions-webhook.md
+  surface: FHIR Subscriptions (rest-hook)
+  writes: true
+  operations: [searchSubscriptions, createSubscription, readSubscription, getSubscriptionStatus,
+    deleteSubscription]
+shared_guardrails:
+- No operation on any athenahealth surface accepts an idempotency key. A retried write is a second
+  write. On timeout, reconcile by read.
+- The athenaOne v1 specification declares zero 4xx and zero 5xx responses. Any non-2xx is an
+  unknown outcome, not a classified failure.
+- FHIR errors are OperationOutcome, not RFC 9457 Problem Details.
+- FHIR pagination is cursor-based (_count + cursor); follow Bundle.link next. athenaOne v1 paging is
+  undocumented.
+- Always carry the athenahealth tenancy search parameters on FHIR searches (ah-practice, ah-brand,
+  ah-department, ah-provider-group, ah-chart-sharing-group) and never strip _security filters.
+- Develop against https://api.preview.platform.athenahealth.com — a genuinely separate environment
+  with its own OAuth issuer and non-portable credentials.
+- api.athenahealth.com does not resolve (NXDOMAIN, checked 2026-08-14). The host is
+  api.platform.athenahealth.com.

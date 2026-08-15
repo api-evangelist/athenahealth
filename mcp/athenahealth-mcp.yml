@@ -1,0 +1,235 @@
+generated: '2026-08-14'
+method: derived
+source: openapi/ (22 refined specs, 40 operations),
+  https://api.platform.athenahealth.com/fhir/r4/metadata
+status: candidate
+description: >-
+  athenahealth ships NO callable MCP server. It has publicly announced one — athenahealth says it
+  is piloting a Model Context Protocol server over the athenaOne platform APIs, and publishes a
+  blog post on MCP servers and consumer AI — but as of this probe there is no endpoint URL, no
+  install command and no package anywhere on athenahealth's public surface, and nothing an MCP
+  client could connect to. The tools below are a CANDIDATE surface DERIVED from the 40 operations
+  already captured in this repo's OpenAPI files plus the 32 resources in the live FHIR
+  CapabilityStatement. They are a proposal, not a product. No endpoint was guessed and none is
+  recorded.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: oauth
+  verified: derived
+  note: >-
+    mode is none because nobody ships a server. auth is recorded as oauth because that is what any
+    athenahealth MCP server would have to use — the whole API surface is OAuth 2.0 / SMART on FHIR
+    with authorization_code and client_credentials, per
+    https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration.
+vendor_signal:
+  status: announced-pilot
+  claim: >-
+    athenahealth has stated publicly that it is piloting an MCP server on athenaOne platform APIs
+    to standardise communication between AI models and athenaOne.
+  source: https://www.athenahealth.com/resources/blog/mcp-servers-securely-connect-to-consumer-ai
+  probe_note: >-
+    The athenahealth blog URL above returns HTTP 403 to non-browser clients (Akamai bot
+    protection), so this claim is recorded from athenahealth's public statements as reported, not
+    from a body we fetched. No endpoint, package or install command is named in any athenahealth
+    source we could reach.
+third_party_servers:
+- name: ibbykhazanchi/athenahealth-mcp
+  url: https://github.com/ibbykhazanchi/athenahealth-mcp
+  official: false
+  note: Community MCP server. Not built, endorsed or hosted by athenahealth.
+- name: ophydami/Athenahealth-MCP
+  url: https://github.com/ophydami/Athenahealth-MCP
+  official: false
+  note: Community MCP server. Not built, endorsed or hosted by athenahealth.
+- name: pallas-athena-tools
+  url: https://www.npmjs.com/package/pallas-athena-tools
+  official: false
+  version: 0.1.1
+  published: '2026-04-16'
+  note: >-
+    npm package described as "athenahealth integration tools for Claude Code". Third-party
+    (nous-ehr), not athenahealth.
+tools:
+- name: search_patients
+  description: Search athenaOne patients by demographics within a practice.
+  rest: searchPatients
+  openapi: openapi/athenahealth-patients-api-openapi.yml
+- name: get_patient
+  description: Retrieve a single athenaOne patient record by patient id.
+  rest: getPatient
+  openapi: openapi/athenahealth-patients-api-openapi.yml
+- name: create_patient
+  description: Register a new patient in a practice.
+  rest: createPatient
+  openapi: openapi/athenahealth-patients-api-openapi.yml
+  write: true
+- name: update_patient
+  description: Update demographics on an existing patient.
+  rest: updatePatient
+  openapi: openapi/athenahealth-patients-api-openapi.yml
+  write: true
+- name: search_appointments
+  description: Search booked appointments for a practice and date range.
+  rest: searchAppointments
+  openapi: openapi/athenahealth-appointments-api-openapi.yml
+- name: find_open_slots
+  description: List open (bookable) appointment slots.
+  rest: getOpenAppointmentSlots
+  openapi: openapi/athenahealth-appointments-api-openapi.yml
+- name: get_appointment
+  description: Retrieve one appointment by id.
+  rest: getAppointment
+  openapi: openapi/athenahealth-appointments-api-openapi.yml
+- name: cancel_appointment
+  description: Cancel a booked appointment.
+  rest: cancelAppointment
+  openapi: openapi/athenahealth-appointments-api-openapi.yml
+  write: true
+- name: check_in_appointment
+  description: Check a patient in for an appointment.
+  rest: checkInAppointment
+  openapi: openapi/athenahealth-appointments-api-openapi.yml
+  write: true
+- name: reschedule_appointment
+  description: Move an appointment to a different slot.
+  rest: rescheduleAppointment
+  openapi: openapi/athenahealth-appointments-api-openapi.yml
+  write: true
+- name: list_departments
+  description: List departments (locations) configured for a practice.
+  rest: listDepartments
+  openapi: openapi/athenahealth-departments-api-openapi.yml
+- name: list_providers
+  description: List providers in a practice.
+  rest: listProviders
+  openapi: openapi/athenahealth-providers-api-openapi.yml
+- name: get_practice_info
+  description: Retrieve practice configuration and identifiers.
+  rest: getPracticeInfo
+  openapi: openapi/athenahealth-practice-api-openapi.yml
+- name: list_patient_encounters
+  description: List chart encounters for a patient.
+  rest: listPatientEncounters
+  openapi: openapi/athenahealth-encounters-api-openapi.yml
+- name: get_encounter
+  description: Retrieve one chart encounter.
+  rest: getEncounter
+  openapi: openapi/athenahealth-encounters-api-openapi.yml
+- name: list_patient_documents
+  description: List clinical documents attached to a patient chart.
+  rest: listPatientDocuments
+  openapi: openapi/athenahealth-documents-api-openapi.yml
+- name: search_claims
+  description: Search revenue-cycle claims for a practice.
+  rest: searchClaims
+  openapi: openapi/athenahealth-claims-api-openapi.yml
+- name: fhir_search_patients
+  description: FHIR R4 Patient search (US Core conformant).
+  rest: searchFhirPatients
+  openapi: openapi/athenahealth-patient-api-openapi.yml
+- name: fhir_read_patient
+  description: FHIR R4 Patient read by resource id.
+  rest: readFhirPatient
+  openapi: openapi/athenahealth-patient-api-openapi.yml
+- name: fhir_search_conditions
+  description: FHIR R4 Condition search for a patient.
+  rest: searchFhirConditions
+  openapi: openapi/athenahealth-condition-api-openapi.yml
+- name: fhir_search_observations
+  description: FHIR R4 Observation search (vitals, labs, smoking status).
+  rest: searchFhirObservations
+  openapi: openapi/athenahealth-observation-api-openapi.yml
+- name: fhir_search_medication_requests
+  description: FHIR R4 MedicationRequest search for a patient.
+  rest: searchFhirMedicationRequests
+  openapi: openapi/athenahealth-medicationrequest-api-openapi.yml
+- name: fhir_search_allergies
+  description: FHIR R4 AllergyIntolerance search for a patient.
+  rest: searchFhirAllergies
+  openapi: openapi/athenahealth-allergyintolerance-api-openapi.yml
+- name: fhir_search_immunizations
+  description: FHIR R4 Immunization search for a patient.
+  rest: searchFhirImmunizations
+  openapi: openapi/athenahealth-immunization-api-openapi.yml
+- name: fhir_search_diagnostic_reports
+  description: FHIR R4 DiagnosticReport search for a patient.
+  rest: searchFhirDiagnosticReports
+  openapi: openapi/athenahealth-diagnosticreport-api-openapi.yml
+- name: fhir_search_document_references
+  description: FHIR R4 DocumentReference search for a patient.
+  rest: searchFhirDocumentReferences
+  openapi: openapi/athenahealth-documentreference-api-openapi.yml
+- name: fhir_search_encounters
+  description: FHIR R4 Encounter search for a patient.
+  rest: searchFhirEncounters
+  openapi: openapi/athenahealth-encounter-api-openapi.yml
+- name: fhir_read_encounter
+  description: FHIR R4 Encounter read by resource id.
+  rest: readFhirEncounter
+  openapi: openapi/athenahealth-encounter-api-openapi.yml
+- name: fhir_search_appointments
+  description: FHIR R4 Appointment search.
+  rest: searchFhirAppointments
+  openapi: openapi/athenahealth-appointment-api-openapi.yml
+- name: fhir_capability_statement
+  description: Retrieve the live FHIR CapabilityStatement for the server.
+  rest: getCapabilityStatement
+  openapi: openapi/athenahealth-conformance-api-openapi.yml
+- name: bulk_export_group
+  description: Kick off a FHIR Bulk Data $export for a Group.
+  rest: groupBulkExport
+  openapi: openapi/athenahealth-bulk-data-api-openapi.yml
+  write: true
+- name: bulk_export_status
+  description: Poll the status of a running bulk export job.
+  rest: getBulkExportStatus
+  openapi: openapi/athenahealth-bulk-data-api-openapi.yml
+- name: cancel_bulk_export
+  description: Cancel a running bulk export job.
+  rest: cancelBulkExport
+  openapi: openapi/athenahealth-bulk-data-api-openapi.yml
+  write: true
+- name: search_subscriptions
+  description: List FHIR Subscriptions registered for the tenant.
+  rest: searchSubscriptions
+  openapi: openapi/athenahealth-subscription-api-openapi.yml
+- name: create_subscription
+  description: Register a rest-hook FHIR Subscription for event notifications.
+  rest: createSubscription
+  openapi: openapi/athenahealth-subscription-api-openapi.yml
+  write: true
+- name: read_subscription
+  description: Read one FHIR Subscription.
+  rest: readSubscription
+  openapi: openapi/athenahealth-subscription-api-openapi.yml
+- name: delete_subscription
+  description: Delete a FHIR Subscription.
+  rest: deleteSubscription
+  openapi: openapi/athenahealth-subscription-api-openapi.yml
+  write: true
+- name: subscription_status
+  description: Check delivery status of a FHIR Subscription.
+  rest: getSubscriptionStatus
+  openapi: openapi/athenahealth-subscription-api-openapi.yml
+- name: discover_cds_services
+  description: Discover CDS Hooks services registered with athenaOne.
+  rest: discoverCdsServices
+  openapi: openapi/athenahealth-cds-hooks-api-openapi.yml
+- name: invoke_cds_service
+  description: Invoke a CDS Hooks service and return cards.
+  rest: invokeCdsService
+  openapi: openapi/athenahealth-cds-hooks-api-openapi.yml
+summary:
+  tool_count: 40
+  write_tool_count: 11
+  derived_from_operations: 40
+  official_server: false
+  hosted_endpoint: false
+  guardrail: >-
+    Eleven of these forty candidate tools mutate a live clinical or scheduling record in a
+    production EHR. Any real athenahealth MCP server should gate the write set behind explicit
+    per-call human confirmation and a SMART scope narrower than user/*.write — see
+    agentic-access/athenahealth-agentic-access.yml.

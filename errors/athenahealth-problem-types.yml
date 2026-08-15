@@ -1,0 +1,89 @@
+generated: '2026-08-14'
+method: derived
+source: openapi/ (22 refined specs, 40 operations),
+  https://api.platform.athenahealth.com/fhir/r4/metadata
+description: >-
+  Error contract for the athenahealth API surface. The honest headline is that athenahealth
+  publishes almost none of one. Across all 40 operations captured in openapi/ there is not a single
+  declared 4xx or 5xx response, and athenahealth's error reference (if one exists) lives on
+  docs.athenahealth.com, a JavaScript single-page application that returns the same 2,116-byte HTML
+  shell to every machine client. What IS establishable is the FHIR half: the live CapabilityStatement
+  at https://api.platform.athenahealth.com/fhir/r4/metadata declares fhirVersion 4.0.1, and FHIR R4
+  mandates the OperationOutcome resource as the error body. Nothing below is invented — every entry
+  is either counted from the specs in this repo or derived from a standard athenahealth's own server
+  declares conformance to.
+format: fhir-operationoutcome
+rfc9457: false
+rfc9457_evidence: >-
+  No application/problem+json media type appears anywhere in openapi/, and the FHIR surface signals
+  errors with OperationOutcome instead. athenahealth does not implement RFC 9457 Problem Details.
+declared_error_responses:
+  total_operations: 40
+  operations_with_any_4xx: 0
+  operations_with_any_5xx: 0
+  note: >-
+    Zero. This is the single largest documentation gap in the athenahealth contract: a caller
+    reading the spec cannot tell what a failure looks like, which status codes are retryable, or
+    how to distinguish an authorization failure from a tenancy failure.
+envelopes:
+- surface: fhir-r4
+  base: https://api.platform.athenahealth.com/fhir/r4
+  resource: OperationOutcome
+  content_type: application/fhir+json
+  shape:
+    resourceType: OperationOutcome
+    issue:
+    - severity: fatal | error | warning | information
+      code: <FHIR issue-type code>
+      diagnostics: <human-readable detail>
+      details:
+        coding: [<server-specific code>]
+      expression: [<FHIRPath to the offending element>]
+  evidence: >-
+    Mandated by FHIR R4 (4.0.1), the version the live CapabilityStatement declares. The specific
+    issue.code values athenahealth emits are not published and were not observed — an authenticated
+    negative test would be needed to enumerate them, and this pipeline does not authenticate.
+  standard_issue_types: https://hl7.org/fhir/R4/valueset-issue-type.html
+- surface: athenaone-v1
+  base: https://api.platform.athenahealth.com/v1/{practiceid}
+  resource: unknown
+  content_type: application/json
+  shape: unknown
+  evidence: >-
+    No error schema, no error response, and no documented error envelope. The athenaOne v1 error
+    contract is genuinely undocumented in every machine-readable source available.
+observed_gateway_errors:
+- status: 404
+  body: Service not registered with API gateway.
+  content_type: application/json; charset=utf-8
+  observed_at:
+  - https://api.platform.athenahealth.com/openapi.json
+  - https://api.platform.athenahealth.com/swagger.json
+  - https://api.platform.athenahealth.com/api-docs
+  - https://api.platform.athenahealth.com/v1/openapi.json
+  note: >-
+    Not an API error — this is the athenahealth API gateway's own unrouted-path response, captured
+    while probing for a published OpenAPI document. It is recorded because it is the ONE error body
+    from the athenahealth gateway that this pipeline actually observed, and because it is a plain
+    string rather than JSON, which tells a caller the gateway layer does not use the same error
+    shape as the services behind it.
+  fetched: '2026-08-14'
+retry_guidance:
+  derived: true
+  note: >-
+    Derived from what the contract does and does not provide, NOT from an athenahealth policy
+    document — athenahealth publishes no retry guidance we could read.
+  rules:
+  - Do not blind-retry any write. No operation accepts an idempotency key (see
+    conventions/athenahealth-conventions.yml), so a retried createPatient, createSubscription,
+    checkInAppointment or rescheduleAppointment can produce a duplicate clinical action.
+  - On a timeout against a write, reconcile by read (search for the record you intended to create)
+    rather than repeating the call.
+  - 'The FHIR Bulk Data flow is the exception: it is explicitly async (Prefer respond-async,
+    202 + Content-Location) and the status endpoint is safe to poll.'
+  - No Retry-After header is declared anywhere, so back-off intervals must be chosen by the client.
+gaps_for_the_provider:
+- Declare 4xx/5xx responses on the athenaOne v1 operations, with an error schema.
+- Publish the OperationOutcome issue.code values the FHIR server actually emits.
+- Serve the error reference as something a machine can read — the current docs portal returns an
+  HTML shell to every non-browser client.

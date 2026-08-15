@@ -1,0 +1,140 @@
+generated: '2026-08-14'
+method: searched
+source: https://registry.npmjs.org/-/v1/search?text=athenahealth, https://pypi.org/pypi/,
+  https://rubygems.org/api/v1/search.json?query=athenahealth,
+  https://azuresearch-usnc.nuget.org/query?q=athenahealth,
+  https://packagist.org/search.json?q=athenahealth, https://crates.io/api/v1/crates?q=athenahealth,
+  https://proxy.golang.org, https://api.github.com/orgs/athenahealth/repos
+description: >-
+  athenahealth publishes NO first-party client SDK on any public package registry. Every registry
+  was queried unauthenticated on 2026-08-14 — npm, PyPI, RubyGems, NuGet, Packagist, crates.io and
+  the Go module proxy — and every athenahealth-related package found is third-party. The
+  athenahealth GitHub organisation (53 repos) ships sample applications and forks (mdp,
+  aone-fhir-subscriptions, apiserver-athenaFlex, vscode-cql-extension, plus forks of hapi-fhir and
+  the ONC g(10) test kit) but no distributable client library. Consumers of the athenaOne v1 REST
+  API and the FHIR R4 API are expected to write their own HTTP client or adopt a community
+  package, none of which athenahealth endorses.
+official_package_count: 0
+community_package_count: 6
+packages:
+- name: go-athenahealth
+  registry: go
+  module: github.com/eleanorhealth/go-athenahealth
+  url: https://pkg.go.dev/github.com/eleanorhealth/go-athenahealth
+  repo: https://github.com/eleanorhealth/go-athenahealth
+  language: Go
+  official: false
+  version: v0.1.1
+  published: '2026-06-03'
+  covers: athenaOne v1 REST API
+  note: >-
+    Maintained by Eleanor Health, an athenahealth customer, not by athenahealth. Read from
+    https://proxy.golang.org/github.com/eleanorhealth/go-athenahealth/@latest. This is the most
+    actively maintained athenahealth client on any registry. It is already listed as a
+    community SDK link in apis.yml common[].
+- name: athena_health
+  registry: rubygems
+  url: https://rubygems.org/gems/athena_health
+  repo: https://github.com/zywy/athena_health
+  language: Ruby
+  official: false
+  version: 2.0.4
+  published: '2023-02-02'
+  downloads: 358124
+  covers: athenaOne v1 REST API
+  note: >-
+    Community gem by zywy. Read from https://rubygems.org/api/v1/gems/athena_health.json. Last
+    release predates the athenaOne v1 surface it wraps by more than three years — the highest
+    download count of any athenahealth client (358k) and the stalest release, which is the classic
+    abandonment signature for an unmaintained wrapper around a still-shipping API.
+- name: AthenaHealth.Client
+  registry: nuget
+  url: https://www.nuget.org/packages/AthenaHealth.Client
+  language: C#
+  official: false
+  version: 0.6.0
+  published: null
+  covers: athenaOne v1 REST API
+  note: >-
+    Community .NET client. Version read from the NuGet search index
+    (https://azuresearch-usnc.nuget.org/query?q=athenahealth). The publish date was not returned by
+    the search endpoint and the registration index did not expose a usable catalog entry on this
+    run — recorded null rather than guessed. Pre-1.0 and unbranded ("Package Description" is the
+    literal description field).
+- name: AndriiKurdiumov.AthenaHealth.Client
+  registry: nuget
+  url: https://www.nuget.org/packages/AndriiKurdiumov.AthenaHealth.Client
+  language: C#
+  official: false
+  version: 0.3.0
+  published: null
+  covers: athenaOne v1 REST API
+  note: >-
+    A personally-namespaced fork of AthenaHealth.Client. Publish date not exposed by the NuGet
+    search endpoint on this run — recorded null rather than guessed.
+- name: athena-api
+  registry: npm
+  url: https://www.npmjs.com/package/athena-api
+  language: JavaScript
+  official: false
+  version: 0.1.7
+  published: '2024-11-03'
+  covers: athenaOne v1 REST API
+  note: >-
+    "AthenaHealth API wrapper". Read from https://registry.npmjs.org/athena-api. No repository
+    field is set on the package, so its source is not publicly locatable from the registry entry.
+- name: passport-athena
+  registry: npm
+  url: https://www.npmjs.com/package/passport-athena
+  repo: https://github.com/Nimblr/passport-athena
+  language: JavaScript
+  official: false
+  version: 1.0.7
+  published: '2023-06-02'
+  covers: OAuth 2.0 authentication only (Passport.js strategy)
+  note: >-
+    Auth strategy for the athenahealth OAuth server, published by Nimblr. Not a full API client.
+first_party_repositories:
+- name: mdp
+  url: https://github.com/athenahealth/mdp
+  language: Java
+  official: true
+  distribution: source-only
+  version: null
+  published: '2021-12-29'
+  note: >-
+    "athenahealth's More Disruption Please API samples". First-party but sample code, not a
+    published artifact — there is no registry entry to version. Last pushed 2021-12-29, read from
+    the GitHub API. Recorded version null because no registry distributes it.
+- name: aone-fhir-subscriptions
+  url: https://github.com/athenahealth/aone-fhir-subscriptions
+  language: Java
+  official: true
+  distribution: source-only
+  version: null
+  published: '2025-08-26'
+  license: Apache-2.0
+  note: >-
+    Sample webhook receiver for the athenaOne FHIR Subscriptions framework (labelled Alpha by
+    athenahealth). The most recently maintained first-party API sample. No registry artifact.
+- name: apiserver-athenaFlex
+  url: https://github.com/athenahealth/apiserver-athenaFlex
+  language: HTML
+  official: true
+  distribution: source-only
+  version: null
+  published: '2024-05-01'
+  note: >-
+    Sample code and documentation for the athenaPractice / athenaFlow FHIR API server. No registry
+    artifact.
+- name: vscode-cql-extension
+  url: https://github.com/athenahealth/vscode-cql-extension
+  language: TypeScript
+  official: true
+  distribution: source-only
+  version: null
+  published: '2018-09-06'
+  note: >-
+    Clinical Quality Language syntax highlighting for VS Code. Not published to the VS Code
+    Marketplace under the athenahealth publisher as far as this probe could establish, so no
+    versioned artifact exists to read. Last pushed 2018.

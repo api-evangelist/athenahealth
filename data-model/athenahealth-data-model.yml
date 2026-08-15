@@ -1,0 +1,1103 @@
+generated: '2026-08-14'
+method: derived
+source: https://api.platform.athenahealth.com/fhir/r4/metadata (live CapabilityStatement, HTTP 200,
+  fetched 2026-08-14), openapi/ (22 refined specs)
+description: >-
+  Entity-relationship graph for the athenahealth data surface, derived from the CapabilityStatement
+  athenahealth's own FHIR server publishes anonymously. This is the strongest data-model evidence
+  available for athenahealth and it did not come from documentation — it came from the server. It
+  declares 32 resource types, the athenahealth-specific StructureDefinition profile each one
+  conforms to (canonical host fhir.athena.io), the US Core 6.1.0 profile each supports, the exact
+  search parameters accepted, and the _include / _revinclude links that define how the resources
+  join. Six custom FHIR $operations are declared that appear in no other athenahealth artifact.
+key_findings:
+  resource_types: 32
+  athenahealth_profiles: 26
+  us_core_profiled_resources: 20
+  custom_fhir_operations: 6
+  provenance_linked_resources: 22
+  tenancy_dimensions:
+  - ah-practice
+  - ah-brand
+  - ah-department
+  - ah-provider-group
+  - ah-chart-sharing-group
+  tenancy_note: >-
+    These five athenahealth-specific search parameters are the real shape of multi-tenancy on the
+    FHIR surface, and they have no US Core equivalent. ah-chart-sharing-group in particular is the
+    boundary that decides which practices can see a shared chart — an agent that omits it will
+    silently retrieve across a sharing group it did not intend to span.
+  sensitivity_note: >-
+    _security is a declared search parameter on nearly every resource, and Condition additionally
+    declares ah-redact-inline-security. These control retrieval of restricted content
+    (behavioral-health / 42 CFR Part 2 style redaction). They are the most important parameters on
+    this entire surface for anyone building an agent on top of it.
+  coverage_gap: >-
+    The repo's OpenAPI covers 12 of these 32 resource types and none of the 6 custom $operations.
+    athenahealth's live server is substantially more capable than anything it documents in
+    machine-readable form.
+id_conventions:
+  fhir: >-
+    FHIR resource ids are opaque server-assigned strings. Cross-resource references use standard
+    FHIR Reference elements ("Patient/{id}").
+  athenaone_v1: >-
+    The v1 API uses numeric athenahealth identifiers in path position — patientid, appointmentid,
+    encounterid, departmentid, providerid, practiceid — and the practice id is a SERVER VARIABLE in
+    the base URL, not a parameter. See conventions/athenahealth-conventions.yml.
+athenaone_v1_entities:
+- name: Patient
+  operations: [searchPatients, createPatient, getPatient, updatePatient]
+  source: openapi/athenahealth-patients-api-openapi.yml
+- name: Appointment
+  operations: [searchAppointments, getOpenAppointmentSlots, getAppointment, cancelAppointment,
+    checkInAppointment, rescheduleAppointment]
+  source: openapi/athenahealth-appointments-api-openapi.yml
+  belongs_to: Patient (patientid), Department (departmentid), Provider (providerid)
+- name: Encounter
+  operations: [listPatientEncounters, getEncounter]
+  source: openapi/athenahealth-encounters-api-openapi.yml
+  belongs_to: Patient (patientid)
+- name: Document
+  operations: [listPatientDocuments]
+  source: openapi/athenahealth-documents-api-openapi.yml
+  belongs_to: Patient (patientid)
+- name: Claim
+  operations: [searchClaims]
+  source: openapi/athenahealth-claims-api-openapi.yml
+- name: Department
+  operations: [listDepartments]
+  source: openapi/athenahealth-departments-api-openapi.yml
+- name: Provider
+  operations: [listProviders]
+  source: openapi/athenahealth-providers-api-openapi.yml
+- name: Practice
+  operations: [getPracticeInfo]
+  source: openapi/athenahealth-practice-api-openapi.yml
+  note: The tenancy root. Every other v1 entity is scoped by the practiceid path segment.
+provenance_note: >-
+  provenance_targets below lists every resource type for which the server declares
+  _revinclude=Provenance:target — i.e. every resource whose write-attribution chain (who recorded
+  it, when, from which source) can be retrieved in the same query. This is a US Core requirement and
+  athenahealth satisfies it on 22 of 32 resources.
+entities:
+- name: AllergyIntolerance
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-allergyintolerance
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance|6.1.0
+  search_params:
+  - patient
+  - _count
+  - cursor
+  - _revinclude
+  - _include
+  - ah-chart-sharing-group
+  - _lastUpdated
+  - code
+  - ah-practice
+  - _security
+- name: Appointment
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  search_params:
+  - _id
+  - _query
+  - base-appointment-id
+  - group-appointment-id
+  - ah-practice
+  - _security
+  fhir_operations:
+  - self-checkin-entry-url
+  - telehealth-zoom-credentials
+- name: Binary
+  surface: fhir-r4
+  interactions:
+  - read
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-binary
+- name: CarePlan
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-careplan
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan|6.1.0
+  search_params:
+  - patient
+  - category
+  - _lastUpdated
+  - _count
+  - _id
+  - _revinclude
+  - _include
+  - cursor
+  - ah-practice
+  - ah-brand
+  - ah-chart-sharing-group
+  - ah-department
+  - ah-provider-group
+  - _security
+- name: CareTeam
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-careteam
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam|6.1.0
+  search_params:
+  - patient
+  - status
+  - _lastUpdated
+  - _count
+  - _id
+  - _revinclude
+  - _include
+  - cursor
+  - ah-brand
+  - ah-chart-sharing-group
+  - ah-practice
+  - ah-department
+  - ah-provider-group
+  - _security
+- name: Condition
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-condition
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns|6.1.0
+  search_params:
+  - _id
+  - patient
+  - encounter
+  - _revinclude
+  - _include
+  - ah-chart-sharing-group
+  - ah-practice
+  - _count
+  - cursor
+  - _lastUpdated
+  - code
+  - category
+  - ah-redact-inline-security
+  - _security
+- name: Coverage
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-coverage
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage|6.1.0
+  search_params:
+  - _count
+  - cursor
+  - patient
+  - _revinclude
+  - _lastUpdated
+  - ah-provider-group
+  - ah-practice
+  - _security
+- name: Device
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-device
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device|6.1.0
+  search_params:
+  - patient
+  - _count
+  - _include
+  - cursor
+  - _revinclude
+  - _id
+  - ah-chart-sharing-group
+  - ah-practice
+  - _lastUpdated
+  - _security
+- name: DiagnosticReport
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-diagnosticreport
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note|6.1.0
+  search_params:
+  - _id
+  - _query
+  - encounter
+  - patient
+  - _include
+  - _revinclude
+  - category
+  - code
+  - date
+  - _count
+  - cursor
+  - result
+  - performer
+  - ah-chart-sharing-group
+  - _lastUpdated
+  - ah-include-cpt-codes-for-imaging-results
+  - ah-practice
+  - _security
+- name: DocumentReference
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-documentreference
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|6.1.0
+  search_params:
+  - _id
+  - patient
+  - _include
+  - _query
+  - _revinclude
+  - _sort
+  - category
+  - type
+  - date
+  - _count
+  - cursor
+  - encounter
+  - author
+  - custodian
+  - _lastUpdated
+  - ah-chart-sharing-group
+  - ah-published-date-time-to-portal
+  - ah-practice
+  - _security
+- name: Encounter
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-encounter
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter|6.1.0
+  search_params:
+  - _id
+  - patient
+  - date
+  - _revinclude
+  - _include
+  - _count
+  - cursor
+  - ah-chart-sharing-group
+  - ah-practice
+  - _lastUpdated
+  - location
+  - service-provider
+  - practitioner
+  - _security
+- name: Goal
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-goal
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal|6.1.0
+  search_params:
+  - patient
+  - _count
+  - _id
+  - _revinclude
+  - _include
+  - _lastUpdated
+  - cursor
+  - ah-brand
+  - ah-chart-sharing-group
+  - ah-practice
+  - ah-department
+  - ah-provider-group
+  - _security
+- name: Immunization
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-immunization
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization|6.1.0
+  search_params:
+  - _include
+  - encounter
+  - patient
+  - date
+  - status
+  - _revinclude
+  - _id
+  - _count
+  - cursor
+  - ah-chart-sharing-group
+  - ah-practice
+  - _lastUpdated
+  - vaccine-code
+  - _security
+- name: Location
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-location
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-location|6.1.0
+  search_params:
+  - _id
+  - ah-provider-group
+  - ah-chart-sharing-group
+  - ah-practice
+  - _security
+- name: Medication
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-medication
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication|6.1.0
+  search_params:
+  - _id
+  - ingredient-code
+  - ah-practice
+  - _security
+- name: MedicationRequest
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-medicationrequest
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest|6.1.0
+  search_params:
+  - patient
+  - intent
+  - status
+  - _id
+  - authoredon
+  - _include
+  - medication
+  - subject
+  - encounter
+  - requester
+  - ah-chart-sharing-group
+  - ah-practice
+  - _revinclude
+  - _count
+  - code
+  - cursor
+  - _lastUpdated
+  - ingredient-code
+  - ah-most-recent-medication-instance-and-prescribed-vaccines
+  - _security
+- name: Observation
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-observation
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0
+  - http://hl7.org/fhir/StructureDefinition/vitalspanel|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/resprate|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/heartrate|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/oxygensat|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/bodytemp|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/bodyheight|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/headcircum|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/bodyweight|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/bmi|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/bp|4.0.1
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-height|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-weight|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-temperature|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-heart-rate|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-respiratory-rate|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancyintent|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancystatus|6.1.0
+  search_params:
+  - _id
+  - patient
+  - _revinclude
+  - _include
+  - date
+  - category
+  - code
+  - encounter
+  - _count
+  - cursor
+  - ah-chart-sharing-group
+  - ah-practice
+  - _lastUpdated
+  - _security
+- name: Organization
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-organization
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization|6.1.0
+  search_params:
+  - _id
+  - ah-provider-group
+  - ah-chart-sharing-group
+  - ah-practice
+  - _security
+- name: Patient
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-patient
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient|6.1.0
+  search_params:
+  - _id
+  - identifier
+  - name
+  - birthdate
+  - gender
+  - family
+  - given
+  - _lastUpdated
+  - ah-brand
+  - ah-chart-sharing-group
+  - ah-department
+  - ah-provider-group
+  - _count
+  - cursor
+  - _include
+  - _revinclude
+  - ah-practice
+  - _security
+  fhir_operations:
+  - health-cards-issue
+- name: Practitioner
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-practitioner
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|6.1.0
+  search_params:
+  - _id
+  - ah-provider-group
+  - identifier
+  - ah-practice
+  - _security
+- name: Procedure
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-procedure
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure|6.1.0
+  search_params:
+  - patient
+  - date
+  - _revinclude
+  - _count
+  - cursor
+  - ah-chart-sharing-group
+  - encounter
+  - _include
+  - performer
+  - ah-provider-group
+  - device-name
+  - _id
+  - _lastUpdated
+  - ah-practice
+  - _security
+- name: Provenance
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-provenance
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance|6.1.0
+  search_params:
+  - target
+  - _include
+  - ah-practice
+  - _security
+- name: ServiceRequest
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-servicerequest
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest|6.1.0
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest
+  search_params:
+  - _id
+  - encounter
+  - patient
+  - _count
+  - status
+  - authored
+  - _lastUpdated
+  - cursor
+  - performer
+  - requester
+  - _include
+  - _revinclude
+  - ah-chart-sharing-group
+  - ah-practice
+  - code
+  - category
+  - _security
+  - ah-include-quality-codes
+- name: Group
+  surface: fhir-r4
+  interactions: []
+  fhir_operations:
+  - export
+- name: QuestionnaireResponse
+  surface: fhir-r4
+  interactions:
+  - create
+  - read
+  - search-type
+  athenahealth_profile: http://fhir.athena.io/StructureDefinition/ah-questionnaireresponse
+  search_params:
+  - _id
+  - _lastUpdated
+  - ah-chart-sharing-group
+  - ah-practice
+  - authored
+  - encounter
+  - patient
+  - questionnaire
+  - questionnaireCode
+  - status
+  fhir_operations:
+  - latest-response-by-questionnaire
+- name: MeasureReport
+  surface: fhir-r4
+  interactions: []
+  fhir_operations:
+  - submit-care-gaps
+- name: FamilyMemberHistory
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: http://fhir.athena.io/StructureDefinition/ah-familymemberhistory
+  search_params:
+  - _id
+  - _lastUpdated
+  - ah-chart-sharing-group
+  - ah-practice
+  - code
+  - patient
+  - relationship
+  - status
+  fhir_operations:
+  - batch-write
+- name: Media
+  surface: fhir-r4
+  interactions:
+  - read
+  athenahealth_profile: http://fhir.athena.io/StructureDefinition/ah-media
+- name: MedicationDispense
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: https://fhir.athena.io/StructureDefinition/ah-medicationdispense
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationdispense
+  search_params:
+  - _id
+  - _lastUpdated
+  - ah-chart-sharing-group
+  - ah-practice
+  - date
+  - patient
+  - status
+- name: Questionnaire
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
+  search_params:
+  - _id
+  - code
+- name: Specimen
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: http://fhir.athena.io/StructureDefinition/ah-specimen
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen
+  search_params:
+  - _id
+  - _lastUpdated
+  - ah-chart-sharing-group
+  - patient
+- name: RelatedPerson
+  surface: fhir-r4
+  interactions:
+  - read
+  - search-type
+  athenahealth_profile: http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  us_core_profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+  search_params:
+  - patient
+  - _lastUpdated
+  - active
+  - ah-brand
+  - ah-chart-sharing-group
+  - ah-provider-group
+  - name
+  - _id
+relationships:
+- from: AllergyIntolerance
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "AllergyIntolerance:patient"
+- from: CarePlan
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "CarePlan:patient"
+- from: CarePlan
+  to: athenahealth tenancy dimension (ah-brand)
+  via: ah-brand
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CarePlan:ah-brand"
+- from: CarePlan
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CarePlan:ah-chart-sharing-group"
+- from: CarePlan
+  to: athenahealth tenancy dimension (ah-department)
+  via: ah-department
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CarePlan:ah-department"
+- from: CarePlan
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CarePlan:ah-practice"
+- from: CarePlan
+  to: athenahealth tenancy dimension (ah-provider-group)
+  via: ah-provider-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CarePlan:ah-provider-group"
+- from: CareTeam
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "CareTeam:patient"
+- from: CareTeam
+  to: athenahealth tenancy dimension (ah-brand)
+  via: ah-brand
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CareTeam:ah-brand"
+- from: CareTeam
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CareTeam:ah-chart-sharing-group"
+- from: CareTeam
+  to: athenahealth tenancy dimension (ah-department)
+  via: ah-department
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CareTeam:ah-department"
+- from: CareTeam
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CareTeam:ah-practice"
+- from: CareTeam
+  to: athenahealth tenancy dimension (ah-provider-group)
+  via: ah-provider-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "CareTeam:ah-provider-group"
+- from: Condition
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Condition:ah-chart-sharing-group"
+- from: Condition
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Condition:ah-practice"
+- from: Condition
+  to: Encounter
+  via: encounter
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Condition:encounter"
+- from: Condition
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Condition:patient"
+- from: Coverage
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Coverage:patient"
+- from: Device
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Device:ah-chart-sharing-group"
+- from: Device
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Device:ah-practice"
+- from: Device
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Device:patient"
+- from: DiagnosticReport
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "DiagnosticReport:ah-chart-sharing-group"
+- from: DiagnosticReport
+  to: Encounter
+  via: encounter
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "DiagnosticReport:encounter"
+- from: DiagnosticReport
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "DiagnosticReport:patient"
+- from: DiagnosticReport
+  to: Observation
+  via: result
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "DiagnosticReport:result"
+- from: DiagnosticReport
+  to: Practitioner
+  via: performer
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "DiagnosticReport:performer"
+- from: DocumentReference
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "DocumentReference:ah-chart-sharing-group"
+- from: DocumentReference
+  to: athenahealth tenancy dimension (ah-published-date-time-to-portal)
+  via: ah-published-date-time-to-portal
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "DocumentReference:ah-published-date-time-to-portal"
+- from: DocumentReference
+  to: Encounter
+  via: encounter
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "DocumentReference:encounter"
+- from: DocumentReference
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "DocumentReference:patient"
+- from: DocumentReference
+  to: Practitioner
+  via: author
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "DocumentReference:author"
+- from: DocumentReference
+  to: Organization
+  via: custodian
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "DocumentReference:custodian"
+- from: Encounter
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Encounter:ah-chart-sharing-group"
+- from: Encounter
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Encounter:ah-practice"
+- from: Encounter
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Encounter:patient"
+- from: Goal
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Goal:patient"
+- from: Goal
+  to: athenahealth tenancy dimension (ah-brand)
+  via: ah-brand
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Goal:ah-brand"
+- from: Goal
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Goal:ah-chart-sharing-group"
+- from: Goal
+  to: athenahealth tenancy dimension (ah-department)
+  via: ah-department
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Goal:ah-department"
+- from: Goal
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Goal:ah-practice"
+- from: Goal
+  to: athenahealth tenancy dimension (ah-provider-group)
+  via: ah-provider-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Goal:ah-provider-group"
+- from: Immunization
+  to: Encounter
+  via: encounter
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Immunization:encounter"
+- from: Immunization
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Immunization:patient"
+- from: Immunization
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Immunization:ah-chart-sharing-group"
+- from: Immunization
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Immunization:ah-practice"
+- from: MedicationRequest
+  to: Encounter
+  via: encounter
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "MedicationRequest:encounter"
+- from: MedicationRequest
+  to: Medication
+  via: medication
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "MedicationRequest:medication"
+- from: MedicationRequest
+  to: Patient
+  via: subject
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "MedicationRequest:subject"
+- from: MedicationRequest
+  to: Practitioner
+  via: requester
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "MedicationRequest:requester"
+- from: MedicationRequest
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "MedicationRequest:ah-chart-sharing-group"
+- from: MedicationRequest
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "MedicationRequest:ah-practice"
+- from: Observation
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Observation:ah-chart-sharing-group"
+- from: Observation
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Observation:ah-practice"
+- from: Observation
+  to: Encounter
+  via: encounter
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Observation:encounter"
+- from: Observation
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Observation:patient"
+- from: Patient
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Patient:ah-chart-sharing-group"
+- from: Patient
+  to: athenahealth tenancy dimension (ah-brand)
+  via: ah-brand
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Patient:ah-brand"
+- from: Patient
+  to: athenahealth tenancy dimension (ah-provider-group)
+  via: ah-provider-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Patient:ah-provider-group"
+- from: Procedure
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Procedure:ah-chart-sharing-group"
+- from: Procedure
+  to: Practitioner
+  via: performer
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Procedure:performer"
+- from: Procedure
+  to: Device
+  via: device-name
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Procedure:device-name"
+- from: Procedure
+  to: athenahealth tenancy dimension (ah-provider-group)
+  via: ah-provider-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Procedure:ah-provider-group"
+- from: Procedure
+  to: Encounter
+  via: encounter
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Procedure:encounter"
+- from: Procedure
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Procedure:patient"
+- from: Provenance
+  to: Practitioner
+  via: agent
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Provenance:agent"
+- from: ServiceRequest
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "ServiceRequest:ah-chart-sharing-group"
+- from: ServiceRequest
+  to: athenahealth tenancy dimension (ah-practice)
+  via: ah-practice
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "ServiceRequest:ah-practice"
+- from: ServiceRequest
+  to: Encounter
+  via: encounter
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "ServiceRequest:encounter"
+- from: ServiceRequest
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "ServiceRequest:patient"
+- from: ServiceRequest
+  to: Practitioner
+  via: performer
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "ServiceRequest:performer"
+- from: ServiceRequest
+  to: Practitioner
+  via: requester
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "ServiceRequest:requester"
+- from: MedicationDispense
+  to: Medication
+  via: medication
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "MedicationDispense:medication"
+- from: Specimen
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "Specimen:ah-chart-sharing-group"
+- from: Specimen
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "Specimen:patient"
+- from: RelatedPerson
+  to: athenahealth tenancy dimension (ah-brand)
+  via: ah-brand
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "RelatedPerson:ah-brand"
+- from: RelatedPerson
+  to: athenahealth tenancy dimension (ah-chart-sharing-group)
+  via: ah-chart-sharing-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "RelatedPerson:ah-chart-sharing-group"
+- from: RelatedPerson
+  to: athenahealth tenancy dimension (ah-provider-group)
+  via: ah-provider-group
+  kind: scoped_by
+  evidence: CapabilityStatement searchInclude "RelatedPerson:ah-provider-group"
+- from: RelatedPerson
+  to: Patient
+  via: patient
+  kind: belongs_to
+  evidence: CapabilityStatement searchInclude "RelatedPerson:patient"
+provenance_targets:
+- AllergyIntolerance
+- CarePlan
+- CareTeam
+- Condition
+- Coverage
+- Device
+- DiagnosticReport
+- DocumentReference
+- Encounter
+- FamilyMemberHistory
+- Goal
+- Immunization
+- MedicationDispense
+- MedicationRequest
+- Observation
+- Patient
+- Procedure
+- Questionnaire
+- QuestionnaireResponse
+- RelatedPerson
+- ServiceRequest
+- Specimen

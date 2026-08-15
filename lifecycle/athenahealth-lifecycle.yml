@@ -1,0 +1,111 @@
+generated: '2026-08-14'
+method: probed
+source: https://status.athenahealth.com/, https://api.platform.athenahealth.com/fhir/r4/metadata,
+  https://docs.athenahealth.com/api/resources/release-notes-and-change-logs, openapi/
+description: >-
+  Versioning, deprecation, status and support posture for the athenahealth API surface. The status
+  page and the FHIR version signal are both verifiable. The versioning and deprecation POLICIES are
+  not — athenahealth's release notes and change logs page exists at a stable URL but is served by a
+  JavaScript single-page application that returns a 2,116-byte HTML shell to any machine client, so
+  no policy text could be read.
+versioning:
+  athenaone_v1:
+    scheme: uri-path
+    current: v1
+    evidence: servers[] = https://api.platform.athenahealth.com/v1/{practiceid}
+  fhir:
+    scheme: uri-path (FHIR release) + FHIR version negotiation
+    current: r4
+    fhir_version: 4.0.1
+    capability_statement_version: 2.0.0
+    capability_statement_date: '2022-06-06'
+    evidence: >-
+      Live CapabilityStatement at https://api.platform.athenahealth.com/fhir/r4/metadata, HTTP 200,
+      fetched 2026-08-14. NOTE the CapabilityStatement's own date field is 2022-06-06 — athenahealth
+      has continued to add resources and $operations to the server (Group, QuestionnaireResponse,
+      MeasureReport, FamilyMemberHistory, MedicationDispense, Specimen, RelatedPerson, Questionnaire
+      and six custom operations all appear) without bumping the document's date or version. The
+      conformance document under-reports the server's own age.
+  spec_versions:
+    athenaOne REST API: 1.0.0
+    FHIR R4 API: 25.0.0
+    FHIR Bulk Data Access API: 2.0.0
+    FHIR Subscriptions API: 1.0.0
+    CDS Hooks API: 1.0.0
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  evidence: >-
+    No Sunset or Deprecation response header is declared on any of the 40 operations in openapi/,
+    and no deprecated: true flag appears on any operation or schema. athenahealth's public developer
+    documentation could not be read by machine (JS-rendered SPA), so no written deprecation or
+    end-of-life policy could be captured. Recorded as not-published rather than absent.
+  deprecated_operations: []
+  deprecated_operation_count: 0
+release_notes:
+  published: true
+  url: https://docs.athenahealth.com/api/resources/release-notes-and-change-logs
+  machine_readable: false
+  http_status: 200
+  note: >-
+    Returns HTTP 200 with a 2,116-byte "athenahealth Document Portal" HTML shell; the content is
+    rendered client-side by the @athena/document-portal-ui bundle loaded from
+    cdn.nimbus.athena.io. Historical year-scoped pages exist on the same pattern (e.g.
+    /api/resources/2019-release-notes). See changelog/athenahealth-changelog.yml.
+  cadence: unknown
+status_page:
+  url: https://status.athenahealth.com/
+  verified: true
+  http_status: 200
+  fetched: '2026-08-14'
+  vendor: custom (athenahealth-hosted)
+  granularity: per-stack
+  components_include:
+  - athenaOne Stacks (DB93-DB96 and others), each broken out into Printing, Integrations, Faxing,
+    Patient portal, e-Prescribing, APIs and Clinicals Document
+  - athenaPractice
+  - athenaOne Dental
+  - athenaOne Services
+  - Other athenahealth services
+  - epocrates
+  - Support Environments
+  note: >-
+    Genuinely useful granularity — "APIs" is a first-class component on every athenaOne stack, so a
+    caller can tell whether the API layer specifically is degraded on their tenant's stack rather
+    than only whether athenahealth as a whole is up. At probe time all components read Operational.
+    The page requires a browser User-Agent; it returns HTTP 403 to a bare curl. No public
+    /api/v2/summary.json (Atlassian Statuspage) endpoint is served — it 404s.
+  machine_readable: false
+sla:
+  published: false
+  evidence: >-
+    No public SLA or uptime commitment is published on athenahealth.com or the developer portal.
+    athenahealth's commercial terms are negotiated per contract; SLA language appears in the
+    athenaOne Service Description PDF distributed to customers rather than on a public developer
+    page.
+support:
+  url: https://docs.athenahealth.com/api/support
+  contact_declared_in_spec: athenahealth Developer Support
+  evidence: info.contact in openapi/_original/athenahealth-athenaone-rest-api-openapi.yml and
+    openapi/_original/athenahealth-fhir-r4-api-openapi.yml
+environments:
+- name: production
+  athenaone_v1: https://api.platform.athenahealth.com/v1/{practiceid}
+  fhir: https://api.platform.athenahealth.com/fhir/r4
+  verified: true
+- name: preview
+  athenaone_v1: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+  fhir: https://api.preview.platform.athenahealth.com/fhir/r4
+  verified: true
+  note: See sandbox/athenahealth-sandbox.yml.
+retired_hosts:
+- host: api.athenahealth.com
+  status: NXDOMAIN
+  evidence: >-
+    dig returns NXDOMAIN and curl exits 6 (could not resolve host). This host was recorded as the
+    baseURL for two API entries in apis.yml before this pass and has been corrected to
+    api.platform.athenahealth.com. It is not a deprecation athenahealth announced — it is a host
+    that does not exist.
+  checked: '2026-08-14'

@@ -1,0 +1,88 @@
+generated: '2026-08-14'
+method: probed
+source: https://api.preview.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration,
+  https://api.preview.platform.athenahealth.com/fhir/r4/metadata,
+  openapi/_original/athenahealth-athenaone-rest-api-openapi.yml,
+  https://docs.athenahealth.com/api/sandbox
+description: >-
+  athenahealth ships a real, separately-hosted preview environment — not a mock, not a
+  test-mode flag on production. Preview is a parallel deployment on its own hostname with its own
+  OAuth issuer, its own token endpoint and its own FHIR server, and it answers anonymously. This
+  was verified live rather than read from documentation, because athenahealth's sandbox
+  documentation page is JS-rendered and could not be read by machine.
+mode: separate-environment
+environments:
+- name: production
+  athenaone_v1: https://api.platform.athenahealth.com/v1/{practiceid}
+  fhir: https://api.platform.athenahealth.com/fhir/r4
+  token: https://api.platform.athenahealth.com/oauth2/v1/token
+  authorize: https://api.platform.athenahealth.com/oauth2/v1/authorize
+  verified: true
+- name: preview
+  aliases: [sandbox, preview]
+  athenaone_v1: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+  fhir: https://api.preview.platform.athenahealth.com/fhir/r4
+  token: https://api.preview.platform.athenahealth.com/oauth2/v1/token
+  authorize: https://api.preview.platform.athenahealth.com/oauth2/v1/authorize
+  jwks: https://api.preview.platform.athenahealth.com/oauth2/v1/keys
+  introspect: https://api.preview.platform.athenahealth.com/oauth2/v1/introspect
+  revoke: https://api.preview.platform.athenahealth.com/oauth2/v1/revoke
+  verified: true
+  verification:
+  - url: https://api.preview.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+    http_status: 200
+    content_type: application/json; charset=utf-8
+    note: Returns a real SMART configuration whose endpoints all point at the preview host —
+      confirming preview runs its own authorization server, not production's.
+    fetched: '2026-08-14'
+  - url: https://api.preview.platform.athenahealth.com/fhir/r4/metadata
+    http_status: 200
+    content_type: application/fhir+json
+    note: Returns a real FHIR CapabilityStatement.
+    fetched: '2026-08-14'
+switching:
+  method: hostname
+  detail: >-
+    There is no test-mode header, no test key prefix and no environment parameter. A client moves
+    between environments by changing the hostname — api.platform.athenahealth.com becomes
+    api.preview.platform.athenahealth.com — and by using the credentials issued for that
+    environment. Credentials are NOT portable between environments; each has its own OAuth issuer.
+  key_prefixes: none published
+  note: >-
+    athenahealth publishes no live-vs-test key prefix convention (unlike, say, Stripe's sk_test_ /
+    sk_live_). The only way a client can tell which environment a credential belongs to is which
+    host it was issued for. That is a real hazard: an accidental production credential in a test
+    config fails closed, but an accidental production HOST in a test config does not.
+test_data:
+  provided: true
+  form: shared preview practice
+  practice_id_default: '195900'
+  evidence: >-
+    The server variable practiceid in
+    openapi/_original/athenahealth-athenaone-rest-api-openapi.yml declares default '195900' for
+    both the production and preview servers, described as "athenaOne preview practice identifier"
+    on the preview entry. This is the well-known athenahealth preview practice.
+  note: >-
+    Preview is populated with athenahealth-provided synthetic patient data. The specific test
+    patient identifiers, test insurance packages and test provider ids are documented only inside
+    the JS-rendered developer portal and are not reproduced here — this pipeline does not invent
+    test values.
+test_cards: null
+test_clocks: null
+fixtures: null
+not_applicable_note: >-
+  Test cards, test clocks and fixture/trigger tooling are payments-provider constructs and have no
+  athenahealth equivalent. athenahealth is an EHR and revenue-cycle platform; its sandbox analogue
+  is a synthetic patient population in a shared preview practice.
+docs:
+  sandbox: https://docs.athenahealth.com/api/sandbox
+  environments: https://docs.athenahealth.com/api/guides/athenaone-environments
+  onboarding: https://docs.athenahealth.com/api/guides/onboarding-overview
+  machine_readable: false
+  note: All three return the JS-rendered document-portal shell to machine clients.
+access:
+  self_service: false
+  detail: >-
+    Preview access is not self-service. A developer must register through the athenahealth
+    Developer Portal / Marketplace Partner program and be approved before credentials are issued
+    for either environment. See plans/athenahealth-plans-pricing.yml.

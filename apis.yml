@@ -20,7 +20,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/athenahealth.png
 url: https://raw.githubusercontent.com/api-evangelist/athenahealth/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-14'
 specificationVersion: '0.19'
 tags:
 - Healthcare
@@ -41,7 +41,7 @@ apis:
     and supports both authorization code and client credentials grant types.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
-  baseURL: https://api.athenahealth.com/v1/
+  baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
   tags:
   - EHR
   - Practice Management
@@ -55,6 +55,10 @@ apis:
     url: https://docs.athenahealth.com/api/guides/authentication-and-url-locations
   - url: graphql/athenahealth-graphql.md
     type: GraphQL
+  - type: Conventions
+    url: conventions/athenahealth-conventions.yml
+  - type: ErrorCatalog
+    url: errors/athenahealth-problem-types.yml
 - aid: athenahealth:fhir-apis
   name: FHIR APIs
   description: athenahealth FHIR R4 APIs provide standards-based access to clinical and administrative
@@ -62,7 +66,7 @@ apis:
     FHIR Subscriptions for webhook-based event notifications.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.athenahealth.com/api/docs/fhir-apis
-  baseURL: https://api.athenahealth.com/fhir/r4/
+  baseURL: https://api.platform.athenahealth.com/fhir/r4
   tags:
   - FHIR
   - Interoperability
@@ -74,6 +78,12 @@ apis:
     url: https://docs.athenahealth.com/api/docs/fhir-apis
   - type: GitHubRepository
     url: https://github.com/athenahealth/aone-fhir-subscriptions
+  - type: CapabilityStatement
+    url: conformance/athenahealth-fhir-capabilitystatement.json
+  - type: WellKnown
+    url: well-known/athenahealth-smart-configuration.json
+  - type: Conformance
+    url: conformance/athenahealth-conformance.yml
 - aid: athenahealth:athenaflex-api
   name: athenaFlex (athenaPractice/athenaFlow) API
   description: FHIR API Server for athenaPractice and athenaFlow products, enabling developers to build
@@ -101,6 +111,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-allergyintolerance-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-allergyintolerance-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -147,6 +159,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-appointment-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-appointment-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -193,6 +207,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-appointments-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-appointments-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -239,6 +255,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-bulk-data-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-bulk-data-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -285,6 +303,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-cds-hooks-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-cds-hooks-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -331,6 +351,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-claims-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-claims-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -377,6 +399,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-condition-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-condition-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -423,6 +447,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-conformance-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-conformance-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -469,6 +495,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-departments-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-departments-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -515,6 +543,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-diagnosticreport-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-diagnosticreport-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -561,6 +591,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-documentreference-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-documentreference-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -607,6 +639,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-documents-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-documents-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -653,6 +687,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-encounter-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-encounter-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -699,6 +735,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-encounters-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-encounters-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -745,6 +783,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-immunization-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-immunization-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -791,6 +831,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-medicationrequest-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-medicationrequest-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -837,6 +879,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-observation-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-observation-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -883,6 +927,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-patient-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-patient-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -929,6 +975,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-patients-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-patients-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -975,6 +1023,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-practice-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-practice-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -1021,6 +1071,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-providers-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-providers-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -1067,6 +1119,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/athenahealth-subscription-api-openapi.yml
+  - type: Overlay
+    url: overlays/athenahealth-subscription-api-overlay.yaml
   - type: Documentation
     url: https://docs.athenahealth.com/api/docs/athenaone-apis
   - type: Documentation
@@ -1230,6 +1284,66 @@ common:
   type: Vocabulary
 - url: rules/athenahealth-rules.yml
   type: Spectral
+- type: Packages
+  url: packages/athenahealth-packages.yml
+- type: WellKnown
+  url: well-known/athenahealth-well-known.yml
+- type: MCPServer
+  url: mcp/athenahealth-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/athenahealth-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/athenahealth-llms.txt
+- type: Conformance
+  url: conformance/athenahealth-conformance.yml
+- type: Compliance
+  url: security/athenahealth-trust-center.yml
+- type: TrustCenter
+  url: security/athenahealth-trust-center.yml
+- type: ErrorCatalog
+  url: errors/athenahealth-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/athenahealth-lifecycle.yml
+- type: Conventions
+  url: conventions/athenahealth-conventions.yml
+- type: ChangeLog
+  url: changelog/athenahealth-changelog.yml
+- type: DataModel
+  url: data-model/athenahealth-data-model.yml
+- type: Sandbox
+  name: athenahealth Preview Environment
+  url: sandbox/athenahealth-sandbox.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AsyncAPI
+  url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+- type: Webhooks
+  url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+- type: CapabilityStatement
+  url: conformance/athenahealth-fhir-capabilitystatement.json
+- type: APIReference
+  name: athenahealth API Reference
+  url: https://docs.athenahealth.com/api/api-ref
+- type: GettingStarted
+  name: Welcome to APIs at athenahealth
+  url: https://docs.athenahealth.com/api/guides/overview
+- type: GitHubOrganization
+  url: https://github.com/athenahealth
+- type: TermsOfService
+  url: https://www.athenahealth.com/terms-and-conditions/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.athenahealth.com/privacy-rights
+- type: SignUp
+  name: Request API access
+  url: https://mydata.athenahealth.com/access-the-apis
+- type: ChangeLog
+  name: Release Notes and Change Logs
+  url: https://docs.athenahealth.com/api/resources/release-notes-and-change-logs
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-14'
+  status: enriched
+  artifacts_added: 42
+  pass: local-v1

@@ -1,0 +1,179 @@
+generated: '2026-08-14'
+method: derived
+source: openapi/_original/ (5 specs), https://api.platform.athenahealth.com/fhir/r4/metadata,
+  https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+description: >-
+  Cross-cutting runtime semantics for the athenahealth API surface. athenahealth runs two very
+  different APIs behind one gateway and they do NOT share conventions: the proprietary athenaOne v1
+  REST API (tenant in the path, athena/service/* scopes, lowercase-concatenated parameter names)
+  and the FHIR R4 API (RESTful FHIR, SMART scopes, FHIR search parameters, cursor pagination). Read
+  every row below as "which of the two". Rows marked unknown are unknown because athenahealth's
+  developer documentation at docs.athenahealth.com is a JavaScript single-page application that
+  returns a 2,116-byte shell to every non-browser client, so its prose could not be read by
+  machine.
+surfaces:
+- id: athenaone-v1
+  name: athenaOne v1 REST API
+  base: https://api.platform.athenahealth.com/v1/{practiceid}
+  preview_base: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+- id: fhir-r4
+  name: FHIR R4 API
+  base: https://api.platform.athenahealth.com/fhir/r4
+  preview_base: https://api.preview.platform.athenahealth.com/fhir/r4
+auth:
+  style: oauth2
+  flows: [authorization_code, client_credentials]
+  athenaone_v1_scopes: athena/service/Athenanet.MDP.*
+  fhir_scopes: SMART on FHIR (patient/*.read, user/*.read, system/*.read, launch, launch/patient,
+    fhirUser, openid, offline_access)
+  scope_syntax: >-
+    Both SMART v1 (patient/*.read) and SMART v2 (patient/*.rs) are accepted — the live
+    smart-configuration capabilities array contains permission-v1 AND permission-v2.
+  token_endpoint: https://api.platform.athenahealth.com/oauth2/v1/token
+  authorization_endpoint: https://api.platform.athenahealth.com/oauth2/v1/authorize
+  introspection_endpoint: https://api.platform.athenahealth.com/oauth2/v1/introspect
+  revocation_endpoint: https://api.platform.athenahealth.com/oauth2/v1/revoke
+  jwks_uri: https://api.platform.athenahealth.com/oauth2/v1/keys
+  issuer: https://athena.okta.com/oauth2/aus2hff5eqFb7Wqfh297
+  client_auth: [client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt, none]
+  pkce: 'S256 (code_challenge_methods_supported)'
+  bearer: 'Authorization: Bearer <access_token>'
+  detail: authentication/athenahealth-authentication.yml, scopes/athenahealth-scopes.yml
+tenancy:
+  athenaone_v1: >-
+    The practice is a PATH SEGMENT, not a header or a query parameter: every athenaOne v1 URL is
+    https://api.platform.athenahealth.com/v1/{practiceid}/... The server variable practiceid is
+    declared in openapi/_original/athenahealth-athenaone-rest-api-openapi.yml with default 195900.
+    An agent that does not bind practiceid cannot construct a single valid athenaOne v1 URL.
+  fhir_r4: >-
+    Tenancy is expressed as FHIR search parameters instead. The live CapabilityStatement declares
+    athenahealth-specific tenancy search parameters on most resources: ah-practice, ah-brand,
+    ah-department, ah-provider-group and ah-chart-sharing-group. These are custom parameters, not
+    US Core, and they are the FHIR equivalent of the v1 practiceid path segment.
+idempotency:
+  supported: false
+  header: null
+  evidence: >-
+    No Idempotency-Key, X-Idempotency-Key or equivalent parameter is declared on ANY of the 40
+    operations in openapi/, including createPatient, updatePatient, createSubscription,
+    checkInAppointment, cancelAppointment, rescheduleAppointment, groupBulkExport,
+    deleteSubscription and cancelBulkExport.
+  consequence: >-
+    A retried write against this API is a second write. For an EHR that means a duplicate patient
+    registration or a double appointment action. Callers must build their own de-duplication —
+    search before create, and treat a timeout on a write as an unknown outcome to be reconciled by
+    read, not retried blind.
+pagination:
+  athenaone_v1:
+    style: unknown
+    evidence: >-
+      The captured athenaOne v1 list responses (PatientList, AppointmentList, ClaimList,
+      DepartmentList, EncounterList, DocumentList, ProviderList) are bare JSON arrays with no
+      envelope, and no limit/offset/page parameter is declared on any list operation. athenahealth's
+      real v1 paging convention is documented only in the JS-rendered docs portal, which is not
+      machine-readable. Recorded unknown rather than guessed.
+  fhir_r4:
+    style: cursor
+    params: [_count, cursor]
+    evidence: >-
+      Both _count and cursor appear as declared searchParam entries on nearly every searchable
+      resource in the live CapabilityStatement (AllergyIntolerance, CarePlan, CareTeam, Condition,
+      Coverage, Device, DiagnosticReport, DocumentReference, Encounter, Goal, Immunization,
+      MedicationRequest, Observation, Patient, Procedure, ServiceRequest and more).
+    response: Standard FHIR Bundle with Bundle.link[relation=next] carrying the cursor.
+    note: >-
+      cursor is an athenahealth-specific search parameter, not a FHIR core one. Clients must follow
+      Bundle.link next rather than compute offsets.
+field_selection:
+  athenaone_v1: none declared
+  fhir_r4:
+    include: >-
+      _include and _revinclude are declared on most resources. _revinclude=Provenance:target is
+      supported on 22 resource types — that is the US Core Provenance requirement, and it is how a
+      caller gets the write-attribution chain for a clinical record.
+    search_include_examples:
+    - DiagnosticReport:patient
+    - DiagnosticReport:result
+    - DocumentReference:custodian
+    - MedicationRequest:medication
+    - Condition:encounter
+metadata:
+  athenaone_v1: none declared
+  fhir_r4: >-
+    _security is declared as a search parameter on nearly every resource, and Condition adds
+    ah-redact-inline-security. This is a data-sensitivity filter (42 CFR Part 2 / behavioral-health
+    style redaction), not a generic metadata bag, and an agent that ignores it can retrieve
+    restricted content it should not surface.
+request_id:
+  header: unknown
+  evidence: >-
+    No request-id, correlation-id or trace header is declared in any spec, and no unauthenticated
+    response we observed (the FHIR /metadata and smart-configuration endpoints) carried one.
+versioning:
+  athenaone_v1:
+    scheme: path
+    current: v1
+    evidence: /v1/{practiceid} in servers[].
+  fhir_r4:
+    scheme: path + FHIR version negotiation
+    current: r4 (FHIR 4.0.1)
+    capability_statement_version: 2.0.0
+    capability_statement_date: '2022-06-06'
+    evidence: /fhir/r4 in servers[]; fhirVersion 4.0.1 in the live CapabilityStatement.
+  spec_versions_in_repo:
+    athenaOne REST API: 1.0.0
+    FHIR R4 API: 25.0.0
+    FHIR Bulk Data Access API: 2.0.0
+    FHIR Subscriptions API: 1.0.0
+    CDS Hooks API: 1.0.0
+  detail: lifecycle/athenahealth-lifecycle.yml
+error_envelope:
+  athenaone_v1:
+    shape: unknown
+    evidence: >-
+      Not a single 4xx or 5xx response is declared across all 40 operations in openapi/. The
+      athenaOne v1 error contract is undocumented in machine-readable form.
+  fhir_r4:
+    shape: FHIR OperationOutcome
+    content_type: application/fhir+json
+    evidence: >-
+      Required by FHIR R4, to which the live CapabilityStatement declares conformance
+      (fhirVersion 4.0.1). Not RFC 9457 Problem Details.
+  detail: errors/athenahealth-problem-types.yml
+rate_limits:
+  signalling: unknown
+  headers: []
+  evidence: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header is declared in any spec or observed on any
+    unauthenticated response. athenahealth documents limits in prose on the JS-rendered docs
+    portal.
+  detail: rate-limits/athenahealth-rate-limits.yml
+content_types:
+  athenaone_v1: [application/json]
+  fhir_r4:
+    request: [application/fhir+json, application/json]
+    response: [application/fhir+json, application/json, application/json+fhir]
+    evidence: CapabilityStatement.format lists json, application/json, application/json+fhir and
+      application/fhir+json.
+async_operations:
+  bulk_data:
+    kickoff: 'GET /Group/{id}/$export with Prefer: respond-async and Accept: application/fhir+json'
+    poll: Content-Location header on the 202 points at the status endpoint
+    evidence: >-
+      Prefer and Accept are the only two header parameters declared anywhere in openapi/, and
+      Content-Location is the only response header declared anywhere in openapi/ — both on the bulk
+      export operation. This is the FHIR Bulk Data async pattern, and it is the one place
+      athenahealth's contract does carry a runtime signal.
+  events:
+    style: FHIR Subscription, rest-hook channel, id-only payload
+    delivery_deadline: subscriber must return 2xx within 2 seconds
+    detail: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+cors:
+  fhir_r4: true
+  evidence: CapabilityStatement.rest[0].security.cors is true.
+agent_readiness_summary: >-
+  The FHIR half of athenahealth is well-behaved and self-describing: anonymous CapabilityStatement,
+  anonymous SMART configuration, cursor pagination, _include/_revinclude, a declared error resource
+  and a documented async pattern. The athenaOne v1 half publishes none of that — no error contract,
+  no paging contract, no idempotency, no rate-limit signal — and it is the half that holds the
+  scheduling and revenue-cycle write operations.

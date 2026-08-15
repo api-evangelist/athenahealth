@@ -1,7 +1,12 @@
-generated: '2026-07-11'
+generated: '2026-08-14'
 method: derived
-source: openapi/athenahealth-athenaone-rest-api-openapi.yml, openapi/athenahealth-fhir-bulk-data-api-openapi.yml,
-  openapi/athenahealth-fhir-r4-api-openapi.yml, openapi/athenahealth-fhir-subscriptions-api-openapi.yml
+source: openapi/athenahealth-allergyintolerance-api-openapi.yml, openapi/athenahealth-appointment-api-openapi.yml,
+  openapi/athenahealth-appointments-api-openapi.yml, openapi/athenahealth-bulk-data-api-openapi.yml,
+  openapi/athenahealth-cds-hooks-api-openapi.yml, openapi/athenahealth-claims-api-openapi.yml,
+  openapi/athenahealth-condition-api-openapi.yml, openapi/athenahealth-conformance-api-openapi.yml,
+  openapi/athenahealth-departments-api-openapi.yml, openapi/athenahealth-diagnosticreport-api-openapi.yml,
+  openapi/athenahealth-documentreference-api-openapi.yml, openapi/athenahealth-documents-api-openapi.yml
+  ...
 summary:
   types:
   - oauth2
@@ -20,15 +25,25 @@ schemes:
     tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
     scopes: 1
   sources:
-  - openapi/athenahealth-athenaone-rest-api-openapi.yml
-  - openapi/athenahealth-fhir-r4-api-openapi.yml
-- name: backend
-  type: oauth2
-  flows:
-  - flow: clientCredentials
-    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
-    scopes: 1
-  description: SMART Backend Services (JWT client assertion)
-  sources:
-  - openapi/athenahealth-fhir-bulk-data-api-openapi.yml
-  - openapi/athenahealth-fhir-subscriptions-api-openapi.yml
+  - openapi/athenahealth-allergyintolerance-api-openapi.yml
+  - openapi/athenahealth-appointment-api-openapi.yml
+  - openapi/athenahealth-appointments-api-openapi.yml
+  - openapi/athenahealth-bulk-data-api-openapi.yml
+  - openapi/athenahealth-cds-hooks-api-openapi.yml
+  - openapi/athenahealth-claims-api-openapi.yml
+  - openapi/athenahealth-condition-api-openapi.yml
+  - openapi/athenahealth-conformance-api-openapi.yml
+  - openapi/athenahealth-departments-api-openapi.yml
+  - openapi/athenahealth-diagnosticreport-api-openapi.yml
+  - openapi/athenahealth-documentreference-api-openapi.yml
+  - openapi/athenahealth-documents-api-openapi.yml
+  - openapi/athenahealth-encounter-api-openapi.yml
+  - openapi/athenahealth-encounters-api-openapi.yml
+  - openapi/athenahealth-immunization-api-openapi.yml
+  - openapi/athenahealth-medicationrequest-api-openapi.yml
+  - openapi/athenahealth-observation-api-openapi.yml
+  - openapi/athenahealth-patient-api-openapi.yml
+  - openapi/athenahealth-patients-api-openapi.yml
+  - openapi/athenahealth-practice-api-openapi.yml
+  - openapi/athenahealth-providers-api-openapi.yml
+  - openapi/athenahealth-subscription-api-openapi.yml

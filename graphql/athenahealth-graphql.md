@@ -11,8 +11,8 @@ This schema is intended for integration architects, EHR interoperability enginee
 - **Name**: athenahealth
 - **Parent**: Veritas Capital (private equity, acquired from Elliott Management 2022)
 - **Products**: athenaOne (cloud EHR/PM), athenaPractice, athenaFlow, athenaCollector
-- **REST API Base**: `https://api.athenahealth.com/v1/`
-- **FHIR R4 Base**: `https://api.athenahealth.com/fhir/r4/`
+- **REST API Base**: `https://api.platform.athenahealth.com/v1/{practiceid}`
+- **FHIR R4 Base**: `https://api.platform.athenahealth.com/fhir/r4`
 - **Developer Docs**: https://docs.athenahealth.com/api/
 - **GitHub**: https://github.com/athenahealth
 - **Status**: https://status.athenahealth.com/

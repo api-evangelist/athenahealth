@@ -1,0 +1,97 @@
+generated: '2026-08-14'
+method: probed
+source: https://trust.athenahealth.com/, https://www.athenahealth.com/hitrust,
+  https://www.athenahealth.com/onc-certified-health-it
+description: >-
+  athenahealth runs a dedicated trust center at trust.athenahealth.com, hosted on Vanta, and
+  separately publishes a plain-language certifications page on its own corporate site. The two are
+  complementary: the corporate page NAMES the certifications and is fully machine-readable; the
+  trust center holds the actual attestation documents and gates them behind a request form.
+trust_center:
+  url: https://trust.athenahealth.com/
+  verified: true
+  http_status: 200
+  content_type: text/html
+  fetched: '2026-08-14'
+  platform: Vanta
+  platform_evidence: >-
+    Page is served from a Vanta-built SPA — data-signature-manifest-url points at
+    assets.vanta.com, og:image at app.vanta.com/doc, and the document carries a Vanta slug id
+    (pvi3eaq3v84f6ph50je5).
+  self_description: >-
+    "The Trust Center is a self-service portal that allows clients to request and download our
+    latest security certifications attestations and audit reports on a by request basis. If you
+    require additional assistance in regards to a specific security or risk related question,
+    please contact your athenahealth Customer Success Team member or a member of the Trust and
+    Assurance team." (verbatim from the page's own meta description)
+  documents_gated: true
+  gating: request-based — attestations and audit reports are downloadable only on request
+  machine_readable_certification_list: false
+  machine_readable_note: >-
+    The trust center body is a 5,337-byte SPA shell; the certification tiles are rendered
+    client-side and no anonymous JSON endpoint returns them. Every /api/* path probed on
+    trust.athenahealth.com and app.vanta.com returned the same shell. The certifications recorded
+    below therefore come from athenahealth's own corporate certifications page, which IS readable,
+    not from the trust center.
+certifications:
+- name: HITRUST CSF Certified
+  body: Health Information Trust Alliance (HITRUST)
+  published: true
+  source: https://www.athenahealth.com/hitrust
+  quote: Common Security Framework (CSF) Certified status from the Health Information Trust
+    Alliance (HITRUST)
+- name: PCI DSS
+  body: PCI Security Standards Council
+  published: true
+  source: https://www.athenahealth.com/hitrust
+  quote: Payment Card Industry - Data Security Standards (PCI-DSS) enforced by the PCI Standards
+    Council
+- name: SOC 1 (SSAE 18)
+  body: AICPA / independent auditor
+  published: true
+  source: https://www.athenahealth.com/hitrust
+  quote: SOC 1 report demonstrating conformance with the Statement on Standards for Attestation
+    Engagements No. 18 (SSAE 18)
+  note: >-
+    athenahealth advertises SOC 1, not SOC 2. SOC 1 is a financial-reporting controls report; it is
+    NOT the security/availability report a software buyer usually means by "SOC 2". Recorded
+    exactly as published.
+- name: EPCS (Electronic Prescriptions for Controlled Substances)
+  body: DEA-approved third-party certification authority
+  published: true
+  source: https://www.athenahealth.com/hitrust
+- name: DirectTrust HISP accreditation
+  body: DirectTrust
+  published: true
+  source: https://www.athenahealth.com/hitrust
+- name: DirectTrust CA/RA accreditation
+  body: DirectTrust
+  published: true
+  source: https://www.athenahealth.com/hitrust
+- name: Kantara full-service Credentialing Service Provider
+  body: Kantara Initiative
+  published: true
+  source: https://www.athenahealth.com/hitrust
+- name: EHNAC accreditation
+  body: Electronic Healthcare Network Accreditation Commission
+  published: true
+  source: https://www.athenahealth.com/hitrust
+  covers: HIPAA, HITECH/ARRA, ACA, Omnibus Rule and applicable state legislation
+- name: ONC Certified Health IT, 2015 Edition
+  body: Office of the National Coordinator for Health Information Technology (ASTP/ONC)
+  published: true
+  source: https://www.athenahealth.com/onc-certified-health-it
+  note: >-
+    athenahealth additionally publishes an HTI-1 Predictive Decision Support Intervention (PDSI)
+    Intervention Risk Management disclosure, aligned to the NIST AI Risk Management Framework and
+    the ASTP/ONC FAVES principles (fair, appropriate, valid, effective, safe). That is an AI
+    governance disclosure, and it is unusual to see one published at all.
+caveat_published_by_provider: >-
+  athenahealth's own page carries the qualifier "Certifications may vary depending on product or
+  service line" — the certifications above are not uniformly claimed across athenaOne,
+  athenaPractice, athenaFlow, athenaIDX and epocrates.
+absent:
+  soc2: not claimed on any athenahealth public page
+  iso27001: not claimed on any athenahealth public page
+  fedramp: not claimed on any athenahealth public page
+  note: Absence here means athenahealth does not publish the claim, not that no such control exists.

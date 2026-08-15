@@ -1,3 +1,43 @@
+generated: '2026-08-14'
+method: generated
+source: https://docs.athenahealth.com/api/guides/overview, openapi/
+limit_count: 5
+published_machine_readable: false
+verification:
+  checked: '2026-08-14'
+  summary: >-
+    athenahealth documents rate limits in prose only, on a page this pipeline could not read, and
+    signals nothing at runtime that we could observe. method is `generated`, not `searched`: the
+    numbers below were carried forward from an earlier enrichment round and could NOT be confirmed
+    against any athenahealth source readable by machine.
+  probes:
+  - url: https://docs.athenahealth.com/api/guides/overview
+    status: 200
+    readable: false
+    note: >-
+      Returns a 2,116-byte "athenahealth Document Portal" HTML shell to every non-browser client;
+      the content is rendered client-side by the @athena/document-portal-ui bundle from
+      cdn.nimbus.athena.io. Stripped of tags the body is 30 characters. The documented limits are
+      therefore not machine-readable.
+  - url: https://api.platform.athenahealth.com/fhir/r4/metadata
+    status: 200
+    note: >-
+      The only anonymous athenahealth API response we could observe. It returns NO RateLimit-*,
+      X-RateLimit-* or Retry-After header, so the header names recorded below are unconfirmed at
+      runtime.
+  openapi_evidence: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header is declared on any of the 40 operations in
+    openapi/, and no 429 response is declared on any operation.
+  unverified_figures:
+  - 100 calls/second (production)
+  - 500,000 calls/day (production)
+  - 5 OAuth token requests/minute (preview)
+  - 50 OAuth token requests/minute (production)
+  - 'response headers X-RateLimit-Remaining and X-RateLimit-Reset'
+  unverified_note: >-
+    Retained from an earlier round and explicitly flagged. Do not present any of these as
+    athenahealth-published until they can be read from a machine-readable athenahealth source or
+    observed on a live authenticated response.
 name: athenahealth API Rate Limits
 description: >-
   athenahealth enforces rate limits on API usage to ensure platform stability

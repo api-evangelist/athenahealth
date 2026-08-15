@@ -1,35 +1,192 @@
-generated: '2026-07-11'
+generated: '2026-08-14'
 method: derived
-source: openapi/athenahealth-athenaone-rest-api-openapi.yml, openapi/athenahealth-fhir-bulk-data-api-openapi.yml,
-  openapi/athenahealth-fhir-r4-api-openapi.yml, openapi/athenahealth-fhir-subscriptions-api-openapi.yml
+source: openapi/athenahealth-allergyintolerance-api-openapi.yml, openapi/athenahealth-appointment-api-openapi.yml,
+  openapi/athenahealth-appointments-api-openapi.yml, openapi/athenahealth-bulk-data-api-openapi.yml,
+  openapi/athenahealth-cds-hooks-api-openapi.yml, openapi/athenahealth-claims-api-openapi.yml,
+  openapi/athenahealth-condition-api-openapi.yml, openapi/athenahealth-conformance-api-openapi.yml,
+  openapi/athenahealth-departments-api-openapi.yml, openapi/athenahealth-diagnosticreport-api-openapi.yml,
+  openapi/athenahealth-documentreference-api-openapi.yml, openapi/athenahealth-documents-api-openapi.yml,
+  openapi/athenahealth-encounter-api-openapi.yml, openapi/athenahealth-encounters-api-openapi.yml,
+  openapi/athenahealth-immunization-api-openapi.yml, openapi/athenahealth-medicationrequest-api-openapi.yml,
+  openapi/athenahealth-observation-api-openapi.yml, openapi/athenahealth-patient-api-openapi.yml,
+  openapi/athenahealth-patients-api-openapi.yml, openapi/athenahealth-practice-api-openapi.yml,
+  openapi/athenahealth-providers-api-openapi.yml, openapi/athenahealth-subscription-api-openapi.yml
 schemes:
 - name: oauth2
-  source: openapi/athenahealth-athenaone-rest-api-openapi.yml
+  source: openapi/athenahealth-allergyintolerance-api-openapi.yml
   flows:
   - flow: clientCredentials
     tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
   - flow: authorizationCode
     authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
     tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
-- name: backend
-  source: openapi/athenahealth-fhir-bulk-data-api-openapi.yml
-  flows:
-  - flow: clientCredentials
-    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
-  description: SMART Backend Services (JWT client assertion)
-- name: smart
-  source: openapi/athenahealth-fhir-r4-api-openapi.yml
-  flows:
-  - flow: authorizationCode
-    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
-    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
-  - flow: clientCredentials
-    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
-  description: SMART on FHIR / OAuth 2.0
 - name: oauth2
-  source: openapi/athenahealth-fhir-subscriptions-api-openapi.yml
+  source: openapi/athenahealth-appointment-api-openapi.yml
   flows:
   - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-appointments-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-bulk-data-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-cds-hooks-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-claims-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-condition-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-conformance-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-departments-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-diagnosticreport-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-documentreference-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-documents-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-encounter-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-encounters-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-immunization-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-medicationrequest-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-observation-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-patient-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-patients-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-practice-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-providers-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+- name: oauth2
+  source: openapi/athenahealth-subscription-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+  - flow: authorizationCode
+    authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
     tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
 scopes:
 - scope: athena/service/Athenanet.MDP.*
@@ -38,66 +195,25 @@ scopes:
   - authorizationCode
   - clientCredentials
   sources:
-  - openapi/athenahealth-athenaone-rest-api-openapi.yml
-- scope: fhirUser
-  description: Current FHIR user identity
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/athenahealth-fhir-r4-api-openapi.yml
-- scope: launch
-  description: SMART launch context
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/athenahealth-fhir-r4-api-openapi.yml
-- scope: launch/patient
-  description: Patient launch context
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/athenahealth-fhir-r4-api-openapi.yml
-- scope: offline_access
-  description: Issue refresh token
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/athenahealth-fhir-r4-api-openapi.yml
-- scope: openid
-  description: OpenID Connect
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/athenahealth-fhir-r4-api-openapi.yml
-- scope: patient/*.read
-  description: Read patient-scoped resources
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/athenahealth-fhir-r4-api-openapi.yml
-- scope: system/*.read
-  description: System-level read for Bulk Data
-  flows:
-  - authorizationCode
-  - clientCredentials
-  sources:
-  - openapi/athenahealth-fhir-bulk-data-api-openapi.yml
-  - openapi/athenahealth-fhir-r4-api-openapi.yml
-- scope: system/Subscription.read
-  description: Read Subscriptions
-  flows:
-  - clientCredentials
-  sources:
-  - openapi/athenahealth-fhir-subscriptions-api-openapi.yml
-- scope: system/Subscription.write
-  description: Manage Subscriptions
-  flows:
-  - clientCredentials
-  sources:
-  - openapi/athenahealth-fhir-subscriptions-api-openapi.yml
-- scope: user/*.read
-  description: Read user-scoped resources
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/athenahealth-fhir-r4-api-openapi.yml
+  - openapi/athenahealth-allergyintolerance-api-openapi.yml
+  - openapi/athenahealth-appointment-api-openapi.yml
+  - openapi/athenahealth-appointments-api-openapi.yml
+  - openapi/athenahealth-bulk-data-api-openapi.yml
+  - openapi/athenahealth-cds-hooks-api-openapi.yml
+  - openapi/athenahealth-claims-api-openapi.yml
+  - openapi/athenahealth-condition-api-openapi.yml
+  - openapi/athenahealth-conformance-api-openapi.yml
+  - openapi/athenahealth-departments-api-openapi.yml
+  - openapi/athenahealth-diagnosticreport-api-openapi.yml
+  - openapi/athenahealth-documentreference-api-openapi.yml
+  - openapi/athenahealth-documents-api-openapi.yml
+  - openapi/athenahealth-encounter-api-openapi.yml
+  - openapi/athenahealth-encounters-api-openapi.yml
+  - openapi/athenahealth-immunization-api-openapi.yml
+  - openapi/athenahealth-medicationrequest-api-openapi.yml
+  - openapi/athenahealth-observation-api-openapi.yml
+  - openapi/athenahealth-patient-api-openapi.yml
+  - openapi/athenahealth-patients-api-openapi.yml
+  - openapi/athenahealth-practice-api-openapi.yml
+  - openapi/athenahealth-providers-api-openapi.yml
+  - openapi/athenahealth-subscription-api-openapi.yml

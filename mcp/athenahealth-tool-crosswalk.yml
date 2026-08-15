@@ -1,0 +1,301 @@
+generated: '2026-08-14'
+method: derived
+source: mcp/athenahealth-mcp.yml, openapi/ (22 refined specs),
+  https://api.platform.athenahealth.com/fhir/r4/metadata, graphql/athenahealth-schema.graphql
+description: >-
+  Binds every candidate MCP tool to the OpenAPI operation that backs it, so an agent inherits that
+  operation's real parameters and requestBody as the tool inputSchema instead of a hand-written
+  guess. Confidence is high across the board for one reason only: the tool list in
+  mcp/athenahealth-mcp.yml was itself derived FROM these operations, so the binding is definitional
+  rather than inferred. It is not evidence that athenahealth ships these tools — athenahealth ships
+  no MCP server at all. The value of this file is the reverse direction: it shows exactly which
+  parts of the athenahealth surface an MCP server would and would not cover.
+surfaces:
+  openapi:
+    path: openapi/
+    files: 22
+    operations: 40
+    gated: false
+    note: >-
+      Refined one-spec-per-tag documents. The upstream _original/ specs name
+      https://api.platform.athenahealth.com/v1/{practiceid} and .../fhir/r4 as servers.
+  fhir_capability_statement:
+    url: https://api.platform.athenahealth.com/fhir/r4/metadata
+    gated: false
+    http_status: 200
+    note: >-
+      Live and anonymous. Declares 32 resource types; the repo's OpenAPI covers 14 of them.
+  graphql:
+    endpoint: null
+    gated: false
+    note: >-
+      athenahealth publishes no GraphQL API. graphql/athenahealth-schema.graphql in this repo is an
+      explicitly conceptual model, not a served schema, and is deliberately NOT crosswalked here.
+  mcp:
+    url: null
+    gated: false
+    note: No MCP server exists. Tools are candidates derived from OpenAPI.
+crosswalk:
+- tool: search_patients
+  category: patient
+  rest: [searchPatients]
+  binding: direct
+  confidence: high
+- tool: get_patient
+  category: patient
+  rest: [getPatient]
+  binding: direct
+  confidence: high
+- tool: create_patient
+  category: patient
+  rest: [createPatient]
+  binding: direct
+  confidence: high
+  note: Write. No Idempotency-Key parameter exists on this operation; a retry can duplicate a
+    patient record.
+- tool: update_patient
+  category: patient
+  rest: [updatePatient]
+  binding: direct
+  confidence: high
+  note: Write. PUT semantics — full replacement risk on partial payloads.
+- tool: search_appointments
+  category: scheduling
+  rest: [searchAppointments]
+  binding: direct
+  confidence: high
+- tool: find_open_slots
+  category: scheduling
+  rest: [getOpenAppointmentSlots]
+  binding: direct
+  confidence: high
+- tool: get_appointment
+  category: scheduling
+  rest: [getAppointment]
+  binding: direct
+  confidence: high
+- tool: cancel_appointment
+  category: scheduling
+  rest: [cancelAppointment]
+  binding: direct
+  confidence: high
+  note: Write. Cancels a real patient appointment.
+- tool: check_in_appointment
+  category: scheduling
+  rest: [checkInAppointment]
+  binding: direct
+  confidence: high
+  note: Write.
+- tool: reschedule_appointment
+  category: scheduling
+  rest: [rescheduleAppointment]
+  binding: direct
+  confidence: high
+  note: Write.
+- tool: list_departments
+  category: practice
+  rest: [listDepartments]
+  binding: direct
+  confidence: high
+- tool: list_providers
+  category: practice
+  rest: [listProviders]
+  binding: direct
+  confidence: high
+- tool: get_practice_info
+  category: practice
+  rest: [getPracticeInfo]
+  binding: direct
+  confidence: high
+- tool: list_patient_encounters
+  category: clinical
+  rest: [listPatientEncounters]
+  binding: direct
+  confidence: high
+- tool: get_encounter
+  category: clinical
+  rest: [getEncounter]
+  binding: direct
+  confidence: high
+- tool: list_patient_documents
+  category: clinical
+  rest: [listPatientDocuments]
+  binding: direct
+  confidence: high
+- tool: search_claims
+  category: revenue-cycle
+  rest: [searchClaims]
+  binding: direct
+  confidence: high
+- tool: fhir_search_patients
+  category: fhir
+  rest: [searchFhirPatients]
+  binding: direct
+  confidence: high
+- tool: fhir_read_patient
+  category: fhir
+  rest: [readFhirPatient]
+  binding: direct
+  confidence: high
+- tool: fhir_search_conditions
+  category: fhir
+  rest: [searchFhirConditions]
+  binding: direct
+  confidence: high
+- tool: fhir_search_observations
+  category: fhir
+  rest: [searchFhirObservations]
+  binding: direct
+  confidence: high
+- tool: fhir_search_medication_requests
+  category: fhir
+  rest: [searchFhirMedicationRequests]
+  binding: direct
+  confidence: high
+- tool: fhir_search_allergies
+  category: fhir
+  rest: [searchFhirAllergies]
+  binding: direct
+  confidence: high
+- tool: fhir_search_immunizations
+  category: fhir
+  rest: [searchFhirImmunizations]
+  binding: direct
+  confidence: high
+- tool: fhir_search_diagnostic_reports
+  category: fhir
+  rest: [searchFhirDiagnosticReports]
+  binding: direct
+  confidence: high
+- tool: fhir_search_document_references
+  category: fhir
+  rest: [searchFhirDocumentReferences]
+  binding: direct
+  confidence: high
+- tool: fhir_search_encounters
+  category: fhir
+  rest: [searchFhirEncounters]
+  binding: direct
+  confidence: high
+- tool: fhir_read_encounter
+  category: fhir
+  rest: [readFhirEncounter]
+  binding: direct
+  confidence: high
+- tool: fhir_search_appointments
+  category: fhir
+  rest: [searchFhirAppointments]
+  binding: direct
+  confidence: high
+- tool: fhir_capability_statement
+  category: fhir
+  rest: [getCapabilityStatement]
+  binding: direct
+  confidence: high
+  note: The only operation in the whole repo that can be called anonymously — verified 200.
+- tool: bulk_export_group
+  category: bulk-data
+  rest: [groupBulkExport]
+  binding: direct
+  confidence: high
+  note: Write (kicks off an async job). Requires system/*.read and SMART Backend Services JWT auth.
+- tool: bulk_export_status
+  category: bulk-data
+  rest: [getBulkExportStatus]
+  binding: direct
+  confidence: high
+- tool: cancel_bulk_export
+  category: bulk-data
+  rest: [cancelBulkExport]
+  binding: direct
+  confidence: high
+- tool: search_subscriptions
+  category: events
+  rest: [searchSubscriptions]
+  binding: direct
+  confidence: high
+- tool: create_subscription
+  category: events
+  rest: [createSubscription]
+  binding: direct
+  confidence: high
+  note: Write. Registers a rest-hook webhook target — see
+    asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml.
+- tool: read_subscription
+  category: events
+  rest: [readSubscription]
+  binding: direct
+  confidence: high
+- tool: delete_subscription
+  category: events
+  rest: [deleteSubscription]
+  binding: direct
+  confidence: high
+- tool: subscription_status
+  category: events
+  rest: [getSubscriptionStatus]
+  binding: direct
+  confidence: high
+- tool: discover_cds_services
+  category: cds-hooks
+  rest: [discoverCdsServices]
+  binding: direct
+  confidence: medium
+  note: >-
+    The CDS Hooks contract describes the THIRD PARTY's decision-support service, which athenaOne
+    calls out to. An agent binding this tool is acting as athenaOne, not as an athenaOne client.
+- tool: invoke_cds_service
+  category: cds-hooks
+  rest: [invokeCdsService]
+  binding: direct
+  confidence: medium
+  note: Same inversion as discover_cds_services.
+mcp_only: []
+rest_only: []
+uncovered_fhir_resources:
+- AllergyIntolerance is covered; the following 18 resource types are declared in the live
+  CapabilityStatement but have NO operation in openapi/ and therefore no candidate tool.
+- Binary
+- CarePlan
+- CareTeam
+- Coverage
+- Device
+- FamilyMemberHistory
+- Goal
+- Group
+- Location
+- Media
+- MedicationDispense
+- Organization
+- Practitioner
+- Procedure
+- Provenance
+- Questionnaire
+- QuestionnaireResponse
+- RelatedPerson
+- ServiceRequest
+- Specimen
+- MeasureReport
+uncovered_fhir_operations:
+- $self-checkin-entry-url (Appointment)
+- $telehealth-zoom-credentials (Appointment)
+- $health-cards-issue (Patient)
+- $latest-response-by-questionnaire (QuestionnaireResponse)
+- $submit-care-gaps (MeasureReport)
+- $batch-write (FamilyMemberHistory)
+coverage:
+  mcp_tools: 40
+  bound_to_rest: 40
+  mcp_only: 0
+  rest_only: 0
+  rest_operations_total: 40
+  binding_rate: 1.0
+  fhir_resources_declared_by_server: 32
+  fhir_resources_with_a_tool: 12
+  fhir_resource_coverage: 0.375
+  note: >-
+    The 100% binding rate is an artefact of derivation, not a measure of quality. The number that
+    matters is the last one: athenahealth's own live FHIR server advertises 32 resource types and 6
+    custom $operations, and this repo's contract covers only 12 of them. The real gap in
+    athenahealth's agent surface is not tools without operations — it is a live FHIR server whose
+    published capability far exceeds anything athenahealth documents in machine-readable form.

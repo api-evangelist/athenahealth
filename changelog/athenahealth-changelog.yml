@@ -1,0 +1,54 @@
+generated: '2026-08-14'
+method: probed
+source: https://docs.athenahealth.com/api/resources/release-notes-and-change-logs
+description: >-
+  athenahealth DOES publish a dated API change log — "Release Notes and Change Logs" is a
+  first-class section of the developer documentation, with year-scoped archives going back to at
+  least 2019. It cannot be read by a machine. Every request to the page returns HTTP 200 with the
+  same 2,116-byte HTML shell titled "athenahealth Document Portal"; the actual entries are fetched
+  and rendered client-side by the @athena/document-portal-ui bundle loaded from
+  cdn.nimbus.athena.io, and no server-rendered or JSON representation of the entries is exposed.
+  This file records the change log's existence and its unreadability, and deliberately records ZERO
+  entries rather than reconstructing entries from search-engine snippets.
+scheme: dated release notes, published per calendar year
+url: https://docs.athenahealth.com/api/resources/release-notes-and-change-logs
+feed: null
+current_version: null
+current_version_note: >-
+  athenahealth does not label API releases with a version string on any surface we could read. The
+  closest thing to a version signal is the info.version on the specs in this repo (FHIR R4 API
+  25.0.0) and the CapabilityStatement version 2.0.0 dated 2022-06-06.
+archives:
+- url: https://docs.athenahealth.com/api/resources/release-notes-and-change-logs
+  label: current (2026)
+  http_status: 200
+  machine_readable: false
+- url: https://docs.athenahealth.com/api/resources/2019-release-notes
+  label: '2019'
+  machine_readable: false
+- url: https://docs.athenahealth.com/dataview/workflows/data-view-release-notes
+  label: Data View release notes (separate product surface)
+  machine_readable: false
+- url: https://docs.athenahealth.com/api/resources/227-release-added-fhir-bulk-data-access-capability-support-21st-century-cures
+  label: >-
+    Named release note — "227 Release: Added FHIR Bulk Data Access capability to support 21st
+    Century Cures". Already linked from apis.yml. Confirms athenahealth numbers its athenaOne
+    releases (the "227 Release") even though the number is not exposed as an API version.
+  machine_readable: false
+entries: []
+entry_count: 0
+entries_note: >-
+  Zero entries is a measurement, not an omission. The change log exists and is dated; it is served
+  only to browsers. Reconstructing entries from third-party summaries would put unverified text in
+  a provenance-carrying artifact, which this pipeline does not do.
+evidence:
+- url: https://docs.athenahealth.com/api/resources/release-notes-and-change-logs
+  http_status: 200
+  content_type: text/html;charset=utf-8
+  bytes: 2116
+  text_after_tag_strip: '"athenahealth Document Portal" (30 characters)'
+  fetched: '2026-08-14'
+gap_for_the_provider: >-
+  Serve the release notes as an RSS/Atom feed or a JSON endpoint, or server-render the page. Every
+  athenahealth integration partner's dependency-monitoring tooling is currently blind to
+  athenahealth API changes.

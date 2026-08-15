@@ -1,3 +1,62 @@
+generated: '2026-08-14'
+method: generated
+source: https://www.athenahealth.com/why-choose-us/cost-value,
+  https://www.athenahealth.com/solutions/marketplace-program,
+  https://www.athenahealth.com/solutions/marketplace-partners,
+  https://docs.athenahealth.com/api/guides/our-process
+plan_count: 3
+published_price_list: false
+verification:
+  checked: '2026-08-14'
+  summary: >-
+    athenahealth publishes NO API price list. There is no pricing page for the APIs, no per-call
+    rate, no tier table and no self-service signup — API access is bundled into an athenaOne
+    customer relationship or into the Marketplace Partner program, and both are quoted by sales.
+    That is the finding, and it is why method is `generated` rather than `searched`: the plan
+    structure below is a faithful description of how athenahealth sells access, but the specific
+    percentages in `cost:` and `notes:` are NOT quoted from any athenahealth page this pipeline
+    could read and must be treated as unverified.
+  probes:
+  - url: https://www.athenahealth.com/why-choose-us/cost-value
+    status: 200
+    note: Resolves. Marketing page about value, not an API price list.
+  - url: https://www.athenahealth.com/solutions/marketplace-program
+    status: 200
+    readable: true
+    note: >-
+      Read successfully. States the Marketplace is "home to over 300 Partners offering solutions
+      that address issues across more than 60 capabilities", reports "590+ Marketplace Partners to
+      choose from", and routes every acquisition through a "Get Started Now" form — i.e. a sales
+      gate, no published price.
+  - url: https://www.athenahealth.com/developer-portal
+    status: 200
+    readable: true
+    note: >-
+      Read successfully. Describes API Access ("Over 800 API endpoints"), Interfaces, Data View,
+      Marketplace Partners Program, EHI Export and data migration. Names no price.
+  - url: https://docs.athenahealth.com/api/guides/our-process
+    status: 200
+    readable: false
+    note: JS-rendered document-portal shell (2,116 bytes). Onboarding/approval process not readable
+      by machine.
+  unverified_figures:
+  - '"Revenue share of 15-30% of generated revenue" on the Marketplace Partner Program plan'
+  - '"commonly around 4-8% for full-service RCM" in notes'
+  - '"Rate limits: up to 100 calls/sec and 500,000 calls/day" in the production plan features —
+    see rate-limits/athenahealth-rate-limits.yml, same caveat'
+  unverified_note: >-
+    These figures were carried forward from an earlier enrichment round. No athenahealth page
+    readable by this pipeline states them. They are retained rather than deleted because deleting
+    them would lose the earlier round's work, but they are marked here so nothing downstream treats
+    them as provider-published.
+access_model:
+  self_service: false
+  approval_required: true
+  free_tier: false
+  evidence: >-
+    No public signup exists for either environment. Developers register through the athenahealth
+    Developer Portal and are approved into the Marketplace Partner program before credentials are
+    issued. See sandbox/athenahealth-sandbox.yml.
 name: athenahealth API Plans and Pricing
 description: >-
   athenahealth does not publish a traditional tiered API pricing model with

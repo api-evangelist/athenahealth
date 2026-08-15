@@ -1,0 +1,45 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for athenahealth athenaOne REST AllergyIntolerance Conformance API
+  version: 1.0.0
+extends: athenahealth-conformance-api-openapi.yml
+x-generated: '2026-08-14'
+x-method: generated
+x-source: openapi/athenahealth-conformance-api-openapi.yml plus live probes of api.platform.athenahealth.com
+  on 2026-08-14
+actions:
+- target: $.info
+  description: Record the athenahealth support contact and API terms declared in the upstream athenaOne
+    specification.
+  update:
+    contact:
+      name: athenahealth Developer Support
+      url: https://docs.athenahealth.com/api/support
+    x-provider: athenahealth
+    x-api-evangelist-verified: '2026-08-14'
+- target: $
+  description: Attach verified environment and conformance evidence gathered by live probe on 2026-08-14.
+  update:
+    x-environments:
+      production: https://api.platform.athenahealth.com/v1/{practiceid}
+      preview: https://api.preview.platform.athenahealth.com/v1/{practiceid}
+    x-retired-hosts:
+    - host: api.athenahealth.com
+      status: NXDOMAIN
+      checked: '2026-08-14'
+    x-artifacts:
+      authentication: authentication/athenahealth-authentication.yml
+      scopes: scopes/athenahealth-scopes.yml
+      conventions: conventions/athenahealth-conventions.yml
+      errors: errors/athenahealth-problem-types.yml
+      lifecycle: lifecycle/athenahealth-lifecycle.yml
+      conformance: conformance/athenahealth-conformance.yml
+      rate_limits: rate-limits/athenahealth-rate-limits.yml
+      sandbox: sandbox/athenahealth-sandbox.yml
+- target: $
+  description: Record the tenancy and error-contract facts that the athenaOne v1 specification omits.
+  update:
+    x-athenaone-v1:
+      tenancy: practiceid is a server variable in the base path, not a parameter
+      error_contract: undocumented — no 4xx/5xx response is declared upstream
+      pagination: undocumented

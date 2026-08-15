@@ -1,0 +1,157 @@
+generated: '2026-08-14'
+method: probed
+source: live HTTP probes of every apis.yml baseURL host, every OpenAPI servers[] host, and the
+  docs/portal hosts
+description: >-
+  Probe of the standard /.well-known/ surface across every athenahealth host named in apis.yml
+  and in the OpenAPI servers[] blocks. The root /.well-known/ paths return nothing real on any
+  host: api.platform.athenahealth.com 404s every path, www.athenahealth.com and fhir.athena.io
+  404 every path, and docs.athenahealth.com and mydata.athenahealth.com answer 200 to EVERY
+  /.well-known/* path with the same single-page-application HTML shell (a catch-all route, not a
+  document). The one real, machine-readable well-known document athenahealth serves is the SMART
+  App Launch configuration published UNDER the FHIR base path rather than at the host root, at
+  /fhir/r4/.well-known/smart-configuration on both the production and preview API hosts.
+hosts:
+- host: api.platform.athenahealth.com
+  role: production API host (athenaOne v1 + FHIR R4)
+- host: api.preview.platform.athenahealth.com
+  role: preview / sandbox API host
+- host: api.athenahealth.com
+  role: baseURL previously recorded in apis.yml — DOES NOT RESOLVE (NXDOMAIN)
+- host: docs.athenahealth.com
+  role: developer documentation portal (JS-rendered SPA)
+- host: mydata.athenahealth.com
+  role: athenaPractice / athenaFlow developer portal (JS-rendered SPA)
+- host: www.athenahealth.com
+  role: corporate website
+- host: fhir.athena.io
+  role: FHIR implementation guide / StructureDefinition canonical host
+probes:
+- url: https://api.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+  path: /fhir/r4/.well-known/smart-configuration
+  host: api.platform.athenahealth.com
+  status: 200
+  content_type: application/json; charset=utf-8
+  real_document: true
+  file: athenahealth-smart-configuration.json
+  note: SMART App Launch 2.0 configuration. Real JSON object with authorization_endpoint,
+    token_endpoint, jwks_uri, introspection_endpoint, revocation_endpoint, issuer
+    (https://athena.okta.com/oauth2/aus2hff5eqFb7Wqfh297) and a 19-entry capabilities array.
+- url: https://api.preview.platform.athenahealth.com/fhir/r4/.well-known/smart-configuration
+  path: /fhir/r4/.well-known/smart-configuration
+  host: api.preview.platform.athenahealth.com
+  status: 200
+  content_type: application/json; charset=utf-8
+  real_document: true
+  note: Same document shape as production, with preview endpoints. Not saved separately — it is
+    the preview mirror of the production file.
+- url: https://api.platform.athenahealth.com/.well-known/security.txt
+  status: 404
+  real_document: false
+- url: https://api.platform.athenahealth.com/.well-known/openid-configuration
+  status: 404
+  real_document: false
+- url: https://api.platform.athenahealth.com/.well-known/oauth-authorization-server
+  status: 404
+  real_document: false
+- url: https://api.platform.athenahealth.com/.well-known/api-catalog
+  status: 404
+  real_document: false
+- url: https://api.platform.athenahealth.com/.well-known/ai-plugin.json
+  status: 404
+  real_document: false
+- url: https://api.platform.athenahealth.com/.well-known/agent-card.json
+  status: 404
+  real_document: false
+- url: https://api.platform.athenahealth.com/.well-known/agent.json
+  status: 404
+  real_document: false
+- url: https://api.athenahealth.com/.well-known/security.txt
+  status: 0
+  real_document: false
+  note: curl exit 6 — could not resolve host. dig returns NXDOMAIN for api.athenahealth.com.
+- url: https://docs.athenahealth.com/.well-known/security.txt
+  status: 200
+  content_type: text/html;charset=utf-8
+  real_document: false
+  note: SPA catch-all. Body is the 2,116-byte "athenahealth Document Portal" HTML shell, byte
+    identical to the shell returned for /.well-known/agent-card.json, /openapi.json and
+    /llms.txt. Treated as a miss.
+- url: https://docs.athenahealth.com/.well-known/openid-configuration
+  status: 200
+  real_document: false
+  note: SPA catch-all shell.
+- url: https://docs.athenahealth.com/.well-known/oauth-authorization-server
+  status: 200
+  real_document: false
+  note: SPA catch-all shell.
+- url: https://docs.athenahealth.com/.well-known/api-catalog
+  status: 200
+  real_document: false
+  note: SPA catch-all shell.
+- url: https://docs.athenahealth.com/.well-known/ai-plugin.json
+  status: 200
+  real_document: false
+  note: SPA catch-all shell.
+- url: https://docs.athenahealth.com/.well-known/agent-card.json
+  status: 200
+  real_document: false
+  note: SPA catch-all shell — NOT an agent card. No a2a/ artifact was written.
+- url: https://mydata.athenahealth.com/.well-known/openid-configuration
+  status: 200
+  content_type: text/html
+  real_document: false
+  note: Angular "Developer Portal" SPA shell. Treated as a miss.
+- url: https://mydata.athenahealth.com/.well-known/oauth-authorization-server
+  status: 200
+  real_document: false
+  note: Angular SPA shell.
+- url: https://mydata.athenahealth.com/.well-known/api-catalog
+  status: 200
+  real_document: false
+  note: Angular SPA shell.
+- url: https://mydata.athenahealth.com/.well-known/smart-configuration
+  status: 200
+  real_document: false
+  note: Angular SPA shell.
+- url: https://mydata.athenahealth.com/.well-known/security.txt
+  status: 404
+  real_document: false
+- url: https://mydata.athenahealth.com/.well-known/agent-card.json
+  status: 404
+  real_document: false
+- url: https://www.athenahealth.com/.well-known/security.txt
+  status: 404
+  real_document: false
+- url: https://www.athenahealth.com/.well-known/openid-configuration
+  status: 404
+  real_document: false
+- url: https://www.athenahealth.com/.well-known/agent-card.json
+  status: 404
+  real_document: false
+- url: https://www.athenahealth.com/.well-known/agent.json
+  status: 404
+  real_document: false
+- url: https://fhir.athena.io/.well-known/security.txt
+  status: 404
+  real_document: false
+- url: https://fhir.athena.io/.well-known/openid-configuration
+  status: 404
+  real_document: false
+- url: https://fhir.athena.io/.well-known/agent-card.json
+  status: 404
+  real_document: false
+summary:
+  paths_probed: 48
+  real_documents: 2
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+  smart_configuration: true
+  spa_catch_all_hosts:
+  - docs.athenahealth.com
+  - mydata.athenahealth.com
+  checked: '2026-08-14'
