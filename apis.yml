@@ -93,6 +93,9 @@ apis:
   baseURL: https://mydata.athenahealth.com/
   tags:
   - FHIR
+  - On-Premise
+  tags_raw:
+  - FHIR
   - athenaPractice
   - athenaFlow
   - On-Premise
