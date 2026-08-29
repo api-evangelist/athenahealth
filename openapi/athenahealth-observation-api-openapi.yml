@@ -1,37 +1,24 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: athenahealth athenaOne REST AllergyIntolerance Observation API
-  description: 'The athenaOne proprietary REST API exposes the full provider, patient,
+  title: athenahealth FHIR R4 Observation API
+  description: 'athenahealth''s HL7 FHIR R4 server certified to the ONC Cures Act Final Rule.
 
-    scheduling, clinical, and biller workflow surface of the athenahealth
+    Serves US Core and USCDI v3 profiles for interoperability. SMART on FHIR
 
-    cloud-based EHR and practice management platform. All resources are
-
-    scoped to a practice via the practiceid path parameter.
+    authorization via the athenahealth Developer Portal.
 
     '
-  version: 1.0.0
+  version: 25.0.0
   contact:
     name: athenahealth Developer Support
     url: https://docs.athenahealth.com/api/support
-  license:
-    name: athenahealth API Terms
-    url: https://www.athenahealth.com/legal/terms
 servers:
-- url: https://api.platform.athenahealth.com/v1/{practiceid}
-  description: Production athenaOne API
-  variables:
-    practiceid:
-      default: '195900'
-      description: athenaOne practice identifier
-- url: https://api.preview.platform.athenahealth.com/v1/{practiceid}
-  description: Preview (sandbox) athenaOne API
-  variables:
-    practiceid:
-      default: '195900'
-      description: athenaOne preview practice identifier
+- url: https://api.platform.athenahealth.com/fhir/r4
+  description: Production FHIR R4 endpoint
+- url: https://api.preview.platform.athenahealth.com/fhir/r4
+  description: Preview FHIR R4 endpoint
 security:
-- oauth2: []
+- smart: []
 tags:
 - name: Observation
 paths:
@@ -63,15 +50,23 @@ paths:
           description: Bundle of Observation resources
 components:
   securitySchemes:
-    oauth2:
+    smart:
       type: oauth2
+      description: SMART on FHIR / OAuth 2.0
       flows:
-        clientCredentials:
-          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
-          scopes:
-            athena/service/Athenanet.MDP.*: athenahealth MDP scope
         authorizationCode:
           authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
           tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
           scopes:
-            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+            launch: SMART launch context
+            launch/patient: Patient launch context
+            patient/*.read: Read patient-scoped resources
+            user/*.read: Read user-scoped resources
+            system/*.read: System-level read (backend services)
+            offline_access: Issue refresh token
+            openid: OpenID Connect
+            fhirUser: Current FHIR user identity
+        clientCredentials:
+          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
+          scopes:
+            system/*.read: System-level read (backend services)

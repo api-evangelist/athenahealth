@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: athenahealth athenaOne REST AllergyIntolerance Patients API
+  title: athenahealth athenaOne REST Patients API
   description: 'The athenaOne proprietary REST API exposes the full provider, patient,
 
     scheduling, clinical, and biller workflow surface of the athenahealth
@@ -125,10 +125,41 @@ paths:
           description: Update result
 components:
   schemas:
+    PatientUpdate:
+      type: object
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        mobilephone:
+          type: string
+        email:
+          type: string
+          format: email
     PatientList:
       type: array
       items:
         $ref: '#/components/schemas/Patient'
+    PatientCreate:
+      type: object
+      required:
+      - firstname
+      - lastname
+      - dob
+      - departmentid
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        dob:
+          type: string
+          format: date
+        departmentid:
+          type: integer
+        sex:
+          type: string
     Patient:
       type: object
       properties:
@@ -164,37 +195,6 @@ components:
           type: string
         departmentid:
           type: integer
-    PatientUpdate:
-      type: object
-      properties:
-        firstname:
-          type: string
-        lastname:
-          type: string
-        mobilephone:
-          type: string
-        email:
-          type: string
-          format: email
-    PatientCreate:
-      type: object
-      required:
-      - firstname
-      - lastname
-      - dob
-      - departmentid
-      properties:
-        firstname:
-          type: string
-        lastname:
-          type: string
-        dob:
-          type: string
-          format: date
-        departmentid:
-          type: integer
-        sex:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2

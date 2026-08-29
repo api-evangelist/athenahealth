@@ -1,37 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: athenahealth athenaOne REST AllergyIntolerance CDS Hooks API
-  description: 'The athenaOne proprietary REST API exposes the full provider, patient,
+  title: athenahealth CDS Hooks API
+  description: 'CDS Hooks integration for athenaOne — invoke remote clinical decision
 
-    scheduling, clinical, and biller workflow surface of the athenahealth
-
-    cloud-based EHR and practice management platform. All resources are
-
-    scoped to a practice via the practiceid path parameter.
+    support services at well-defined points in the EHR workflow.
 
     '
   version: 1.0.0
-  contact:
-    name: athenahealth Developer Support
-    url: https://docs.athenahealth.com/api/support
-  license:
-    name: athenahealth API Terms
-    url: https://www.athenahealth.com/legal/terms
 servers:
-- url: https://api.platform.athenahealth.com/v1/{practiceid}
-  description: Production athenaOne API
-  variables:
-    practiceid:
-      default: '195900'
-      description: athenaOne practice identifier
-- url: https://api.preview.platform.athenahealth.com/v1/{practiceid}
-  description: Preview (sandbox) athenaOne API
-  variables:
-    practiceid:
-      default: '195900'
-      description: athenaOne preview practice identifier
-security:
-- oauth2: []
+- url: https://cds.example.com
+  description: Third-party CDS service implementing CDS Hooks
 tags:
 - name: CDS Hooks
 paths:
@@ -80,46 +58,6 @@ paths:
                 $ref: '#/components/schemas/CdsResponse'
 components:
   schemas:
-    Card:
-      type: object
-      properties:
-        summary:
-          type: string
-        indicator:
-          type: string
-          enum:
-          - info
-          - warning
-          - critical
-        detail:
-          type: string
-        source:
-          type: object
-          properties:
-            label:
-              type: string
-            url:
-              type: string
-              format: uri
-        suggestions:
-          type: array
-          items:
-            type: object
-        links:
-          type: array
-          items:
-            type: object
-            properties:
-              label:
-                type: string
-              url:
-                type: string
-                format: uri
-              type:
-                type: string
-                enum:
-                - absolute
-                - smart
     CdsService:
       type: object
       properties:
@@ -161,16 +99,43 @@ components:
           type: object
         prefetch:
           type: object
-  securitySchemes:
-    oauth2:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
-          scopes:
-            athena/service/Athenanet.MDP.*: athenahealth MDP scope
-        authorizationCode:
-          authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
-          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
-          scopes:
-            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+    Card:
+      type: object
+      properties:
+        summary:
+          type: string
+        indicator:
+          type: string
+          enum:
+          - info
+          - warning
+          - critical
+        detail:
+          type: string
+        source:
+          type: object
+          properties:
+            label:
+              type: string
+            url:
+              type: string
+              format: uri
+        suggestions:
+          type: array
+          items:
+            type: object
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              url:
+                type: string
+                format: uri
+              type:
+                type: string
+                enum:
+                - absolute
+                - smart

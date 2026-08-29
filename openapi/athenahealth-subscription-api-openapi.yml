@@ -1,35 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: athenahealth athenaOne REST AllergyIntolerance Subscription API
-  description: 'The athenaOne proprietary REST API exposes the full provider, patient,
+  title: athenahealth FHIR Subscriptions Subscription API
+  description: 'The athenahealth Event Subscription Platform delivers near real-time
 
-    scheduling, clinical, and biller workflow surface of the athenahealth
+    healthcare-domain event notifications via FHIR Subscriptions (R5 Backport).
 
-    cloud-based EHR and practice management platform. All resources are
-
-    scoped to a practice via the practiceid path parameter.
+    Currently supports the rest-hook channel and id-only payload type.
 
     '
   version: 1.0.0
-  contact:
-    name: athenahealth Developer Support
-    url: https://docs.athenahealth.com/api/support
-  license:
-    name: athenahealth API Terms
-    url: https://www.athenahealth.com/legal/terms
 servers:
-- url: https://api.platform.athenahealth.com/v1/{practiceid}
-  description: Production athenaOne API
-  variables:
-    practiceid:
-      default: '195900'
-      description: athenaOne practice identifier
-- url: https://api.preview.platform.athenahealth.com/v1/{practiceid}
-  description: Preview (sandbox) athenaOne API
-  variables:
-    practiceid:
-      default: '195900'
-      description: athenaOne preview practice identifier
+- url: https://api.platform.athenahealth.com/fhir/r4
+  description: Production
+- url: https://api.preview.platform.athenahealth.com/fhir/r4
+  description: Preview
 security:
 - oauth2: []
 tags:
@@ -145,9 +129,5 @@ components:
         clientCredentials:
           tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
           scopes:
-            athena/service/Athenanet.MDP.*: athenahealth MDP scope
-        authorizationCode:
-          authorizationUrl: https://api.platform.athenahealth.com/oauth2/v1/authorize
-          tokenUrl: https://api.platform.athenahealth.com/oauth2/v1/token
-          scopes:
-            athena/service/Athenanet.MDP.*: athenahealth MDP scope
+            system/Subscription.read: Read Subscriptions
+            system/Subscription.write: Manage Subscriptions
