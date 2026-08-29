@@ -1175,6 +1175,9 @@ apis:
   - type: Documentation
     url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
 common:
+- type: CapabilityMap
+  url: capabilities/athenahealth-capability-edges.yml
+  name: athenahealth Business Capability Map
 - type: IssueTracker
   url: https://github.com/athenahealth/aone-fhir-subscriptions/issues
 - type: License
