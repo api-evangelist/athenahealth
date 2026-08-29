@@ -1270,13 +1270,13 @@ common:
   type: Spectral
 - url: https://github.com/athenahealth/mdp
   name: MDP API Samples
-  type: Samples
+  type: Examples
 - url: https://github.com/athenahealth/apiserver-athenaFlex
   name: athenaPractice/athenaFlow FHIR Sample
-  type: Samples
+  type: Examples
 - url: https://github.com/athenahealth/aone-fhir-subscriptions
   name: athenaOne FHIR Subscriptions Sample
-  type: Samples
+  type: Examples
 - url: https://github.com/athenahealth/vscode-cql-extension
   name: VSCode CQL Extension
   type: Tools
