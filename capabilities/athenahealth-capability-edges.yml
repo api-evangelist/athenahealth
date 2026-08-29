@@ -19,59 +19,62 @@ edges:
   capability_id_l1: BC-2800
   capability_name: Scheduling & Appointment Management
   confidence: 0.95
-  evidence: GET /appointments/open  getOpenAppointmentSlots  Get Open Appointment Slots; PUT /appointments/{appointmentid}/reschedule  rescheduleAppointment
-  reason: The proprietary athenaOne endpoints perform slot search, cancellation, check-in and rescheduling
-    of patient appointments, which is plainly appointment and provider scheduling management.
+  evidence: GET /appointments/open Get Open Appointment Slots; PUT /appointments/{appointmentid}/cancel
+    Cancel Appointment; PUT /appointments/{appointmentid}/reschedule Reschedule Appointment; POST /appointments/{appointmentid}/checkin
+  reason: Full booking, slot search, cancel, reschedule and check-in surface — plainly appointment/scheduling
+    management in patient access.
 - tag: CDS Hooks
   spec_file: athenahealth-cds-hooks-api-openapi.yml
   capability_id: BC-2830.40
   capability_id_l1: BC-2830
   capability_name: Clinical Decision Support
   confidence: 0.9
-  evidence: '"invoke remote clinical decision support services at well-defined points in the EHR workflow";
-    operations "Discover CDS Services", "Invoke CDS Service"'
-  reason: CDS Hooks is explicitly real-time clinical decision support invoked from EHR workflow, matching
-    Clinical Decision Support.
+  evidence: '"CDS Hooks integration for athenaOne — invoke remote clinical decision support services at
+    well-defined points in the EHR workflow"; operations Discover CDS Services / Invoke CDS Service with
+    schema Card'
+  reason: Operations invoke clinical decision support services in the EHR workflow, returning CDS cards
+    — this is real-time clinical decision support.
 - tag: Bulk Data
   spec_file: athenahealth-bulk-data-api-openapi.yml
   capability_id: BC-2900.60
   capability_id_l1: BC-2900
   capability_name: Healthcare Interoperability Operations
-  confidence: 0.78
-  evidence: GET /Group/{id}/$export  groupBulkExport; "Implements the FHIR Bulk Data Access (Flat FHIR)
-    Export Implementation Guide"
-  reason: Group-level FHIR $export with job status and cancellation is operation of the provider's FHIR
-    interoperability surface for population-scale data sharing. Although the mechanics are asynchronous
-    job handling, the capability delivered is standards-based health information exchange.
-- tag: AllergyIntolerance
-  spec_file: athenahealth-allergyintolerance-api-openapi.yml
-  capability_id: BC-2900.60
-  capability_id_l1: BC-2900
-  capability_name: Healthcare Interoperability Operations
-  confidence: 0.72
-  evidence: GET /AllergyIntolerance  searchFhirAllergies  Search Allergies; "HL7 FHIR R4 server certified
-    to the ONC Cures Act Final Rule. Serves US Core and USCDI v3 profiles for interoperability"
-  reason: A read-only US Core FHIR resource endpoint on a certified FHIR server; its purpose is standards-based
-    clinical data exchange, which is Healthcare Interoperability Operations rather than the authoring
-    of clinical documentation.
-- tag: Claims
-  spec_file: athenahealth-claims-api-openapi.yml
-  capability_id: BC-2870.30
-  capability_id_l1: BC-2870
-  capability_name: Claim Production & Submission
-  confidence: 0.72
-  evidence: GET /claims searchClaims "Search Claims"; schemas "Claim, ClaimList"; "biller workflow surface"
-  reason: Claim resources on a provider practice-management/RCM platform sit in healthcare revenue cycle;
-    the search-and-track surface aligns best with claim production and status tracking, though the single
-    read-only operation leaves some ambiguity between claim submission and denials sub-capabilities.
+  confidence: 0.8
+  evidence: '"FHIR Bulk Data Access ($export) for athenahealth. Implements the FHIR Bulk Data Access (Flat
+    FHIR) Export Implementation Guide" — GET /Group/{id}/$export Group Bulk Export'
+  reason: Group-level FHIR $export with job status/cancel is the provider's health information exchange
+    / FHIR endpoint operation surface, i.e. healthcare interoperability operations rather than any clinical
+    or financial capability.
 - tag: Patients
   spec_file: athenahealth-patients-api-openapi.yml
   capability_id: BC-2800.20
   capability_id_l1: BC-2800
   capability_name: Patient Registration Management
+  confidence: 0.75
+  evidence: POST /patients "createPatient  Create Patient", PUT /patients/{patientid} "Update Patient",
+    schemas "PatientCreate, PatientUpdate"
+  reason: Full CRUD over patient records in the athenaOne practice-management API is capture and stewardship
+    of patient demographic/identity data, i.e. patient registration. Some chance the intended fit is master
+    patient index stewardship, so not maximal confidence.
+- tag: Subscription
+  spec_file: athenahealth-subscription-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: '"The athenahealth Event Subscription Platform delivers near real-time healthcare-domain event
+    notifications via FHIR Subscriptions (R5 Backport). Currently supports the rest-hook channel"; createSubscription
+    / deleteSubscription / getSubscriptionStatus'
+  reason: Operations manage the lifecycle of outbound event notification subscriptions delivered by rest-hook,
+    i.e. webhook and event subscription management on a developer platform. Not a clinical capability
+    despite the healthcare domain of the events.
+- tag: AllergyIntolerance
+  spec_file: athenahealth-allergyintolerance-api-openapi.yml
+  capability_id: BC-2900.60
+  capability_id_l1: BC-2900
+  capability_name: Healthcare Interoperability Operations
   confidence: 0.7
-  evidence: '"POST /patients createPatient Create Patient", "PUT /patients/{patientid} updatePatient Update
-    Patient"; schemas "PatientCreate, PatientUpdate"'
-  reason: Full CRUD on patient records in the practice-management platform — creation and stewardship
-    of patient demographic/identity records, which is Patient Registration Management. Some overlap with
-    master patient index stewardship keeps confidence below 0.8.
+  evidence: GET /AllergyIntolerance searchFhirAllergies Search Allergies; "HL7 FHIR R4 server certified
+    to the ONC Cures Act Final Rule. Serves US Core and USCDI v3 profiles for interoperability"
+  reason: A certified FHIR US Core endpoint exposing allergy data for interoperability — this is healthcare
+    interoperability operations (FHIR endpoint provision) rather than clinical documentation authoring.
