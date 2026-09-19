@@ -110,7 +110,7 @@ apis:
   baseURL: https://mydata.athenahealth.com/
   tags:
   - FHIR
-  - On-Premise
+  - On-Premises
   tags_raw:
   - FHIR
   - athenaPractice
@@ -813,6 +813,8 @@ apis:
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
   tags:
+  - Patients
+  tags_raw:
   - Patient
   properties:
   - type: OpenAPI
@@ -1058,6 +1060,8 @@ apis:
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
   tags:
+  - AllergyIntolerance
+  tags_raw:
   - Allergy Intolerance
   properties:
   - type: OpenAPI
@@ -1105,6 +1109,8 @@ apis:
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
   tags:
+  - DocumentReference
+  tags_raw:
   - Document Reference
   properties:
   - type: OpenAPI
@@ -1152,6 +1158,8 @@ apis:
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
   tags:
+  - MedicationRequest
+  tags_raw:
   - Medication Request
   properties:
   - type: OpenAPI
