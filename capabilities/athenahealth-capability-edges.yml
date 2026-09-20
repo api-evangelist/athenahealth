@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 6
+edge_count: 7
 edges:
 - tag: Appointments
   spec_file: athenahealth-appointments-api-openapi.yml
@@ -56,6 +56,17 @@ edges:
   reason: Full CRUD over patient records in the athenaOne practice-management API is capture and stewardship
     of patient demographic/identity data, i.e. patient registration. Some chance the intended fit is master
     patient index stewardship, so not maximal confidence.
+- tag: Claims
+  spec_file: athenahealth-claims-api-openapi.yml
+  capability_id: BC-2870.30
+  capability_id_l1: BC-2870
+  capability_name: Claim Production & Submission
+  confidence: 0.72
+  evidence: GET /claims searchClaims "Search Claims"; schemas "Claim, ClaimList"; "biller workflow surface"
+  reason: Claim resources on a provider practice-management/RCM platform sit in healthcare revenue cycle;
+    the search-and-track surface aligns best with claim production and status tracking, though the single
+    read-only operation leaves some ambiguity between claim submission and denials sub-capabilities.
+  recovered_from: healthcare-vertical-edges.json
 - tag: Subscription
   spec_file: athenahealth-subscription-api-openapi.yml
   capability_id: BC-4270.80
