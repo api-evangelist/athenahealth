@@ -69,7 +69,8 @@ edges:
     i.e. webhook and event subscription management on a developer platform. Not a clinical capability
     despite the healthcare domain of the events.
 - tag: AllergyIntolerance
-  spec_file: athenahealth-allergyintolerance-api-openapi.yml
+  spec_file: athenahealth-allergy-intolerance-api-openapi.yml
+  reanchored_from: athenahealth-allergyintolerance-api-openapi.yml
   capability_id: BC-2900.60
   capability_id_l1: BC-2900
   capability_name: Healthcare Interoperability Operations
