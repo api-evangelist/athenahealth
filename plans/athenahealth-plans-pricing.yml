@@ -1,131 +1,17 @@
-generated: '2026-08-14'
-method: generated
-source: https://www.athenahealth.com/why-choose-us/cost-value,
-  https://www.athenahealth.com/solutions/marketplace-program,
-  https://www.athenahealth.com/solutions/marketplace-partners,
-  https://docs.athenahealth.com/api/guides/our-process
-plan_count: 3
-published_price_list: false
-verification:
-  checked: '2026-08-14'
-  summary: >-
-    athenahealth publishes NO API price list. There is no pricing page for the APIs, no per-call
-    rate, no tier table and no self-service signup — API access is bundled into an athenaOne
-    customer relationship or into the Marketplace Partner program, and both are quoted by sales.
-    That is the finding, and it is why method is `generated` rather than `searched`: the plan
-    structure below is a faithful description of how athenahealth sells access, but the specific
-    percentages in `cost:` and `notes:` are NOT quoted from any athenahealth page this pipeline
-    could read and must be treated as unverified.
-  probes:
-  - url: https://www.athenahealth.com/why-choose-us/cost-value
-    status: 200
-    note: Resolves. Marketing page about value, not an API price list.
-  - url: https://www.athenahealth.com/solutions/marketplace-program
-    status: 200
-    readable: true
-    note: >-
-      Read successfully. States the Marketplace is "home to over 300 Partners offering solutions
-      that address issues across more than 60 capabilities", reports "590+ Marketplace Partners to
-      choose from", and routes every acquisition through a "Get Started Now" form — i.e. a sales
-      gate, no published price.
-  - url: https://www.athenahealth.com/developer-portal
-    status: 200
-    readable: true
-    note: >-
-      Read successfully. Describes API Access ("Over 800 API endpoints"), Interfaces, Data View,
-      Marketplace Partners Program, EHI Export and data migration. Names no price.
-  - url: https://docs.athenahealth.com/api/guides/our-process
-    status: 200
-    readable: false
-    note: JS-rendered document-portal shell (2,116 bytes). Onboarding/approval process not readable
-      by machine.
-  unverified_figures:
-  - '"Revenue share of 15-30% of generated revenue" on the Marketplace Partner Program plan'
-  - '"commonly around 4-8% for full-service RCM" in notes'
-  - '"Rate limits: up to 100 calls/sec and 500,000 calls/day" in the production plan features —
-    see rate-limits/athenahealth-rate-limits.yml, same caveat'
-  unverified_note: >-
-    These figures were carried forward from an earlier enrichment round. No athenahealth page
-    readable by this pipeline states them. They are retained rather than deleted because deleting
-    them would lose the earlier round's work, but they are marked here so nothing downstream treats
-    them as provider-published.
-access_model:
-  self_service: false
-  approval_required: true
-  free_tier: false
-  evidence: >-
-    No public signup exists for either environment. Developers register through the athenahealth
-    Developer Portal and are approved into the Marketplace Partner program before credentials are
-    issued. See sandbox/athenahealth-sandbox.yml.
-name: athenahealth API Plans and Pricing
-description: >-
-  athenahealth does not publish a traditional tiered API pricing model with
-  fixed per-call costs. Instead, access is structured around a partnership and
-  revenue-sharing model tied to healthcare practice collections and a Marketplace
-  Partner program for independent software vendors and developers.
-url: https://www.athenahealth.com/why-choose-us/cost-value
-
-plans:
-  - name: Developer / Preview Access
-    description: >-
-      Sandbox and preview environment access for developers building integrations
-      with athenahealth APIs. Allows testing of API calls against sample data
-      before going to production. Rate limits are more restrictive in preview
-      than in production.
-    url: https://docs.athenahealth.com/api/guides/our-process
-    features:
-      - Access to sandbox/preview environment
-      - OAuth 2.0 authentication testing
-      - Sample data for development
-      - Limited API endpoint access
-    rateLimits:
-      tokenRequests: 5 per minute (new OAuth token requests)
-    cost: Free during development
-
-  - name: Production API Access (Practice Customer)
-    description: >-
-      Full production API access for athenahealth customers (medical practices
-      and health systems). Pricing is based on a percentage of monthly
-      collections rather than fixed API fees. athenahealth earns when the
-      practice earns.
-    url: https://www.athenahealth.com/why-choose-us/cost-value
-    features:
-      - Access to 800+ API endpoints
-      - Full athenaOne REST API suite
-      - FHIR R4 API access
-      - OAuth 2.0 production credentials
-      - Rate limits: up to 100 calls/sec and 500,000 calls/day
-      - Patient scheduling, clinical data, revenue cycle, and care coordination
-    cost: Percentage of monthly collections (contact sales for quote)
-
-  - name: Marketplace Partner Program
-    description: >-
-      For independent software vendors and developers who build and distribute
-      apps through the athenahealth Marketplace. Partners pay a revenue share
-      on solutions sold to athenahealth customers. Integration into the
-      Marketplace grants access to the national network of athenahealth
-      providers.
-    url: https://www.athenahealth.com/solutions/marketplace-partners
-    features:
-      - Production API access for ISV applications
-      - Distribution to 84,000+ care sites on athenahealth network
-      - Marketplace listing and discoverability
-      - Partner support and developer resources
-      - Revenue sharing arrangement
-    cost: Revenue share of 15-30% of generated revenue (contact for details)
-
-notes:
-  - athenahealth pricing for practice management software is typically structured
-    as a percentage of net collections (commonly around 4-8% for full-service RCM).
-  - API access for customers is bundled with the athenaOne subscription.
-  - ISVs must apply and be approved for the Marketplace Partner Program to gain
-    production API access for distribution purposes.
-  - Custom enterprise pricing is available for health systems and large group
-    practices.
-  - Contact athenahealth sales or developer relations for specific pricing.
-
-contacts:
-  - type: Sales
-    url: https://www.athenahealth.com/contact-us
-  - type: DeveloperRelations
-    url: https://www.athenahealth.com/developer-portal
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.athenahealth.com/why-choose-us/cost-value
+sources:
+- https://www.athenahealth.com/why-choose-us/cost-value
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T131751
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+published: false
+note: No numeric price is published on the pricing page; Marketing page describing a pricing model tied
+  to organization's collections; no numeric prices shown, only demo requests.
+plan_count: 0
+plans: []
