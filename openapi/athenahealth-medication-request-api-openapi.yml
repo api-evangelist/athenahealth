@@ -1,13 +1,11 @@
 openapi: 3.2.0
 info:
-  title: athenahealth FHIR R4 Allergy Intolerance API
+  title: athenahealth FHIR R4 Medication Request API
   description: 'athenahealth''s HL7 FHIR R4 server certified to the ONC Cures Act Final Rule.
 
     Serves US Core and USCDI v3 profiles for interoperability. SMART on FHIR
 
-    authorization via the athenahealth Developer Portal.
-
-    '
+    authorization via the athenahealth Developer Portal.'
   version: 25.0.0
   contact:
     name: athenahealth Developer Support
@@ -20,14 +18,14 @@ servers:
 security:
 - smart: []
 tags:
-- name: AllergyIntolerance
+- name: Medication Request
 paths:
-  /AllergyIntolerance:
+  /MedicationRequest:
     get:
-      summary: Search Allergies
-      operationId: searchFhirAllergies
+      summary: Search Medication Requests
+      operationId: searchFhirMedicationRequests
       tags:
-      - AllergyIntolerance
+      - Medication Request
       parameters:
       - name: patient
         in: query
@@ -35,7 +33,7 @@ paths:
           type: string
       responses:
         '200':
-          description: Bundle of AllergyIntolerance resources
+          description: Bundle of MedicationRequest resources
 components:
   securitySchemes:
     smart:

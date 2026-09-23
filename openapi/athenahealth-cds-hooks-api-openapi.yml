@@ -3,9 +3,7 @@ info:
   title: athenahealth CDS Hooks API
   description: 'CDS Hooks integration for athenaOne — invoke remote clinical decision
 
-    support services at well-defined points in the EHR workflow.
-
-    '
+    support services at well-defined points in the EHR workflow.'
   version: 1.0.0
 servers:
 - url: https://cds.example.com
@@ -58,6 +56,13 @@ paths:
                 $ref: '#/components/schemas/CdsResponse'
 components:
   schemas:
+    CdsResponse:
+      type: object
+      properties:
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
     CdsService:
       type: object
       properties:
@@ -78,27 +83,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    CdsResponse:
-      type: object
-      properties:
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/Card'
-    CdsRequest:
-      type: object
-      properties:
-        hook:
-          type: string
-        hookInstance:
-          type: string
-        fhirServer:
-          type: string
-          format: uri
-        context:
-          type: object
-        prefetch:
-          type: object
     Card:
       type: object
       properties:
@@ -139,3 +123,17 @@ components:
                 enum:
                 - absolute
                 - smart
+    CdsRequest:
+      type: object
+      properties:
+        hook:
+          type: string
+        hookInstance:
+          type: string
+        fhirServer:
+          type: string
+          format: uri
+        context:
+          type: object
+        prefetch:
+          type: object

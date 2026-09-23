@@ -7,9 +7,7 @@ info:
 
     cloud-based EHR and practice management platform. All resources are
 
-    scoped to a practice via the practiceid path parameter.
-
-    '
+    scoped to a practice via the practiceid path parameter.'
   version: 1.0.0
   contact:
     name: athenahealth Developer Support

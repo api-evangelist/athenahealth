@@ -5,9 +5,7 @@ info:
 
     Serves US Core and USCDI v3 profiles for interoperability. SMART on FHIR
 
-    authorization via the athenahealth Developer Portal.
-
-    '
+    authorization via the athenahealth Developer Portal.'
   version: 25.0.0
   contact:
     name: athenahealth Developer Support

@@ -5,9 +5,7 @@ info:
 
     healthcare-domain event notifications via FHIR Subscriptions (R5 Backport).
 
-    Currently supports the rest-hook channel and id-only payload type.
-
-    '
+    Currently supports the rest-hook channel and id-only payload type.'
   version: 1.0.0
 servers:
 - url: https://api.platform.athenahealth.com/fhir/r4

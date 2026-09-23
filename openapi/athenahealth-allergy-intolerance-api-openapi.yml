@@ -1,13 +1,11 @@
 openapi: 3.2.0
 info:
-  title: athenahealth FHIR R4 Document Reference API
+  title: athenahealth FHIR R4 Allergy Intolerance API
   description: 'athenahealth''s HL7 FHIR R4 server certified to the ONC Cures Act Final Rule.
 
     Serves US Core and USCDI v3 profiles for interoperability. SMART on FHIR
 
-    authorization via the athenahealth Developer Portal.
-
-    '
+    authorization via the athenahealth Developer Portal.'
   version: 25.0.0
   contact:
     name: athenahealth Developer Support
@@ -20,26 +18,22 @@ servers:
 security:
 - smart: []
 tags:
-- name: DocumentReference
+- name: Allergy Intolerance
 paths:
-  /DocumentReference:
+  /AllergyIntolerance:
     get:
-      summary: Search Document References
-      operationId: searchFhirDocumentReferences
+      summary: Search Allergies
+      operationId: searchFhirAllergies
       tags:
-      - DocumentReference
+      - Allergy Intolerance
       parameters:
       - name: patient
         in: query
         schema:
           type: string
-      - name: category
-        in: query
-        schema:
-          type: string
       responses:
         '200':
-          description: Bundle of DocumentReference resources
+          description: Bundle of AllergyIntolerance resources
 components:
   securitySchemes:
     smart:

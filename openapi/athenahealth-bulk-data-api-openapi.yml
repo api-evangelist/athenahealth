@@ -5,9 +5,7 @@ info:
 
     Bulk Data Access (Flat FHIR) Export Implementation Guide and the FHIR
 
-    Asynchronous Request Pattern for Group-level export.
-
-    '
+    Asynchronous Request Pattern for Group-level export.'
   version: 2.0.0
 servers:
 - url: https://api.platform.athenahealth.com/fhir/r4
