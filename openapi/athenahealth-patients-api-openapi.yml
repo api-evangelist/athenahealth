@@ -158,22 +158,6 @@ components:
           type: string
         departmentid:
           type: integer
-    PatientList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Patient'
-    PatientUpdate:
-      type: object
-      properties:
-        firstname:
-          type: string
-        lastname:
-          type: string
-        mobilephone:
-          type: string
-        email:
-          type: string
-          format: email
     PatientCreate:
       type: object
       required:
@@ -193,6 +177,22 @@ components:
           type: integer
         sex:
           type: string
+    PatientUpdate:
+      type: object
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        mobilephone:
+          type: string
+        email:
+          type: string
+          format: email
+    PatientList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Patient'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -56,33 +56,6 @@ paths:
                 $ref: '#/components/schemas/CdsResponse'
 components:
   schemas:
-    CdsResponse:
-      type: object
-      properties:
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/Card'
-    CdsService:
-      type: object
-      properties:
-        id:
-          type: string
-        hook:
-          type: string
-          enum:
-          - patient-view
-          - order-select
-          - order-sign
-          - appointment-book
-        title:
-          type: string
-        description:
-          type: string
-        prefetch:
-          type: object
-          additionalProperties:
-            type: string
     Card:
       type: object
       properties:
@@ -123,6 +96,33 @@ components:
                 enum:
                 - absolute
                 - smart
+    CdsService:
+      type: object
+      properties:
+        id:
+          type: string
+        hook:
+          type: string
+          enum:
+          - patient-view
+          - order-select
+          - order-sign
+          - appointment-book
+        title:
+          type: string
+        description:
+          type: string
+        prefetch:
+          type: object
+          additionalProperties:
+            type: string
+    CdsResponse:
+      type: object
+      properties:
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
     CdsRequest:
       type: object
       properties:
