@@ -99,7 +99,7 @@ components:
           - requested
           - active
           - error
-          - false
+          - 'off'
         criteria:
           type: string
         channel:

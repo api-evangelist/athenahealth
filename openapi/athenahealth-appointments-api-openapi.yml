@@ -153,6 +153,10 @@ paths:
           description: Reschedule result
 components:
   schemas:
+    AppointmentList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Appointment'
     Appointment:
       type: object
       properties:
@@ -175,10 +179,6 @@ components:
           type: string
         appointmentstatus:
           type: string
-    AppointmentList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Appointment'
   securitySchemes:
     oauth2:
       type: oauth2

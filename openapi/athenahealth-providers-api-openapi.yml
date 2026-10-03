@@ -48,10 +48,6 @@ paths:
                 $ref: '#/components/schemas/ProviderList'
 components:
   schemas:
-    ProviderList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Provider'
     Provider:
       type: object
       properties:
@@ -67,6 +63,10 @@ components:
           type: string
         specialty:
           type: string
+    ProviderList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Provider'
   securitySchemes:
     oauth2:
       type: oauth2

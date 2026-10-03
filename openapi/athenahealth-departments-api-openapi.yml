@@ -48,10 +48,6 @@ paths:
                 $ref: '#/components/schemas/DepartmentList'
 components:
   schemas:
-    DepartmentList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Department'
     Department:
       type: object
       properties:
@@ -69,6 +65,10 @@ components:
           type: string
         timezone:
           type: string
+    DepartmentList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Department'
   securitySchemes:
     oauth2:
       type: oauth2
