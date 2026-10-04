@@ -77,10 +77,6 @@ paths:
                 $ref: '#/components/schemas/Encounter'
 components:
   schemas:
-    EncounterList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Encounter'
     Encounter:
       type: object
       properties:
@@ -101,6 +97,10 @@ components:
           type: integer
         status:
           type: string
+    EncounterList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Encounter'
   securitySchemes:
     oauth2:
       type: oauth2
