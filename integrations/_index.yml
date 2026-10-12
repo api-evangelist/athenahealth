@@ -39,5 +39,5 @@
     matched_domain: athenahealth.com
     detected_by: sweep-health-networks.py
     detected: '2026-10-12'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
