@@ -1,19 +1,26 @@
 generated: '2026-10-12'
 method: searched
 source:
-- https://zapier.com/apps/athenahealth/integrations
-- https://n8n.io/integrations/athenahealth/
-- https://composio.dev/toolkits/athenahealth
-- https://monid.ai/tools/athenahealth
+- https://marketplace.athenahealth.com/
 checked:
 - https://composio.dev/toolkits/athenahealth
 - https://marketplace.athenahealth.com/
 - https://monid.ai/tools/athenahealth
 - https://n8n.io/integrations/athenahealth/
 - https://www.athenahealth.com/solutions/marketplace-partners
+- https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-connected-products&_fields=id,link,content
+- https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-members&_fields=id,link,content
 - https://zapier.com/apps/athenahealth/integrations
 summary: null
-marketplace_apps: []
+marketplace_apps:
+- marketplace: own
+  channel: partner-built
+  app: athenahealth
+  url: https://marketplace.athenahealth.com/
+  app_count: null
+  adapter: _store_athenahealth
+  listed: 0
+  status: not-machine-readable (HTTP 403; WAF blocks non-browser and headless access)
 edges:
 - partner_name: luma-health
   partner: luma-health
@@ -29,6 +36,40 @@ edges:
     value: athenahealth
     property: schemas.ExternalId.source
     detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: CommonWell Health Alliance
+  partner: null
+  type: contract
+  channel: network-directory
+  relationship: network-participant
+  direction: partner-built
+  evidence: https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-members&_fields=id,link,content
+  contract_reference:
+    network: CommonWell Health Alliance
+    spec_file: null
+    role: member
+    listed_name: Athena Health
+    listing_page: https://www.commonwellalliance.org/how-to-participate/commonwell-members/
+    network_id: athenahealth.com
+    matched_domain: athenahealth.com
+    detected_by: sweep-health-networks.py
+    detected: '2026-10-12'
+- partner_name: CommonWell Health Alliance
+  partner: null
+  type: contract
+  channel: network-directory
+  relationship: network-participant
+  direction: partner-built
+  evidence: https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-connected-products&_fields=id,link,content
+  contract_reference:
+    network: CommonWell Health Alliance
+    spec_file: null
+    role: connected-product
+    listed_name: athenaClinicals
+    listing_page: https://www.commonwellalliance.org/connect-to-the-network/commonwell-connected-products/
+    network_id: athenahealth.com
+    matched_domain: athenahealth.com
+    detected_by: sweep-health-networks.py
     detected: '2026-10-12'
 templates: []
 note: athenahealth runs the athenahealth Marketplace for partner-built apps on athenaOne (described at https://www.athenahealth.com/solutions/marketplace-partners,
