@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/athenahealth/integrations
 - https://n8n.io/integrations/athenahealth/
@@ -14,7 +14,22 @@ checked:
 - https://zapier.com/apps/athenahealth/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: luma-health
+  partner: luma-health
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/luma-health/blob/main/openapi/luma-health-patients-api-openapi.yml
+  contract_reference:
+    repo: luma-health
+    spec_file: luma-health-patients-api-openapi.yml
+    value: athenahealth
+    property: schemas.ExternalId.source
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
 templates: []
 note: athenahealth runs the athenahealth Marketplace for partner-built apps on athenaOne (described at https://www.athenahealth.com/solutions/marketplace-partners,
   HTTP 200); the store itself answered HTTP 403 to every fetch strategy on 2026-10-12, so no app list or count was
