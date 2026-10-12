@@ -1,0 +1,21 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/athenahealth/integrations
+- https://n8n.io/integrations/athenahealth/
+- https://composio.dev/toolkits/athenahealth
+- https://monid.ai/tools/athenahealth
+checked:
+- https://composio.dev/toolkits/athenahealth
+- https://marketplace.athenahealth.com/
+- https://monid.ai/tools/athenahealth
+- https://n8n.io/integrations/athenahealth/
+- https://www.athenahealth.com/solutions/marketplace-partners
+- https://zapier.com/apps/athenahealth/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
+note: athenahealth runs the athenahealth Marketplace for partner-built apps on athenaOne (described at https://www.athenahealth.com/solutions/marketplace-partners,
+  HTTP 200); the store itself answered HTTP 403 to every fetch strategy on 2026-10-12, so no app list or count was
+  recorded.

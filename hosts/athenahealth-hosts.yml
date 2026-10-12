@@ -1,0 +1,131 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 9
+  own: 5
+  other_domain: 1
+  platform: 3
+  roles:
+  - api
+  - docs
+  - other
+  - source
+  - status
+  - website
+hosts:
+- host: api.platform.athenahealth.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: athenahealth.com
+  role: api
+  relation: own
+- host: docs.athenahealth.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - Documentation
+  - Sandbox
+  - Support
+  - APIReference
+  - GettingStarted
+  - ChangeLog
+  serves:
+  - docs
+  registrable_domain: athenahealth.com
+  role: docs
+  relation: own
+- host: fhir.athena.io
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Documentation
+  serves:
+  - cdn
+  vendor: cloudfront
+  registrable_domain: athena.io
+  role: docs
+  relation: other-domain
+- host: github.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - IssueTracker
+  - License
+  - GitHubOrg
+  - Source
+  - Examples
+  - Tools
+  - SDKs
+  - GitHubOrganization
+  serves:
+  - docs
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: mydata.athenahealth.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - Portal
+  - Documentation
+  - SignUp
+  serves:
+  - api
+  registrable_domain: athenahealth.com
+  role: docs
+  relation: own
+- host: status.athenahealth.com
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: athenahealth.com
+  role: status
+  relation: own
+- host: www.athenahealth.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Website
+  - DeveloperPortal
+  - Blog
+  - Pricing
+  - Marketplace
+  - Portal
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - cdn
+  vendor: akamai
+  registrable_domain: athenahealth.com
+  role: website
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: x.com
+  found_by:
+  - pointer
+  types:
+  - X
+  serves: []
+  registrable_domain: x.com
+  role: other
+  relation: platform

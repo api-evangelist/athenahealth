@@ -2,6 +2,7 @@
 generated: '2026-09-20'
 method: searched
 source: https://www.athenahealth.com/why-choose-us/cost-value
+name: athenahealth API Plans
 sources:
 - https://www.athenahealth.com/why-choose-us/cost-value
 provenance:

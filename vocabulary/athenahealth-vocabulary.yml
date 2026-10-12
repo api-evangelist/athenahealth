@@ -1,9 +1,325 @@
+generated: '2026-08-14'
+method: derived
+source: openapi/
+vocabulary:
+  name: athenahealth Vocabulary
+  description: 'Operational and capability vocabulary for the athenahealth API surface.
+
+    Combines athenaOne proprietary resources, FHIR R4 / US Core profiles, FHIR
+
+    Subscriptions (R5 Backport), Bulk Data Access, and CDS Hooks.
+
+    '
+  terms:
+  - term: Healthcare
+    definition: Listed under the domain dimension of the athenahealth vocabulary.
+    tags:
+    - domain
+  - term: EHR
+    definition: Listed under the domain dimension of the athenahealth vocabulary.
+    tags:
+    - domain
+  - term: Practice Management
+    definition: Listed under the domain dimension of the athenahealth vocabulary.
+    tags:
+    - domain
+  - term: Revenue Cycle Management
+    definition: Listed under the domain dimension of the athenahealth vocabulary.
+    tags:
+    - domain
+  - term: Patient Engagement
+    definition: Listed under the domain dimension of the athenahealth vocabulary.
+    tags:
+    - domain
+  - term: Population Health
+    definition: Listed under the domain dimension of the athenahealth vocabulary.
+    tags:
+    - domain
+  - term: Interoperability
+    definition: Listed under the domain dimension of the athenahealth vocabulary.
+    tags:
+    - domain
+  - term: Patient
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Appointment
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Encounter
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Claim
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Document
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Provider
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Department
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Practice
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Order
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Allergy
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Medication
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Problem
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Vital
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Observation
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Condition
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: DiagnosticReport
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: DocumentReference
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Immunization
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: CarePlan
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Subscription
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: Group
+    definition: Listed under the resources dimension of the athenahealth vocabulary.
+    tags:
+    - resources
+  - term: HL7 FHIR R4
+    definition: Listed under the protocols dimension of the athenahealth vocabulary.
+    tags:
+    - protocols
+  - term: HL7 FHIR R5 Backport Subscriptions
+    definition: Listed under the protocols dimension of the athenahealth vocabulary.
+    tags:
+    - protocols
+  - term: SMART on FHIR (SMART App Launch 2.0)
+    definition: Listed under the protocols dimension of the athenahealth vocabulary.
+    tags:
+    - protocols
+  - term: SMART Backend Services
+    definition: Listed under the protocols dimension of the athenahealth vocabulary.
+    tags:
+    - protocols
+  - term: OAuth 2.0 client_credentials
+    definition: Listed under the protocols dimension of the athenahealth vocabulary.
+    tags:
+    - protocols
+  - term: OAuth 2.0 authorization_code
+    definition: Listed under the protocols dimension of the athenahealth vocabulary.
+    tags:
+    - protocols
+  - term: HTTPS / TLS 1.2+
+    definition: Listed under the protocols dimension of the athenahealth vocabulary.
+    tags:
+    - protocols
+  - term: CDS Hooks 1.0
+    definition: Listed under the protocols dimension of the athenahealth vocabulary.
+    tags:
+    - protocols
+  - term: HL7 FHIR R4
+    definition: Listed under the standards dimension of the athenahealth vocabulary.
+    tags:
+    - standards
+  - term: US Core
+    definition: Listed under the standards dimension of the athenahealth vocabulary.
+    tags:
+    - standards
+  - term: USCDI v3
+    definition: Listed under the standards dimension of the athenahealth vocabulary.
+    tags:
+    - standards
+  - term: 21st Century Cures Act
+    definition: Listed under the standards dimension of the athenahealth vocabulary.
+    tags:
+    - standards
+  - term: ONC Health IT Certification
+    definition: Listed under the standards dimension of the athenahealth vocabulary.
+    tags:
+    - standards
+  - term: C-CDA
+    definition: Listed under the standards dimension of the athenahealth vocabulary.
+    tags:
+    - standards
+  - term: X12 (claims)
+    definition: Listed under the standards dimension of the athenahealth vocabulary.
+    tags:
+    - standards
+  - term: NCPDP SCRIPT (ePrescribing)
+    definition: Listed under the standards dimension of the athenahealth vocabulary.
+    tags:
+    - standards
+  - term: patient-view
+    definition: Listed under the hooks dimension of the athenahealth vocabulary.
+    tags:
+    - hooks
+  - term: order-select
+    definition: Listed under the hooks dimension of the athenahealth vocabulary.
+    tags:
+    - hooks
+  - term: order-sign
+    definition: Listed under the hooks dimension of the athenahealth vocabulary.
+    tags:
+    - hooks
+  - term: appointment-book
+    definition: Listed under the hooks dimension of the athenahealth vocabulary.
+    tags:
+    - hooks
+  - term: Demographics
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Scheduling
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Clinical Documentation
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: eRx
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Ordering
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Lab Results
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Imaging
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Claims Submission
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Eligibility
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Patient Portal
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Population Health Export
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Event Notifications
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: Decision Support
+    definition: Listed under the capabilities dimension of the athenahealth vocabulary.
+    tags:
+    - capabilities
+  - term: EHR
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: Healthcare
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: HL7
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: FHIR
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: USCDI
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: US Core
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: Cures Act
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: Practice Management
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: Revenue Cycle
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: SMART on FHIR
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: CDS Hooks
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: Bulk Data
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: Subscriptions
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
+  - term: Webhooks
+    definition: Listed under the tags dimension of the athenahealth vocabulary.
+    tags:
+    - tags
 aid: athena-health
 name: athenahealth Vocabulary
-description: |
-  Operational and capability vocabulary for the athenahealth API surface.
+description: 'Operational and capability vocabulary for the athenahealth API surface.
+
   Combines athenaOne proprietary resources, FHIR R4 / US Core profiles, FHIR
+
   Subscriptions (R5 Backport), Bulk Data Access, and CDS Hooks.
+
+  '
 dimensions:
   domain:
   - Healthcare

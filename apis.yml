@@ -1,10 +1,13 @@
 aid: athenahealth
+
 name: athenahealth
+
 description: athenahealth is a cloud-based healthcare network offering REST APIs for electronic health
   records (EHR), practice management, patient portal, revenue cycle management, and care coordination
   across ambulatory and acute care settings. The platform provides over 800 API endpoints enabling developers
   to extend athenaOne and integrate clinical, financial, and operational workflows across a national network
   of 84,000+ care sites.
+
 deliveryModel:
   model: open-core
   license: Apache-2.0
@@ -19,6 +22,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: freemium
   onboarding: approval
@@ -31,11 +35,17 @@ accessModel:
   - plans
   generated: '2026-07-22'
   method: derived
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/athenahealth.png
+
 url: https://raw.githubusercontent.com/api-evangelist/athenahealth/refs/heads/main/apis.yml
+
 created: '2026-06-13'
+
 modified: '2026-08-14'
+
 specificationVersion: '0.23'
+
 tags:
 - Healthcare
 - EHR
@@ -47,6 +57,203 @@ tags:
 - Care Coordination
 - Interoperability
 - HL7
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
+common:
+- type: Spectral
+  url: rules/athenahealth-jsonschema-spectral-rules.yml
+- type: Spectral
+  url: rules/athenahealth-asyncapi-spectral-rules.yml
+- type: Deprecation
+  url: lifecycle/athenahealth-lifecycle.yml
+- type: Hosts
+  url: hosts/athenahealth-hosts.yml
+- type: Vendors
+  url: vendors/athenahealth-vendors.yml
+- type: Overlay
+  url: overlays/athenahealth-allergyintolerance-api-overlay.yaml
+- type: Overlay
+  url: overlays/athenahealth-documentreference-api-overlay.yaml
+- type: Overlay
+  url: overlays/athenahealth-medicationrequest-api-overlay.yaml
+- type: CapabilityMap
+  url: capabilities/athenahealth-capability-edges.yml
+  name: athenahealth Business Capability Map
+- type: IssueTracker
+  url: https://github.com/athenahealth/aone-fhir-subscriptions/issues
+- type: License
+  name: Apache-2.0
+  url: https://github.com/athenahealth/aone-fhir-subscriptions/blob/main/LICENSE
+- type: DomainSecurity
+  url: security/athenahealth-domain-security.yml
+- type: Website
+  url: https://www.athenahealth.com/
+- type: Documentation
+  url: https://docs.athenahealth.com/api
+- type: DeveloperPortal
+  url: https://www.athenahealth.com/developer-portal
+- type: GitHubOrg
+  url: https://github.com/athenahealth
+- type: LinkedIn
+  url: https://www.linkedin.com/company/athenahealth
+- type: Blog
+  url: https://www.athenahealth.com/resources/blog
+- type: Pricing
+  url: https://www.athenahealth.com/why-choose-us/cost-value
+- type: StatusPage
+  url: https://status.athenahealth.com/
+- type: X
+  url: https://x.com/athenahealth
+- type: Marketplace
+  url: https://www.athenahealth.com/solutions/marketplace-partners
+- type: Plans
+  url: plans/athenahealth-plans-pricing.yml
+- type: FinOps
+  url: finops/athenahealth-finops.yml
+- type: AgenticAccess
+  url: agentic-access/athenahealth-agentic-access.yml
+- type: DomainSecurity
+  url: security/athenahealth-domain-security.yml
+- type: Authentication
+  url: authentication/athenahealth-authentication.yml
+- type: OAuthScopes
+  url: scopes/athenahealth-scopes.yml
+- url: https://www.athenahealth.com/
+  name: athenahealth Homepage
+  type: Portal
+- url: https://docs.athenahealth.com/api/
+  name: APIs at athenahealth
+  type: Documentation
+- url: https://docs.athenahealth.com/api/guides/overview
+  name: Welcome to APIs at athenahealth
+  type: Documentation
+- url: https://mydata.athenahealth.com/access-the-apis
+  name: athenahealth Developer Portal
+  type: Portal
+- url: https://docs.athenahealth.com/api/sandbox
+  name: API Solutions Sandbox
+  type: Sandbox
+- url: https://docs.athenahealth.com/api/guides/athenaone-environments
+  name: athenaOne Environments
+  type: Documentation
+- url: https://docs.athenahealth.com/api/guides/base-fhir-urls
+  name: FHIR Base URLs
+  type: Documentation
+- url: https://docs.athenahealth.com/api/guides/onboarding-overview
+  name: Onboarding Overview
+  type: Documentation
+- url: https://docs.athenahealth.com/api/support
+  name: Support
+  type: Support
+- url: https://www.athenahealth.com/knowledge-hub
+  name: athenahealth Knowledge Hub
+  type: Blog
+- url: https://github.com/athenahealth
+  name: athenahealth GitHub
+  type: Source
+- url: https://fhir.athena.io/athenacoreext/index.html
+  name: Athena Core FHIR Implementation Guide
+  type: Documentation
+- url: https://mydata.athenahealth.com/fhirapidoc/r4
+  name: R4 API Documentation
+  type: Documentation
+- url: plans/athenahealth-plans-pricing.yml
+  type: Plans
+- url: rate-limits/athenahealth-rate-limits.yml
+  type: RateLimits
+- url: finops/athenahealth-finops.yml
+  type: FinOps
+- url: vocabulary/athenahealth-vocabulary.yml
+  type: Vocabulary
+- url: rules/athenahealth-rules.yml
+  type: Spectral
+- url: https://github.com/athenahealth/mdp
+  name: MDP API Samples
+  type: Examples
+- url: https://github.com/athenahealth/apiserver-athenaFlex
+  name: athenaPractice/athenaFlow FHIR Sample
+  type: Examples
+- url: https://github.com/athenahealth/aone-fhir-subscriptions
+  name: athenaOne FHIR Subscriptions Sample
+  type: Examples
+- url: https://github.com/athenahealth/vscode-cql-extension
+  name: VSCode CQL Extension
+  type: Tools
+- url: https://github.com/eleanorhealth/go-athenahealth
+  name: Go athenahealth SDK (community)
+  type: SDKs
+- type: AgenticAccess
+  url: agentic-access/athenahealth-agentic-access.yml
+- type: DomainSecurity
+  url: security/athenahealth-domain-security.yml
+- type: Authentication
+  url: authentication/athenahealth-authentication.yml
+- type: OAuthScopes
+  url: scopes/athenahealth-scopes.yml
+- url: plans/athenahealth-plans-pricing.yml
+  type: Plans
+- url: rate-limits/athenahealth-rate-limits.yml
+  type: RateLimits
+- url: finops/athenahealth-finops.yml
+  type: FinOps
+- url: vocabulary/athenahealth-vocabulary.yml
+  type: Vocabulary
+- url: rules/athenahealth-rules.yml
+  type: Spectral
+- type: WellKnown
+  url: well-known/athenahealth-well-known.yml
+- type: X-MCPServerCandidate
+  url: mcp/athenahealth-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+- type: LLMsTxt
+  url: llms/athenahealth-llms.txt
+- type: Conformance
+  url: conformance/athenahealth-conformance.yml
+- type: Compliance
+  url: security/athenahealth-trust-center.yml
+- type: TrustCenter
+  url: security/athenahealth-trust-center.yml
+- type: ErrorCatalog
+  url: errors/athenahealth-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/athenahealth-lifecycle.yml
+- type: Conventions
+  url: conventions/athenahealth-conventions.yml
+- type: DataModel
+  url: data-model/athenahealth-data-model.yml
+- type: Sandbox
+  name: athenahealth Preview Environment
+  url: sandbox/athenahealth-sandbox.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AsyncAPI
+  url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+- type: Webhooks
+  url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
+- type: CapabilityStatement
+  url: conformance/athenahealth-fhir-capabilitystatement.json
+- type: APIReference
+  name: athenahealth API Reference
+  url: https://docs.athenahealth.com/api/api-ref
+- type: GettingStarted
+  name: Welcome to APIs at athenahealth
+  url: https://docs.athenahealth.com/api/guides/overview
+- type: GitHubOrganization
+  url: https://github.com/athenahealth
+- type: TermsOfService
+  url: https://www.athenahealth.com/terms-and-conditions/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.athenahealth.com/privacy-rights
+- type: SignUp
+  name: Request API access
+  url: https://mydata.athenahealth.com/access-the-apis
+- type: ChangeLog
+  name: Release Notes and Change Logs
+  url: https://docs.athenahealth.com/api/resources/release-notes-and-change-logs
+
 apis:
 - aid: athenahealth:athenaone-apis
   name: athenaOne APIs
@@ -1149,203 +1356,8 @@ apis:
     url: https://docs.mydata.athenahealth.com/fhir-r4/ehiexport.html
   - type: Documentation
     url: https://docs.athenahealth.com/downloads/athenaone-cds-hooks-integration-guide
-common:
-- type: Overlay
-  url: overlays/athenahealth-allergyintolerance-api-overlay.yaml
-- type: Overlay
-  url: overlays/athenahealth-documentreference-api-overlay.yaml
-- type: Overlay
-  url: overlays/athenahealth-medicationrequest-api-overlay.yaml
-- type: CapabilityMap
-  url: capabilities/athenahealth-capability-edges.yml
-  name: athenahealth Business Capability Map
-- type: IssueTracker
-  url: https://github.com/athenahealth/aone-fhir-subscriptions/issues
-- type: License
-  name: Apache-2.0
-  url: https://github.com/athenahealth/aone-fhir-subscriptions/blob/main/LICENSE
-- type: DomainSecurity
-  url: security/athenahealth-domain-security.yml
-- type: Website
-  url: https://www.athenahealth.com/
-- type: Documentation
-  url: https://docs.athenahealth.com/api
-- type: DeveloperPortal
-  url: https://www.athenahealth.com/developer-portal
-- type: GitHubOrg
-  url: https://github.com/athenahealth
-- type: LinkedIn
-  url: https://www.linkedin.com/company/athenahealth
-- type: Blog
-  url: https://www.athenahealth.com/resources/blog
-- type: Pricing
-  url: https://www.athenahealth.com/why-choose-us/cost-value
-- type: StatusPage
-  url: https://status.athenahealth.com/
-- type: X
-  url: https://x.com/athenahealth
-- type: Marketplace
-  url: https://www.athenahealth.com/solutions/marketplace-partners
-- type: Plans
-  url: plans/athenahealth-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/athenahealth-rate-limits.yml
-- type: FinOps
-  url: finops/athenahealth-finops.yml
-- type: AgenticAccess
-  url: agentic-access/athenahealth-agentic-access.yml
-- type: DomainSecurity
-  url: security/athenahealth-domain-security.yml
-- type: Authentication
-  url: authentication/athenahealth-authentication.yml
-- type: OAuthScopes
-  url: scopes/athenahealth-scopes.yml
-- url: https://www.athenahealth.com/
-  name: athenahealth Homepage
-  type: Portal
-- url: https://docs.athenahealth.com/api/
-  name: APIs at athenahealth
-  type: Documentation
-- url: https://docs.athenahealth.com/api/guides/overview
-  name: Welcome to APIs at athenahealth
-  type: Documentation
-- url: https://mydata.athenahealth.com/access-the-apis
-  name: athenahealth Developer Portal
-  type: Portal
-- url: https://docs.athenahealth.com/api/sandbox
-  name: API Solutions Sandbox
-  type: Sandbox
-- url: https://docs.athenahealth.com/api/guides/athenaone-environments
-  name: athenaOne Environments
-  type: Documentation
-- url: https://docs.athenahealth.com/api/guides/base-fhir-urls
-  name: FHIR Base URLs
-  type: Documentation
-- url: https://docs.athenahealth.com/api/guides/onboarding-overview
-  name: Onboarding Overview
-  type: Documentation
-- url: https://docs.athenahealth.com/api/support
-  name: Support
-  type: Support
-- url: https://www.athenahealth.com/solutions/marketplace
-  name: athenahealth Marketplace
-  type: Marketplace
-- url: https://www.athenahealth.com/knowledge-hub
-  name: athenahealth Knowledge Hub
-  type: Blog
-- url: https://github.com/athenahealth
-  name: athenahealth GitHub
-  type: Source
-- url: https://fhir.athena.io/athenacoreext/index.html
-  name: Athena Core FHIR Implementation Guide
-  type: Documentation
-- url: https://mydata.athenahealth.com/fhirapidoc/r4
-  name: R4 API Documentation
-  type: Documentation
-- url: plans/athenahealth-plans-pricing.yml
-  type: Plans
-- url: rate-limits/athenahealth-rate-limits.yml
-  type: RateLimits
-- url: finops/athenahealth-finops.yml
-  type: FinOps
-- url: vocabulary/athenahealth-vocabulary.yml
-  type: Vocabulary
-- url: rules/athenahealth-rules.yml
-  type: Spectral
-- url: https://github.com/athenahealth/mdp
-  name: MDP API Samples
-  type: Examples
-- url: https://github.com/athenahealth/apiserver-athenaFlex
-  name: athenaPractice/athenaFlow FHIR Sample
-  type: Examples
-- url: https://github.com/athenahealth/aone-fhir-subscriptions
-  name: athenaOne FHIR Subscriptions Sample
-  type: Examples
-- url: https://github.com/athenahealth/vscode-cql-extension
-  name: VSCode CQL Extension
-  type: Tools
-- url: https://github.com/eleanorhealth/go-athenahealth
-  name: Go athenahealth SDK (community)
-  type: SDKs
-- type: AgenticAccess
-  url: agentic-access/athenahealth-agentic-access.yml
-- type: DomainSecurity
-  url: security/athenahealth-domain-security.yml
-- type: Authentication
-  url: authentication/athenahealth-authentication.yml
-- type: OAuthScopes
-  url: scopes/athenahealth-scopes.yml
-- url: plans/athenahealth-plans-pricing.yml
-  type: Plans
-- url: rate-limits/athenahealth-rate-limits.yml
-  type: RateLimits
-- url: finops/athenahealth-finops.yml
-  type: FinOps
-- url: vocabulary/athenahealth-vocabulary.yml
-  type: Vocabulary
-- url: rules/athenahealth-rules.yml
-  type: Spectral
-- type: Packages
-  url: packages/athenahealth-packages.yml
-- type: WellKnown
-  url: well-known/athenahealth-well-known.yml
-- type: X-MCPServerCandidate
-  url: mcp/athenahealth-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
-- type: ToolCrosswalk
-  url: mcp/athenahealth-tool-crosswalk.yml
-- type: LLMsTxt
-  url: llms/athenahealth-llms.txt
-- type: Conformance
-  url: conformance/athenahealth-conformance.yml
-- type: Compliance
-  url: security/athenahealth-trust-center.yml
-- type: TrustCenter
-  url: security/athenahealth-trust-center.yml
-- type: ErrorCatalog
-  url: errors/athenahealth-problem-types.yml
-- type: Lifecycle
-  url: lifecycle/athenahealth-lifecycle.yml
-- type: Conventions
-  url: conventions/athenahealth-conventions.yml
-- type: ChangeLog
-  url: changelog/athenahealth-changelog.yml
-- type: DataModel
-  url: data-model/athenahealth-data-model.yml
-- type: Sandbox
-  name: athenahealth Preview Environment
-  url: sandbox/athenahealth-sandbox.yml
-- type: AgentSkill
-  url: skills/_index.yml
-- type: AsyncAPI
-  url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
-- type: Webhooks
-  url: asyncapi/athenahealth-fhir-subscriptions-asyncapi.yml
-- type: CapabilityStatement
-  url: conformance/athenahealth-fhir-capabilitystatement.json
-- type: APIReference
-  name: athenahealth API Reference
-  url: https://docs.athenahealth.com/api/api-ref
-- type: GettingStarted
-  name: Welcome to APIs at athenahealth
-  url: https://docs.athenahealth.com/api/guides/overview
-- type: GitHubOrganization
-  url: https://github.com/athenahealth
-- type: TermsOfService
-  url: https://www.athenahealth.com/terms-and-conditions/terms-of-use
-- type: PrivacyPolicy
-  url: https://www.athenahealth.com/privacy-rights
-- type: SignUp
-  name: Request API access
-  url: https://mydata.athenahealth.com/access-the-apis
-- type: ChangeLog
-  name: Release Notes and Change Logs
-  url: https://docs.athenahealth.com/api/resources/release-notes-and-change-logs
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
 x-enrichment:
-  date: '2026-08-14'
+  date: '2026-10-12'
   status: enriched
-  artifacts_added: 42
-  pass: local-v1
+  artifacts_added: 1
+  pass: local-v5

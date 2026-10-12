@@ -2,15 +2,13 @@ overlay: 1.0.0
 info:
   title: API Evangelist enhancements for athenahealth athenaOne REST AllergyIntolerance Subscription API
   version: 1.0.0
-extends: athenahealth-subscription-api-openapi.yml
+extends: openapi/athenahealth-subscription-api-openapi.yml
 x-generated: '2026-08-14'
 x-method: generated
-x-source: openapi/athenahealth-subscription-api-openapi.yml plus live probes of api.platform.athenahealth.com
-  on 2026-08-14
+x-source: openapi/athenahealth-subscription-api-openapi.yml plus live probes of api.platform.athenahealth.com on 2026-08-14
 actions:
 - target: $.info
-  description: Record the athenahealth support contact and API terms declared in the upstream athenaOne
-    specification.
+  description: Record the athenahealth support contact and API terms declared in the upstream athenaOne specification.
   update:
     contact:
       name: athenahealth Developer Support
@@ -64,11 +62,9 @@ actions:
   description: Flag a write operation that accepts no idempotency key — a retry is a second write.
   update:
     x-idempotent: false
-    x-agent-guidance: No Idempotency-Key parameter exists on this operation. Do not blind-retry; on timeout,
-      reconcile by read.
+    x-agent-guidance: No Idempotency-Key parameter exists on this operation. Do not blind-retry; on timeout, reconcile by read.
 - target: $.paths['/Subscription/{id}'].delete
   description: Flag a write operation that accepts no idempotency key — a retry is a second write.
   update:
     x-idempotent: false
-    x-agent-guidance: No Idempotency-Key parameter exists on this operation. Do not blind-retry; on timeout,
-      reconcile by read.
+    x-agent-guidance: No Idempotency-Key parameter exists on this operation. Do not blind-retry; on timeout, reconcile by read.
