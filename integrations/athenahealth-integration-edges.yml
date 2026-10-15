@@ -4,9 +4,12 @@ source:
 - https://marketplace.athenahealth.com/
 checked:
 - https://composio.dev/toolkits/athenahealth
+- https://kantarainitiative.org/trust-status-list/
 - https://marketplace.athenahealth.com/
 - https://monid.ai/tools/athenahealth
+- https://msb.fincen.gov/
 - https://n8n.io/integrations/athenahealth/
+- https://www.access-dvs-register.service.gov.uk/register/download-register
 - https://www.athenahealth.com/solutions/marketplace-partners
 - https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-connected-products&_fields=id,link,content
 - https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-members&_fields=id,link,content
@@ -71,6 +74,43 @@ edges:
     matched_domain: athenahealth.com
     detected_by: sweep-health-networks.py
     detected: '2026-10-12'
+- partner_name: Kantara Initiative (Trust Status List)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://kantarainitiative.org/trust-status-list/
+  category: Identity assurance certification
+  contract_reference:
+    register: Kantara Initiative Trust Status List (kantarainitiative.org/trust-status-list)
+    spec_file: null
+    standard: Kantara Identity Assurance (NIST SP 800-63)
+    role: kantara-approved-service
+    registered_name: athenahealth
+    register_id: athenahealth
+    website: https://www.athenahealth.com
+    matched_domain: athenahealth.com
+    matched_by: domain
+    kantara_services:
+    - service: athenaOne
+      scheme: NIST 800-63 rev.3
+      assurance_levels: IAL2; AAL2
+      status: Good Standing
+      approval: IAF-Approval-26.02-KI
+      expiry: '2029-03-31'
+      table: full_services
+    signal_note: certified_products = one entry per approved service TYPE (Full / Component / Classic), lapsed unless
+      Good Standing and inside the triennial approval; registered applicants are participation only; services and
+      assurance levels are context
+    detected_by: sweep-regtech-aml.py
+    detected: '2026-10-15'
+    certified_products:
+    - product: Full Service
+      lapsed: false
+  detected_by: sweep-regtech-aml.py
+  first_seen: '2026-10-15'
 templates: []
 note: athenahealth runs the athenahealth Marketplace for partner-built apps on athenaOne (described at https://www.athenahealth.com/solutions/marketplace-partners,
   HTTP 200); the store itself answered HTTP 403 to every fetch strategy on 2026-10-12, so no app list or count was

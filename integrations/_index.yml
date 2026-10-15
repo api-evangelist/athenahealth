@@ -41,3 +41,40 @@
     detected: '2026-10-12'
   status: not-a-workflow
   arazzo: null
+- slug: athenahealth-kantara-initiative-trust-status-list
+  label: Kantara Initiative (Trust Status List)
+  partner_name: Kantara Initiative (Trust Status List)
+  category: Identity assurance certification
+  type: register
+  channel: standard-directory
+  evidence: https://kantarainitiative.org/trust-status-list/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Kantara Initiative Trust Status List (kantarainitiative.org/trust-status-list)
+    spec_file: null
+    standard: Kantara Identity Assurance (NIST SP 800-63)
+    role: kantara-approved-service
+    registered_name: athenahealth
+    register_id: athenahealth
+    website: https://www.athenahealth.com
+    matched_domain: athenahealth.com
+    matched_by: domain
+    kantara_services:
+    - service: athenaOne
+      scheme: NIST 800-63 rev.3
+      assurance_levels: IAL2; AAL2
+      status: Good Standing
+      approval: IAF-Approval-26.02-KI
+      expiry: '2029-03-31'
+      table: full_services
+    signal_note: certified_products = one entry per approved service TYPE (Full / Component / Classic), lapsed unless
+      Good Standing and inside the triennial approval; registered applicants are participation only; services and
+      assurance levels are context
+    detected_by: sweep-regtech-aml.py
+    detected: '2026-10-15'
+    certified_products:
+    - product: Full Service
+      lapsed: false
+  status: not-a-workflow
+  arazzo: null
