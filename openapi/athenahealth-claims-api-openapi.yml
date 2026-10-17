@@ -57,6 +57,10 @@ paths:
                 $ref: '#/components/schemas/ClaimList'
 components:
   schemas:
+    ClaimList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Claim'
     Claim:
       type: object
       properties:
@@ -71,10 +75,6 @@ components:
           type: number
         status:
           type: string
-    ClaimList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Claim'
   securitySchemes:
     oauth2:
       type: oauth2

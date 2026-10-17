@@ -56,20 +56,13 @@ paths:
                 $ref: '#/components/schemas/CdsResponse'
 components:
   schemas:
-    CdsRequest:
+    CdsResponse:
       type: object
       properties:
-        hook:
-          type: string
-        hookInstance:
-          type: string
-        fhirServer:
-          type: string
-          format: uri
-        context:
-          type: object
-        prefetch:
-          type: object
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
     Card:
       type: object
       properties:
@@ -110,13 +103,20 @@ components:
                 enum:
                 - absolute
                 - smart
-    CdsResponse:
+    CdsRequest:
       type: object
       properties:
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/Card'
+        hook:
+          type: string
+        hookInstance:
+          type: string
+        fhirServer:
+          type: string
+          format: uri
+        context:
+          type: object
+        prefetch:
+          type: object
     CdsService:
       type: object
       properties:

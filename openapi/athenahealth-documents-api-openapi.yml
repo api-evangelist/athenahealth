@@ -58,10 +58,6 @@ paths:
                 $ref: '#/components/schemas/DocumentList'
 components:
   schemas:
-    DocumentList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Document'
     Document:
       type: object
       properties:
@@ -76,6 +72,10 @@ components:
           format: date-time
         documentclass:
           type: string
+    DocumentList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Document'
   securitySchemes:
     oauth2:
       type: oauth2
