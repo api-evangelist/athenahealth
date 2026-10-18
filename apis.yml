@@ -48,6 +48,16 @@ specificationVersion: '0.23'
 
 tags:
 - Healthcare
+- Electronic Health Records
+- Practice Management
+- Revenue Cycle Management
+- Patient Portal
+- FHIR
+- Care Coordination
+- Interoperability
+- HL7
+tags_raw:
+- Healthcare
 - EHR
 - Electronic Health Records
 - Practice Management
@@ -265,6 +275,12 @@ apis:
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
   tags:
+  - Electronic Health Records
+  - Practice Management
+  - Scheduling
+  - Revenue Cycle
+  - Patient Management
+  tags_raw:
   - EHR
   - Practice Management
   - Scheduling
@@ -1227,6 +1243,8 @@ apis:
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
   tags:
+  - AllergyIntolerance
+  tags_raw:
   - Allergy Intolerance
   properties:
   - type: OpenAPI
@@ -1272,6 +1290,8 @@ apis:
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
   tags:
+  - DocumentReference
+  tags_raw:
   - Document Reference
   properties:
   - type: OpenAPI
@@ -1317,6 +1337,8 @@ apis:
   humanURL: https://docs.athenahealth.com/api/docs/athenaone-apis
   baseURL: https://api.platform.athenahealth.com/v1/{practiceid}
   tags:
+  - MedicationRequest
+  tags_raw:
   - Medication Request
   properties:
   - type: OpenAPI
