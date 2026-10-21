@@ -178,3 +178,61 @@
     identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
   status: not-a-workflow
   arazzo: null
+- slug: athenahealth-directtrust-accreditation-health-it
+  label: DirectTrust Accreditation (health IT)
+  partner_name: DirectTrust Accreditation (health IT)
+  category: Health IT accreditation (Direct exchange, health networks, privacy & security)
+  type: register
+  channel: standard-directory
+  evidence: https://accreditation.directtrust.org/accredited-organization-detail/?accountID=6674830000002340059
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: DirectTrust Accredited Organizations (accreditation.directtrust.org; EHNAC merged into DirectTrust)
+    spec_file: null
+    standard: DirectTrust / EHNAC health IT accreditation
+    role: accredited
+    registered_name: athenahealth, Inc.
+    register_id: '6674830000002340059'
+    website: http://www.athenahealth.com
+    matched_domain: athenahealth.com
+    matched_by: domain
+    identity_source: the website the organization filed on its DirectTrust detail page (no lookup)
+    programs:
+    - program: Privacy and Security
+      status: Accreditation
+      expiry: '2028-10-31'
+    - program: Certificate Authority
+      status: Accreditation - MP
+      expiry: '2028-10-31'
+    - program: Health Information Service Provider
+      status: Accreditation - MP
+      expiry: '2028-10-31'
+    - program: Registration Authority
+      status: Accreditation - MP
+      expiry: '2028-10-31'
+    certified_products:
+    - product: DirectTrust Privacy and Security
+      program: Privacy and Security
+      lapsed: false
+      expiry: '2028-10-31'
+    - product: DirectTrust Certificate Authority
+      program: Certificate Authority
+      lapsed: false
+      expiry: '2028-10-31'
+    - product: DirectTrust Health Information Service Provider
+      program: Health Information Service Provider
+      lapsed: false
+      expiry: '2028-10-31'
+    - product: DirectTrust Registration Authority
+      program: Registration Authority
+      lapsed: false
+      expiry: '2028-10-31'
+    market_fit: own apis.yml tags carry a health IT term
+    signal_note: certified_products = one entry per granted DirectTrust PROGRAM (accreditation type); Candidate
+      / Provisional = participation only; lapsed when the expiry month has passed; e-Rx programs (EPCS, ePrescribing-EHN)
+      are counted by e-prescribing, never here
+    detected_by: sweep-certified-health-it.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
